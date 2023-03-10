@@ -1100,7 +1100,7 @@ ol.my-breadcumb .my-breadcrumb-item.parent {
   background: #4d7ce4;
   height: 100%;
   overflow: hidden;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
 }
 .sidebar .sidebar-header {
   display: flex;

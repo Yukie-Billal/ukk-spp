@@ -1,53 +1,21 @@
-.bungkus-text {
-	overflow: hidden;
+.rotating {
+	animation: rotating .5s;
 }
-
-.text-animate {
-	animation: text 15s alternate infinite;
+.rotating-reverse {
+	animation: rotating-reverse .5s;
 }
-
-.text-animate-reverse {
-	animation: textreverse 15s alternate infinite;
-}
-
-@keyframes text {
+@keyframes rotating {
 	0% {
-		transform: translateX(-200px);
 	}
-	5% {
-		transform: translateX(-200px);
-	}
-	35% {
-		transform: translate(0);
-	}
-	65% {
-		transform: translate(0);
-	}
-	/*9% {
-		transform: translateX(200px);
-	}*/
-	100% {
-		transform: translateX(200px);
+	100%{
+		transform: rotate(180deg);
 	}
 }
-
-@keyframes textreverse {
+@keyframes rotating-reverse {
 	0% {
-		transform: translateX(200px);
+		transform: rotate(180deg);
 	}
-	5% {
-		transform: translateX(200px);
-	}
-	35% {
-		transform: translate(0);
-	}
-	65% {
-		transform: translate(0);
-	}
-	/*95% {
-		transform: translateX(-200px);
-	}*/
-	100% {
-		transform: translateX(-200px);
+	100%{
+		transform: rotate(0deg);
 	}
 }

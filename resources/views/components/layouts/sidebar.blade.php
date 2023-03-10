@@ -1,4 +1,4 @@
-<div class="sidebar m-0 fixed-top" style="width: 19%;">
+<div class="sidebar m-0 fixed-top" style="width: 18%;">
 	<div class="sidebar-header pb-2">
 		<div class="text-dark fw-semibold header-s text-white d-flex flex-column mt-2 text-center align-items-center">			
 			<img src="{{ asset('img/tip.png') }}" alt=".." style="width: 120px; height: 120px;" class="mb-2">
@@ -6,7 +6,7 @@
 			<span>PEMBANGUNAN</span>
 		</div>
 	</div>
-	<div class="sidebar-body">	
+	<div class="sidebar-body">
 		<div class="sidebar-menu d-flex flex-column align-items-start">
 			<div class="menu" data-bs-toggle="collapse" data-bs-target="#dataMaster">
 				<img src="{{ asset('icon/data.png') }}" alt=".." class="me-2" style="width: 20px; height: 20px;">
@@ -70,3 +70,27 @@
 		</div>
 	</div>
 </div>
+
+@push('scripts')
+	<script>
+		const collapseButton = document.querySelectorAll('[data-bs-toggle="collapse"]');
+		collapseButton.forEach(item => {
+			item.addEventListener('click', function () {
+				const arrow = item.querySelector('i');
+				if (arrow.classList.contains('fa-rotate-180')) {
+					arrow.classList.toggle('fa-rotate-180');
+					arrow.classList.add('rotating-reverse');
+					setTimeout(() => {
+						arrow.classList.remove('rotating-reverse');
+					}, 500);
+				} else {
+					arrow.classList.add('rotating');
+					setTimeout(() => {
+						arrow.classList.remove('rotating');
+						arrow.classList.toggle('fa-rotate-180');
+					}, 500);
+				}
+			});
+		});
+	</script>
+@endpush

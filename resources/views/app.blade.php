@@ -13,18 +13,17 @@
 <body>
     <div class="container-fluid p-0">
         <div class="row m-0 p-0">
-            <div style="width: 18%;" class="m-0 p-0" style="background: #315ae0;">
+            <div style="background: #4d7ce4; min-height: 100vh; width: 18%;">
                 <x-layouts.sidebar />
             </div>
-            <div style="width: 82%;" class="p-0 m-0">
+            <div class="p-0 m-0" style="width: 82%;">
                 <x-layouts.header />
-                <div class="content px-3">
+                <div class="content px-3" style="height: 200vh">
                     {{ $slot }}
                 </div>
             </div>
         </div>
     </div>
-    {{ auth()->user() }}
 
     <x-vendor.toast />
     <x-vendor.swal />

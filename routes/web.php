@@ -32,5 +32,5 @@ Route::middleware('auth')->group(function () {
         
     });
     Route::get('/pembayaran', [PageController::class, 'pembayaran']);
-    Route::get('/history-pembayaran', [PageController::class, 'history-pembayaran']);
+    Route::get('/history-pembayaran', [PageController::class, 'history_pembayaran']);
 });

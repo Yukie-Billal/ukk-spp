@@ -4,32 +4,26 @@ namespace App\Http\Livewire\Auth;
 
 use Livewire\Component;
 
-
 class Login extends Component
 {
-    public $email;
+    public $username;
     public $password;
 
-    // protected $rules = [
-    //     'nisn' => 'required|numeric',
-    //     'nis' => 'required|numeric',
-    // ];
     protected $rules = [
-        'email' => 'required',
-        'password' => 'required',
+        'username' => 'required|min:3',
+        'password' => 'required|min:3',
+    ];
+
+    protected $messages = [
+        'username.required' => 'Username Wajib Di isi',
+        'password.required' => 'Password Wajib Di isi',
+        'username.min' => 'Username Minimal memiliki :min huruf',
+        'password.min' => 'Password Minimal memiliki :min huruf',
     ];
 
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName);
-    }
-
-    public function loginact()
-    {
-        $data = $this->validate();
-        // dd($data);
-
-        
     }
     
     public function render()

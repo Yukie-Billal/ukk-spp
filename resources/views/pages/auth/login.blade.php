@@ -6,28 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - SPP</title>
 
+    
+    <link rel="stylesheet" href="{{ asset('bootstrap/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('fontawesome/css/all.min.css') }}">
+    <style>
+        .box {
+            bottom: 160px;
+            right: 100px;
+            width: 360px;
+            height: 420px;
+            background: #fff;
+            border-radius: 8px;
+            display: flex;
+            padding: 40px 28px;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 4px 4px 8px 2px #0000001f;
+            flex-direction: column
+        }
+        label {
+            font: 400 14px/20px 'Inter', sans-serif;
+        }
+    </style>
     <livewire:styles />
 </head>
 <body>
-    <h1>Selamat Datang</h1>
-    {{-- <livewire:auth.login /> --}}
-    <form action="/loginact" method="post">
-        @csrf
-        <input type="text" name="username" class="input-form">
-        @error('email')
-            <span style="color: red">{{ $message }}</span>
-        @enderror
-        <input type="text" name="password" class="input-form">
-        @error('password')
-            <span style="color: red">{{ $message }}</span>
-        @enderror
-        <button>Login</button>
-    
-        @if (session()->has('failed'))
-            {{ session('failed') }}
-        @endif
-    </form>
-
+    {{-- <img src="{{ asset('img/a.jpg') }}" alt=".."> --}}
+    <div class="box my-shadow-2" style="position: absolute;">
+        <span class="header-m mb-4">Selamat Datang</span>
+        <livewire:auth.login />
+    </div>
     <livewire:scripts />
+    <x-vendor.scripts />
 </body>
 </html>

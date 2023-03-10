@@ -4,4 +4,5 @@
     <link rel="stylesheet" href="{{ asset('vendor/toastify/toastify.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/sweetAlert/sweetalert2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('fontawesome/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
 </div>

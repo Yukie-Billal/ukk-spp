@@ -10,14 +10,28 @@ class PageController extends Controller
     {
         return view('pages.beranda');
     }
-
+    public function spp()
+    {
+        return view('pages.data-master.spp.spp');
+    }
     public function siswa()
     {
         return view('pages.data-master.siswa.siswa');
     }
-
     public function kelas()
     {
-        return view('add');
+        return view('pages.data-master.kelas.kelas');
+    }
+    public function petugas()
+    {
+        return view('pages.data-master.petugas.petugas');
+    }
+    public function pembayaran()
+    {
+        return view('pages.transaksi.pembayaran.pembayaran');
+    }
+    public function history_pembayaran()
+    {
+        return view('pages.transaksi.history.history-pembayaran');
     }
 }
