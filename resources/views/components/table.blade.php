@@ -1,3 +1,3 @@
-<div>
-    <!-- Happiness is not something readymade. It comes from your own actions. - Dalai Lama -->
-</div>
+<table class="table table-responsive table-hover table-striped">
+    {{ $slot }}
+</table>

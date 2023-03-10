@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import 'variabel';
+@import 'mixin';
+@import 'utility-class';
+@import 'component';
+
+body {
+   // background: url("/img/login1.jpg");
+   background: rgba(158, 158, 158, 0.6);
+}
+
+.my-img {
+   background: rgba(158, 158, 158, 0.6);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  filter: grayscale(30%);
+  filter: brightness(0.8);
+  filter: opacity(30%);
+  filter: contrast(30%);
+}
+
+hr {
+   background: $my-neutral-40;
+}
+
+td {
+   font-size: 12px;
+}
+a {
+   text-decoration: none;
+   transition: .3s;
+}
+
+// .container {
+//    margin-top: 48px;
+// }
+// Component Class
+
+#navbarMenu {
+   .span {
+      height: 24px;
+      text-decoration: none;
+      background: transparent;
+      border: 1px solid $my-primary-hover;
+      border-radius: 30px;
+      padding: 10px;
+      transition: .3s;
+      color: $my-neutral-90;
+
+      i {
+         font-size: 14px;
+         transform: translateY(.5px);
+         color: $my-neutral-90;
+      }
+
+      &:hover {
+         background: $my-primary-surface;
+      }
+   }
+   .navbar-menu-focus {
+      background: $my-primary-surface;
+   }
+}
+
+
+.icon-qty {
+   cursor: pointer;
+}
+
+.cursor-pointer {
+   cursor: pointer;
+}
+
+.my-shadow-1 {
+   box-shadow: $my-shadow-1;
+}
+.my-shadow-2 {
+   box-shadow: $my-shadow-2;
+}
+.my-shadow-3 {
+   box-shadow: $my-shadow-3;
+}
+
+.my-rounded {
+   border-radius: 30px;
+}
+
+.border-1 {
+   border: 1px solid $my-neutral-60;
+}
+
+.my-rounded.rounded-start {
+   border-radius: 30px 0 0 30px;
+}
+
+.my-rounded.rounded-end {
+   border-radius: 0 30px 30px 0;
+}
+
+.my-rounded.rounded-top {
+   border-radius: 30px 30px 0 0;
+}
+
+.my-rounded.rounded-end {
+   border-radius: 0 0 30px 30px;
+}
+
+/* Animate */
+@keyframes hide {
+   from {display: none;}
+   to {display: none;}
+}

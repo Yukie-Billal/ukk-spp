@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +16,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages.auth.login');
 });
+
+Route::post('/loginact', [AuthController::class, 'loginact']);
+Route::get('/logout', [AuthController::class, 'logout']);
+Route::get('/home', function () {
+    return view('pages.beranda');
+});
+
+Route::get('/siswas', [PageController::class, 'siswa']);
