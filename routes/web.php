@@ -14,15 +14,23 @@ use App\Http\Controllers\PageController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
-    return view('pages.auth.login');
+Route::middleware('guest')->group(function () {
+    Route::get('/', [AuthController::class,'login'])->name('login');
+    Route::post('/loginact', [AuthController::class, 'loginact']);
 });
-
-Route::post('/loginact', [AuthController::class, 'loginact']);
-Route::get('/logout', [AuthController::class, 'logout']);
-Route::get('/home', function () {
-    return view('pages.beranda');
+Route::middleware('auth')->group(function () {
+    Route::get('/beranda', [PageController::class, 'home'])->name('home');
+    Route::get('/logout', [AuthController::class, 'logout']);
+    Route::middleware('Admin')->group(function () {
+        Route::get('/siswa', [PageController::class, 'siswa']);
+        Route::get('/petugas', [PageController::class, 'petugas']);
+        Route::get('/kelas', [PageController::class, 'kelas']);
+        Route::get('/spp', [PageController::class, 'spp']);
+        Route::get('/laporan', [PageController::class, 'laporan']);
+    });
+    Route::middleware('Petugas')->group(function () {
+        
+    });
+    Route::get('/pembayaran', [PageController::class, 'pembayaran']);
+    Route::get('/history-pembayaran', [PageController::class, 'history-pembayaran']);
 });
-
-Route::get('/siswas', [PageController::class, 'siswa']);

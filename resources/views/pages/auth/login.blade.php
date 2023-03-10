@@ -14,13 +14,13 @@
     <form action="/loginact" method="post">
         @csrf
         <input type="text" name="username" class="input-form">
-        {{-- @error('email')
+        @error('email')
             <span style="color: red">{{ $message }}</span>
-        @enderror --}}
+        @enderror
         <input type="text" name="password" class="input-form">
-        {{-- @error('password')
+        @error('password')
             <span style="color: red">{{ $message }}</span>
-        @enderror --}}
+        @enderror
         <button>Login</button>
     
         @if (session()->has('failed'))

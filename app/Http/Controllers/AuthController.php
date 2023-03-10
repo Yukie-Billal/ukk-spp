@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+    public function login()
+    {
+        return view('pages.auth.login');
+    }
     public function loginact(Request $request)
     {
         $credentials = $request->validate([
@@ -17,9 +21,15 @@ class AuthController extends Controller
         ]);
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('/home')->with('success','Login Berhasil');
+            return redirect()->intended('/beranda')->with('success','Login Berhasil');
+        } else {
+            $siswa = Siswa::find($request->username);
+            if ($siswa) {
+                return redirect('/beranda');
+            } else {
+                return redirect('/')->with('failed','username atau password salah');    
+            }
         }
-        return redirect('/')->with('failed','username atau password salah');    
     }
 
     public function logout(Request $request)

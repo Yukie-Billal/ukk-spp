@@ -8,6 +8,3 @@ trait ListenerTrait
     public function fresh(){$this->render();}
     public function toastify(){$this->render();}
 }
-
-
-?>

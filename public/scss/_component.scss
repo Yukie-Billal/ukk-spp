@@ -634,13 +634,10 @@ background-color: #3131a3;
 
 
 .sidebar {
-   // border-right: 2px solid $my-neutral-50;
-   // background: #55D0FF; 
-   background: #3a7bd5;
-   // background-color: lighten($my-primary-hover, 10);
-   border-radius: 0 25px 25px 0; 
-   // border: 2px solid #C2C2C2; 
-   // border-left: 0;
+    background: #4d7ce4;
+    height: 100%;
+    overflow: hidden;
+    overflow-y: scroll;
 
    .sidebar-header {
       @include flex-box(center, center, row);
@@ -706,11 +703,15 @@ background-color: #3131a3;
             a {
                width: 100%;
                height: 100%;
-               padding: 5px 0 5px 46px;
+               padding: 5px 0 5px 22px;
                color: $my-neutral-20;
                font: $my-text-m-regular;
                border-radius: 10px 0 0 10px;
                transition: .3s;
+
+               i {
+                margin-right: 10px;
+               }
 
                &:hover{
                   @include side-menu(false);

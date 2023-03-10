@@ -1097,9 +1097,10 @@ ol.my-breadcumb .my-breadcrumb-item.parent {
 }
 
 .sidebar {
-/*  background: #4ca1af;*/
-  background: #315ae0;
+  background: #4d7ce4;
   height: 100%;
+  overflow: hidden;
+  overflow-y: scroll;
 }
 .sidebar .sidebar-header {
   display: flex;
@@ -1168,11 +1169,14 @@ ol.my-breadcumb .my-breadcrumb-item.parent {
 .sidebar .sidebar-body .sidebar-menu .sub-menu a {
   width: 100%;
   height: 100%;
-  padding: 5px 0 5px 46px;
+  padding: 5px 0 5px 22px;
   color: #F5F5F5;
   font: 400 14px/20px "Inter", sans-serif;
   border-radius: 10px 0 0 10px;
   transition: 0.3s;
+}
+.sidebar .sidebar-body .sidebar-menu .sub-menu a i {
+  margin-right: 10px;
 }
 .sidebar .sidebar-body .sidebar-menu .sub-menu a:hover {
   background-color: #FFFFFF;
@@ -1255,7 +1259,7 @@ ol.my-breadcumb .my-breadcrumb-item.parent {
   }
 }
 body {
-  /* background: rgba(158, 158, 158, 0.6); */
+  background: #f1f1f3;
 }
 
 .my-img {
@@ -1358,4 +1362,4 @@ a {
   }
 }
 
-/*# sourceMappingURL=custom.css.map */
+/*# sourceMappingURL=app.css.map */

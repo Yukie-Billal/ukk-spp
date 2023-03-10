@@ -10,7 +10,6 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-
     use HasApiTokens, HasFactory, Notifiable;
 
     // protected $table = 'petugas';
@@ -48,5 +47,10 @@ class User extends Authenticatable
     public function petugas()
     {
         return $this->HasOne(Petugas::class);
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
     }
 }

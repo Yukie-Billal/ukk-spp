@@ -36,17 +36,17 @@ class DatabaseSeeder extends Seeder
 
         User::factory()->create([
             'username' => 'Admin',
-            'password' => '123',
+            'password' => bcrypt('123'),
             'role_id' => 1
         ]);
         User::factory()->create([
             'username' => 'Petugas',
-            'password' => '123',
+            'password' => bcrypt('123'),
             'role_id' => 2
         ]);
         User::factory()->create([
             'username' => '111',
-            'password' => '111',
+            'password' => bcrypt('111'),
             'role_id' => 3
         ]);
         Spp::factory(3)->create();
@@ -59,12 +59,12 @@ class DatabaseSeeder extends Seeder
         // Petugas::factory(10)->create();
         Petugas::factory()->create([
             'username' => 'Petugas',
-            'password' => '123',
+            'password' => bcrypt('123'),
             'user_id' => 2
         ]);
         Petugas::factory()->create([
             'username' => 'Admin',
-            'password' => '123',
+            'password' => bcrypt('123'),
             'user_id' => 1
         ]);
     }

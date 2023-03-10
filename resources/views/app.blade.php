@@ -18,7 +18,7 @@
             </div>
             <div style="width: 82%;" class="p-0 m-0">
                 <x-layouts.header />
-                <div class="content px-3" style="height: 200vh;">
+                <div class="content px-3">
                     {{ $slot }}
                 </div>
             </div>

@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class Admin
+class Operator
 {
     /**
      * Handle an incoming request.
@@ -15,9 +15,9 @@ class Admin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->user()->role->nama_role == 'admin') {
+        if (auth()->user()->role->nama_role == 'admin' || auth()->user()->role->nama_role) {
             return $next($request);
         }
-        return redirect()->route('home');
+        return redirect('/beranda')->with('cannot','Terjadi Kesalahan');
     }
 }
