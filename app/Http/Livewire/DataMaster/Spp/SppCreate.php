@@ -13,7 +13,7 @@ class SppCreate extends Component
     use ListenerTrait;
 
     public $tahun;
-    public $nominal = 'Rp.';
+    public $nominal;
 
     protected $listeners = [
         'fresh','toastify','swal',

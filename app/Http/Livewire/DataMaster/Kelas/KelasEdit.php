@@ -31,8 +31,13 @@ class KelasEdit extends Component
         $kelas = Kelas::find($this->idKelas);
         $kelas->update([
             'nama_kelas' => $this->nama_kelas,
-            'kompetensi_keashlian' => $this->kompetensi_keahlian,
+            'kompetensi_keahlian' => $this->kompetensi_keahlian,
         ]);
+        if ($kelas) {
+            $this->emit('toastify', ['success','Berhasil Mengubah Kelas', 3000]);
+        } else {
+            $this->emit('toastify', ['danger','Kelas Tidak Ditemukan', 3000]);            
+        }
     }
 
     public function render()

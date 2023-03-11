@@ -12,4 +12,8 @@ class Spp extends Model
     protected $table = 'spp';
 
     protected $guarded = ['id'];
+    public function siswa()
+    {
+        return $this->hasMany(Siswa::class);
+    }
 }

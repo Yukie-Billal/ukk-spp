@@ -22,6 +22,10 @@ class Siswa extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function spp()
+    {
+        return $this->belongsTo(Spp::class);
+    }
 
     public function getRouteKeyName()
     {

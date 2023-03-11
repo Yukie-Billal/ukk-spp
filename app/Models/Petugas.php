@@ -14,9 +14,14 @@ class Petugas extends Model
 
     protected $guarded = [];
     protected $hidden = ['password'];
+    protected $primaryKey = 'petugas_id';
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    public function pembayaran()
+    {
+        return $this->hasMany(Pembayaran::class);
     }
 }

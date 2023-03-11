@@ -8,6 +8,6 @@
           <label for="nominal">Kompetensi Keahlian</label>
           <x-form.input placeholder="Kompetensi Keahlian" wire:model.lazy='kompetensi_keahlian' id="nominal" />
         </div>
-        <x-button color="success" data-bs-dismiss="modal">Tambah Kelas</x-button>
+        <x-button color="success" data-bs-dismiss="modal">Simpan</x-button>
     </form>
 </div>

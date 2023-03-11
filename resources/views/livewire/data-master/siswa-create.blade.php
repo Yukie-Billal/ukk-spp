@@ -2,7 +2,7 @@
     <form wire:submit.prevent='store'>
         <div class="row">
             <div class="col-12 text-center mb-4">
-                <h2>
+                <h2 class="header-l">
                     Biodata Siswa
                 </h2>
             </div>
@@ -63,7 +63,7 @@
                     <label for="kelas">Kelas</label>
                     <select class="select-form" wire:change='$emit("getKelas")' id="kelas">
                         @foreach ($kelases as $kelas)
-                            <option value="{{ $kelas->id }}">{{ $kelas->nama_kelas }}</option>
+                            <option value="{{ $kelas->id }}">{{ $kelas->kompetensi_keahlian .' '. $kelas->nama_kelas }}</option>
                         @endforeach
                     </select>
                 </div>

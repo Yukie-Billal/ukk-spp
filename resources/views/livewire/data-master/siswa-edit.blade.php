@@ -63,7 +63,7 @@
                     <label for="kelas">Kelas</label>
                     <select class="select-form" wire:change='$emit("getKelas")' id="kelas">
                         @foreach ($kelases as $kelas)
-                            <option value="{{ $kelas->id }}">{{ $kelas->nama_kelas }}</option>
+                            <option value="{{ $kelas->id }}">{{ $kelas->kompetensi_keahlian . ' ' . $kelas->nama_kelas }}</option>
                         @endforeach
                     </select>
                 </div>

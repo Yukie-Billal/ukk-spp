@@ -82,13 +82,13 @@
 					arrow.classList.add('rotating-reverse');
 					setTimeout(() => {
 						arrow.classList.remove('rotating-reverse');
-					}, 500);
+					}, 485);
 				} else {
 					arrow.classList.add('rotating');
 					setTimeout(() => {
 						arrow.classList.remove('rotating');
 						arrow.classList.toggle('fa-rotate-180');
-					}, 500);
+					}, 485);
 				}
 			});
 		});
