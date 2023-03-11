@@ -637,7 +637,7 @@ background-color: #3131a3;
     background: #4d7ce4;
     height: 100%;
     overflow: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
 
    .sidebar-header {
       @include flex-box(center, center, row);

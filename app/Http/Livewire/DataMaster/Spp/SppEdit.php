@@ -20,7 +20,6 @@ class SppEdit extends Component
         $this->sppId = $spp['id'];
         $this->tahun = $spp['tahun'];
         $this->nominal = $spp['nominal'];
-        // dd($spp);
     }
 
     public function edit()

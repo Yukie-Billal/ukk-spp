@@ -4,12 +4,21 @@ namespace App\Http\Livewire\DataMaster\Spp;
 
 use App\Models\Spp;
 use Livewire\Component;
+use App\Traits\ListenerTrait;
 
 class SppIndex extends Component
 {
+    use ListenerTrait;
+
     protected $listeners = [
+        'swal','fresh','toastify',
         'sppDelete',
     ];
+
+    public function confirmDelete($id)
+    {
+        $this->emit('swalConfirm', ['question','Yakin untuk Menghapus ?', true, 'sppDelete', $id]);
+    }
 
     public function sppDelete($id)
     {

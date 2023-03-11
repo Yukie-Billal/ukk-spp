@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md bg-white m-0 px-3 justify-content-between align-items-center">
+<nav class="navbar navbar-expand-md bg-white m-0 px-3 justify-content-between align-items-center mb-4">
     <span class="header-m ms-3">T.I.P </span>
     <div class="d-flex justify-content-center align-items-center me-3">
         <span class="text-l-medium me-2">{{ auth()->user()->petugas ? auth()->user()->petugas->nama_petugas : auth()->user()->siswa->nama }}</span>

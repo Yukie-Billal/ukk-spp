@@ -1100,7 +1100,7 @@ ol.my-breadcumb .my-breadcrumb-item.parent {
   background: #4d7ce4;
   height: 100%;
   overflow: hidden;
-  /* overflow-y: scroll; */
+  overflow-y: auto;
 }
 .sidebar .sidebar-header {
   display: flex;
@@ -1258,6 +1258,12 @@ ol.my-breadcumb .my-breadcrumb-item.parent {
     transform: rotate(360deg);
   }
 }
+.dashboard-card {
+  min-height: 120px;
+  border: 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1019607843);
+}
+
 body {
   background: #f1f1f3;
 }
