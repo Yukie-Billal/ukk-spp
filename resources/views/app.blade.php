@@ -22,6 +22,9 @@
             <div style="background: #4d7ce4; min-height: 100vh; width: 18%;">
                 <x-layouts.sidebar />
             </div>
+            @cannot('IsOperator')             
+            <div class="p-0 m-0" style="width: 100%;">
+            @endcannot
             <div class="p-0 m-0" style="width: 82%;">
                 <x-layouts.header />
                 <div class="content px-3" style="min-height: 100vh">

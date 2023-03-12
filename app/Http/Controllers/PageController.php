@@ -18,13 +18,13 @@ class PageController extends Controller
     {
         return view('pages.data-master.kelas.kelas');
     }
-    public function siswa()
-    {
-        return view('pages.data-master.siswa.siswa');
-    }
     public function petugas()
     {
         return view('pages.data-master.petugas.petugas');
+    }
+    public function siswa()
+    {
+        return view('pages.data-master.siswa.siswa');
     }
     public function pembayaran()
     {

@@ -28,7 +28,6 @@ class SiswaEdit extends Component
     ];
     public function setKelas($value)
     {
-        dd($value);
         $this->kelas_id = $value;
     }
     public function setSpp($value)
@@ -44,6 +43,15 @@ class SiswaEdit extends Component
         'alamat' => 'required',
         'kelas_id' => 'required',
         'spp_id' => 'required',
+    ];
+    protected $messages = [
+        'nisn.required' => 'NISN wajib di isi',
+        'nis.required' => 'NIS wajib di isi',
+        'nama.required' => 'Nama wajib di isi',
+        'no_telp.required' => 'No Telephone wajib di isi',
+        'alamat.required' => 'Alamat wajib di isi',
+        'kelas_id.required' => 'Kelas wajib di isi',
+        'spp_id.required' => 'Tahun Spp wajib di isi',
     ];
 
     public function clear()
@@ -66,12 +74,16 @@ class SiswaEdit extends Component
         $this->no_telp = $siswa['no_telp'];
         $this->kelas_id = $siswa['kelas_id'];
         $this->spp_id = $siswa['spp_id'];
+        $this->render();
+    }
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
     }
 
     public function updateSiswa()
     {
         $this->validate();
-        dd($this->kelas_id);
         $siswa = Siswa::find($this->nisnAwal);
         $siswa->update([
             'nisn' => $this->nisn,

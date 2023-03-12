@@ -26,6 +26,10 @@ class SiswaIndex extends Component
     {
         $this->emit('getSiswa', $siswa);
     }
+    public function deleteConfirm($nisn)
+    {
+        $this->emit('swalConfirm',['question','Yakin Hapus Siswa ?', true, 'siswaDelete', $nisn]);
+    }
 
     public function siswaDelete($nisn)
     {

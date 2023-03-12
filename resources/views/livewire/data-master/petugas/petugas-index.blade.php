@@ -11,6 +11,7 @@
                     <th>Nama Petugas</th>
                     <th>Alamat</th>
                     <th>No Telephone</th>
+                    <th>Role</th>
                     <th style="min-width: 60px;"></th>
                 </tr>
             </thead>
@@ -22,6 +23,7 @@
                     <td>{{ $petugas->nama_petugas }}</td>
                     <td>{{ $petugas->alamat }}</td>
                     <td>{{ $petugas->no_telp }}</td>
+                    <td>{{ $petugas->role->nama_role }}</td>
                     <td>
                         <div class="d-flex justify-content-around">
                             <x-button color="success" class="button-sm" modal="true" target="#modalEditPetugas" wire:click='getPetugas({{ $petugas->petugas_id }})'>

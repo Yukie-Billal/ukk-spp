@@ -18,7 +18,7 @@ class PetugasEdit extends Component
     public $role_id;
 
     protected $listeners = [
-        'getPetugas',
+        'getPetugas','setRole'
     ];
     protected $rules = [
         // 'username' => 'required|min:3',
@@ -56,6 +56,10 @@ class PetugasEdit extends Component
         $this->no_telp = '';
         $this->role_id = '';
     }
+    public function setRole($value)
+    {
+        $this->role_id = $value;
+    }
     public function getPetugas($id)
     {        
         $petugas = Petugas::find($id);
@@ -63,7 +67,7 @@ class PetugasEdit extends Component
         $this->nama_petugas = $petugas->nama_petugas;
         $this->alamat = $petugas->alamat;
         $this->no_telp = $petugas->no_telp;
-        $this->role_id = $petugas->user->role_id;
+        $this->role_id = $petugas->role_id;
     }
     public function edit()
     {
@@ -73,11 +77,12 @@ class PetugasEdit extends Component
                 'nama_petugas' => $this->nama_petugas,
                 'no_telp' => $this->no_telp,
                 'alamat' => $this->alamat,
+                'role_id' => $this->role_id,
         ]);
         if ($petugas) {
+            $this->emit('toastify', ['success', 'Petugas Berhasil Diubah', 3000]);
             $this->clear();
         }
-        $this->emit('toastify', ['success', 'Petugas Berhasil Diubah', 3000]);
     }
     public function render()
     {

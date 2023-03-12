@@ -5,7 +5,6 @@ namespace App\Http\Livewire\DataMaster\Petugas;
 use Livewire\Component;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Role;
-use App\Models\User;
 use App\Models\Petugas;
 
 class PetugasCreate extends Component
@@ -45,12 +44,18 @@ class PetugasCreate extends Component
         'alamat' => 'Alamat',
         'roleId' => 'Role',
     ];
-
+    public function clear()
+    {
+        $this->nama_petugas = '';
+        $this->username = '';
+        $this->password = '';
+        $this->no_telp = '';
+        $this->alamat = '';
+    }
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName);
     }
-
     public function setRole($value)
     {
         $this->roleId = $value;
@@ -60,33 +65,26 @@ class PetugasCreate extends Component
     {
         $this->validate();
         $password = Hash::make($this->password);
-        $user = User::create([
+
+        $petugas = Petugas::create([
+            'nama_petugas' => $this->nama_petugas,
             'username' => $this->username,
             'password' => $password,
+            'no_telp' => $this->no_telp,
+            'alamat' => $this->alamat,
             'role_id' => $this->roleId,
         ]);
-
-        if ($user) {            
-            $this->emit('toastify',['success','Data User Milik Petugas Berhasil Dibuat', 3000]);
-            $petugas = Petugas::create([
-                'nama_petugas' => $this->nama_petugas,
-                'username' => $this->username,
-                'password' => $password,
-                'no_telp' => $this->no_telp,
-                'alamat' => $this->alamat,
-                'user_id' => $user->id,
-            ]);
-            if ($petugas) {
-                $this->emit('swal',['success','Data Petugas Berhasil Dibuat', 3000]);
-            } else {
-                $this->emit('swal',['error','Terjadi Kesalahan', 3000]);
-            }
+        if ($petugas) {
+            $this->emit('swal',['success','Data Petugas Berhasil Dibuat', 3000]);
+            $this->clear();
+        } else {
+            $this->emit('swal',['error','Terjadi Kesalahan', 3000]);
         }
     }
     public function render()
     {
         return view('livewire.data-master.petugas.petugas-create', [
-            'roles' => Role::all(),
+            'roles' => Role::orderByDesc('nama_role')->get(),
         ]);
     }
 }

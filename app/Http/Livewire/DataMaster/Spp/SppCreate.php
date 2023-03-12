@@ -52,6 +52,8 @@ class SppCreate extends Component
         ]);        
         if ($spp) {
             $this->emit('toastify',['success','Berhasil Menambah Spp', 3000]);
+            $this->tahun = '';
+            $this->nominal = '';
         } else {
             $this->emit('toastify',['danger','Gagal Menambah Spp', 3000]);
         }

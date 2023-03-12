@@ -35,6 +35,16 @@ class SiswaCreate extends Component
         'spp_id' => 'required',
     ];
 
+    protected $messages = [
+        'nisn.required' => 'NISN wajib di isi',
+        'nis.required' => 'NIS wajib di isi',
+        'nama.required' => 'Nama wajib di isi',
+        'no_telp.required' => 'No Telephone wajib di isi',
+        'alamat.required' => 'Alamat wajib di isi',
+        'kelas_id.required' => 'Kelas wajib di isi',
+        'spp_id.required' => 'Tahun Spp wajib di isi',
+    ];
+
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName);
@@ -61,24 +71,18 @@ class SiswaCreate extends Component
     public function store()
     {
         $this->validate();
-        $user = User::create([
-            'username' => $this->nisn,
-            'password' => $this->nis,
-            'role_id' => 3,
-        ]);
-
         $siswa = Siswa::create([
             'nisn' => $this->nisn,
             'nis' => $this->nis,
+            'password' => $this->nis,
             'nama' => $this->nama,
             'alamat' => $this->alamat,
             'no_telp' => $this->no_telp,
             'kelas_id' => $this->kelas_id,
             'spp_id' => $this->spp_id,
-            'user_id' => $user->id,
         ]);
         if ($siswa) {
-            $this->emit('toastify', ['success', "Siswa $siswa->nama Berhasil Ditambahkan", 3000]);
+            $this->emit('swal', ['success', "Siswa $siswa->nama Berhasil Ditambahkan", 3000]);
             $this->clear();
         } else {
             $this->emit('toastify', ['danger', 'Gagal Menambah Data Siswa', 3000]);
@@ -86,8 +90,10 @@ class SiswaCreate extends Component
     }
     public function render()
     {
+        $this->kelas_id = Kelas::orderBy('nama_kelas', 'asc')->first()->id;
+        $this->spp_id = Spp::orderBy('tahun', 'asc')->first()->id;
         return view('livewire.data-master.siswa-create', [
-            'kelases' => Kelas::orderByDesc('nama_kelas')->get(),
+            'kelases' => Kelas::orderBy('nama_kelas','asc')->get(),
             'spps' => Spp::orderBy('tahun', 'asc')->get(),
         ]);
     }

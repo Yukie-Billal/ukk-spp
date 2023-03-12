@@ -3,9 +3,12 @@
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
+
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
-use App\Models\User;
+use App\Models\Petugas;
+use App\Models\Siswa;
+use Illuminate\Support\Facades\Auth;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -25,17 +28,21 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
         
-        Gate::define('IsAdmin', function (User $user)
+        Gate::define('IsAdmin', function (Petugas $petugas)
         {
-            return $user->role->nama_role == 'admin';
+            return $petugas->role->nama_role == 'admin';
         });
-        Gate::define('IsPetugas', function (User $user)
+        Gate::define('IsPetugas', function (Petugas $petugas)
         {
-            return $user->role->nama_role == 'petugas';
+            return $petugas->role->nama_role == 'petugas';
         });
-        Gate::define('IsSiswa', function (User $user)
+        Gate::define('IsOperator', function (Petugas $petugas)
         {
-            return $user->role->nama_role == 'siswa';
+            return $petugas->role->nama_role == 'petugas' || $petugas->role->nama_role == 'admin';
+        });
+        Gate::define('IsSiswa', function ()
+        {
+            // Auth::guard('siswa')->user()->role->nama_role;
         });
     }
 }

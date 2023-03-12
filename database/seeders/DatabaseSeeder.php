@@ -49,7 +49,6 @@ class DatabaseSeeder extends Seeder
             'nis' => '111',
             'password' => bcrypt('111'),
         ]);
-        // Petugas::factory(10)->create();
         Petugas::factory()->create([
             'username' => '123',
             'password' => bcrypt('123'),           

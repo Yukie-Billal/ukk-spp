@@ -36,7 +36,7 @@
                                     <i class="fas fa-edit me-1"></i>
                                     Edit
                                 </x-button>
-                                <x-button color="danger" class="button-sm">
+                                <x-button color="danger" class="button-sm" wire:click='deleteConfirm({{ $siswa->nisn }})'>
                                     <i class="fas fa-trash me-1"></i>
                                     Edit
                                 </x-button>

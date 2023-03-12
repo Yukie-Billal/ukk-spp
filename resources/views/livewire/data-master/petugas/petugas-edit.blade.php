@@ -24,7 +24,7 @@
         </div>
         <div class="form-group mb-3">
             <label class="text-m-regular">Role</label>
-            <select wire:change="$emit('getRole')" class="select-form" nama="role_id" wire:loading.attr='readonly'>
+            <select wire:change="$emit('getRole')" id="roleEdit" class="select-form" nama="role_id" wire:loading.attr='readonly'>
                 @foreach ($roles as $role)
                     @if ($role->id != 3)
                     <option value="{{ $role->id }}" {{ $role->id == $role_id ? 'selected' : '' }}>{{ $role->nama_role }}</option>
@@ -42,9 +42,9 @@
 @push('scripts')
     <script>
         Livewire.on('getRole', function () {
-            var value = $('#role').val();
+            var value = $('#roleEdit').val();
             Livewire.emit('setRole', value);
         });
-        Livewire.on('fresh', function () {$('#modalEditPetugas').modal('hide');});
+        Livewire.on('fresh',function(){$('#modalEditPetugas').modal('hide');});
     </script>
 @endpush
