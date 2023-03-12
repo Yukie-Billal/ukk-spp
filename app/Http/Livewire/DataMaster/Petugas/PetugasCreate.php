@@ -21,6 +21,36 @@ class PetugasCreate extends Component
         'setRole',
     ];
 
+    protected $rules = [
+        'username' => 'required|min:3',
+        'password' => 'required|min:3',
+        'nama_petugas' => 'required|min:10',
+        'no_telp' => 'required|min:3',
+        'alamat' => 'required|min:3',
+        'roleId' => 'required|numeric',
+    ];
+    protected $messages = [
+        'username.required' => ':attribute Harus Di isi', 
+        'password.required' => ':attribute Harus Di isi', 
+        'nama_petugas.required' => ':attribute Harus Di isi', 
+        'no_telp.required' => ':attribute Harus Di isi', 
+        'alamat.required' => ':attribute Harus Di isi', 
+        'roleId.required' => ':attribute Harus Di isi', 
+    ];
+    protected $attribute = [
+        'username' => 'Username',
+        'password' => 'Password',
+        'nama_petugas' => 'Nama Petugas',
+        'no_telp' => 'No Telephone',
+        'alamat' => 'Alamat',
+        'roleId' => 'Role',
+    ];
+
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
+
     public function setRole($value)
     {
         $this->roleId = $value;
@@ -28,8 +58,8 @@ class PetugasCreate extends Component
 
     public function store()
     {
+        $this->validate();
         $password = Hash::make($this->password);
-
         $user = User::create([
             'username' => $this->username,
             'password' => $password,
@@ -46,7 +76,11 @@ class PetugasCreate extends Component
                 'alamat' => $this->alamat,
                 'user_id' => $user->id,
             ]);
-            $this->emit('swal',['success','Data Petugas Berhasil Dibuat', 3000]);
+            if ($petugas) {
+                $this->emit('swal',['success','Data Petugas Berhasil Dibuat', 3000]);
+            } else {
+                $this->emit('swal',['error','Terjadi Kesalahan', 3000]);
+            }
         }
     }
     public function render()

@@ -18,11 +18,11 @@
                     <td>{{ $kelas->kompetensi_keahlian }}</td>
                     <td style="max-width: 60px;">
                         <div class="d-flex" style="gap: 4px">
-                            <x-button color="success" modal="true" target="#modalEditKelas" wire:click="getKelas({{ $kelas }})">
+                            <x-button color="success" class="button-sm" modal="true" target="#modalEditKelas" wire:click="getKelas({{ $kelas }})">
                                 <i class="fas fa-edit"></i>
                                 Edit
                             </x-button>
-                            <x-button color="danger" class="delete" wire:click='confirmDelete({{ $kelas->id }})'>
+                            <x-button color="danger" class="button-sm" wire:click='confirmDelete({{ $kelas->id }})'>
                                 <i class="fa fa-trash"></i>
                                 Hapus
                             </x-button>

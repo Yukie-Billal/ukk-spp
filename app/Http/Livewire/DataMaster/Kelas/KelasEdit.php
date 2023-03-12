@@ -17,17 +17,38 @@ class KelasEdit extends Component
         'swal','fresh','toastify',
         'getKelas',
     ];
+    
+    protected $rules = [
+        'idKelas' => 'required',
+        'nama_kelas' => 'required',
+        'kompetensi_keahlian' => 'required|min:5',
+    ];
+    protected $messages = [
+        'nama_kelas.required' => 'Nama Kelas Wajib Di isi',
+        'kompetensi_keahlian.required' => 'Kompetensi Keahlian Wajib Di isi',
+        'kompetensi_keahlian.min' => 'Kompetensi Keahlian Memiliki Minimal :min huruf',
+    ];
+
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
 
     public function getKelas($id)
     {
         $kelas = Kelas::find($id)->first();
-        $this->idKelas = $kelas->id;
-        $this->nama_kelas = $kelas->nama_kelas;
-        $this->kompetensi_keahlian = $kelas->kompetensi_keahlian;
+        if ($kelas) {            
+            $this->idKelas = $kelas->id;
+            $this->nama_kelas = $kelas->nama_kelas;
+            $this->kompetensi_keahlian = $kelas->kompetensi_keahlian;
+        } else {
+            $this->emit('toastify', ['danger','Kelas Tidak Ditemukan',3000]);
+        }
     }
 
     public function edit()
     {
+        $this->validate();
         $kelas = Kelas::find($this->idKelas);
         $kelas->update([
             'nama_kelas' => $this->nama_kelas,

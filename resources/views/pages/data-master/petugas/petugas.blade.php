@@ -10,4 +10,5 @@
 	<x-modal id="modalEditPetugas">
 		<livewire:data-master.petugas.petugas-edit />
 	</x-modal>
+
 </x-app-layout>

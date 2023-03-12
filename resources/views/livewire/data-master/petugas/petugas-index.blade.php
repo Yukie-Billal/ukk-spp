@@ -7,8 +7,8 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Nama Petugas</th>
                     <th>Username</th>
+                    <th>Nama Petugas</th>
                     <th>Alamat</th>
                     <th>No Telephone</th>
                     <th style="min-width: 60px;"></th>
@@ -23,14 +23,12 @@
                     <td>{{ $petugas->alamat }}</td>
                     <td>{{ $petugas->no_telp }}</td>
                     <td>
-                        <div class="d-flex justify-content-around">                            
-                            <x-button color="success" class="button-sm" modal="true" target="#modalEditPetugas">
+                        <div class="d-flex justify-content-around">
+                            <x-button color="success" class="button-sm" modal="true" target="#modalEditPetugas" wire:click='getPetugas({{ $petugas->petugas_id }})'>
                                 <i class="fas fa-edit"></i>
-                                {{-- Edit --}}
                             </x-button>
-                            <x-button color="danger" class="button-sm" wire:click="deleteConfirm({{ $petugas->id_petugas }})">
-                                <i class="fas fa-trash"></i>
-                                {{-- Hapus --}}
+                            <x-button color="danger" class="button-sm" wire:click="deleteConfirm({{ $petugas->petugas_id }})">
+                                <i class="fas fa-trash"></i>                                
                             </x-button>
                         </div>
                     </td>

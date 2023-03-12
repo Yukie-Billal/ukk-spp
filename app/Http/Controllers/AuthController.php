@@ -16,7 +16,7 @@ class AuthController extends Controller
     public function loginact(Request $request)
     {
         $credentials = $request->validate([
-            'username' => 'required',
+            'username' => 'required|',
             'password' => 'required',
         ]);
         if (Auth::attempt($credentials)) {

@@ -39,7 +39,7 @@ class SppIndex extends Component
     public function render()
     {
         return view('livewire.data-master.spp.spp-index', [
-            'spps' => Spp::all(),
+            'spps' => Spp::orderByDesc('tahun')->get(),
         ]);
     }
 }

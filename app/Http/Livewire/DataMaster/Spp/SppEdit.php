@@ -14,6 +14,23 @@ class SppEdit extends Component
     protected $listeners = [
         'getSpp',
     ];
+    protected $rules = [
+        'tahun' => 'required|numeric|min:4',
+        'nominal' => 'required|numeric|min:5',
+    ];
+    protected $messages = [
+        'tahun.required' => 'Tahun Spp Wajib Di isi',
+        'tahun.numeric' => 'Tahun Spp Harus berisi angka',
+        'tahun.min' => 'Tahun Spp Memiliki minimal :min huruf',
+        'nominal.required' => 'Nominal Pembayaran Spp Wajib Di isi',
+        'nominal.numeric' => 'Nominal Pembayaran Spp Harus berisi angka',
+        'nominal.min' => 'Nominal Pembayaran Spp Memiliki minimal :min huruf',
+    ];
+
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
 
     public function getSpp($spp)
     {
@@ -24,6 +41,7 @@ class SppEdit extends Component
 
     public function edit()
     {
+        $this->validate();
         $spp = Spp::find($this->sppId);
         if ($spp) {
             $spp->update([

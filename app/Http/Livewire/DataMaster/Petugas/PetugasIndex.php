@@ -29,9 +29,8 @@ class PetugasIndex extends Component
         $this->emit('swalConfirm', ['question','Hapus Petugas ?',true,'deletePetugas',$id]);
     }
     public function getPetugas($id)
-    {
-        $petugas = Petugas::find($id);
-        $this->emit('getPetugas',$petugas);
+    {        
+        $this->emit('getPetugas',$id);
     }
     public function render()
     {

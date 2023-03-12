@@ -6,7 +6,7 @@
         <x-table>
             <thead>
                 <tr>
-                    <th>Kode SPP</th>
+                    {{-- <th>Kode SPP</th> --}}
                     {{-- <th>Nomor SPP</th> --}}
                     <th>tahun SPP</th>
                     <th>Nominal</th>
@@ -16,17 +16,17 @@
             <tbody>
                 @foreach ($spps as $spp)
                 <tr>
-                    <td>{{ $spp->kode_spp }}</td>
+                    {{-- <td>{{ $spp->kode_spp }}</td> --}}
                     <td>{{ $spp->tahun }}</td>
                     <td>Rp. {{ number_format($spp->nominal) }}</td>
                     {{-- <td></td> --}}
                     <td style="max-width: 60px;">
                         <div class="d-flex" style="gap: 4px">
-                            <x-button color="success" modal="true" target="#modalEditSpp" wire:click="getSpp({{ $spp }})">
+                            <x-button color="success" class="button-sm" modal="true" target="#modalEditSpp" wire:click="getSpp({{ $spp }})">
                                 <i class="fas fa-edit"></i>
                                 Edit
                             </x-button>
-                            <x-button color="danger" class="delete" wire:click='confirmDelete({{ $spp->id }})'>
+                            <x-button color="danger" class="button-sm" wire:click='confirmDelete({{ $spp->id }})'>
                                 <i class="fa fa-trash"></i>
                                 Hapus
                             </x-button>

@@ -38,7 +38,7 @@ class KelasIndex extends Component
     public function render()
     {
         return view('livewire.data-master.kelas.kelas-index',[
-            'kelases' => Kelas::orderByDesc('kompetensi_keahlian')->get(),
+            'kelases' => Kelas::orderByDesc('kompetensi_keahlian')->orderBy('nama_kelas', 'asc')->get(),
         ]);
     }
 }
