@@ -22,6 +22,11 @@ class SiswaIndex extends Component
         'siswaDelete',
     ];
 
+    public function getSiswa($siswa)
+    {
+        $this->emit('getSiswa', $siswa);
+    }
+
     public function siswaDelete($nisn)
     {
         $siswa = Siswa::where('nisn', $nisn)->first();

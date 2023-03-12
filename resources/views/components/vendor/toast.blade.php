@@ -8,6 +8,7 @@
             'secondary' : 'linear-gradient(to right, #E0E0E0, #9E9E9E)'
         }
         Livewire.on('toastify', function (params) {
+            Livewire.emit('fresh');
             let [color = "primary", text = 'Parameter Kosong', timer = 2500, vertikal="top", horizontal="right"] = params;
             Toastify({
                 text: text,
@@ -22,7 +23,6 @@
                 },
                 onClick: function(){} // Callback after click
             }).showToast();
-            Livewire.emit('fresh');
         });
     </script>
 @endpush

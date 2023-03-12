@@ -34,38 +34,31 @@ class DatabaseSeeder extends Seeder
             'nama_role' => 'siswa',
         ]);
 
-        User::factory()->create([
-            'username' => 'Admin',
-            'password' => bcrypt('123'),
-            'role_id' => 1
-        ]);
-        User::factory()->create([
-            'username' => 'Petugas',
-            'password' => bcrypt('123'),
-            'role_id' => 2
-        ]);
-        User::factory()->create([
-            'username' => '111',
-            'password' => bcrypt('111'),
-            'role_id' => 3
-        ]);
         Spp::factory(3)->create();
-        Kelas::factory(5)->create();
+        Kelas::factory()->create([
+            'nama_kelas' => 'A'
+        ]);
+        Kelas::factory()->create([
+            'nama_kelas' => 'B'
+        ]);
+        Kelas::factory()->create([
+            'nama_kelas' => 'C'
+        ]);
         Siswa::factory()->create([
             'nisn' => '111',
             'nis' => '111',
-            'user_id' => 3
+            'password' => bcrypt('111'),
         ]);
         // Petugas::factory(10)->create();
         Petugas::factory()->create([
-            'username' => 'Petugas',
-            'password' => bcrypt('123'),
-            'user_id' => 2
+            'username' => '123',
+            'password' => bcrypt('123'),           
+            'role_id' => 2,
         ]);
         Petugas::factory()->create([
-            'username' => 'Admin',
-            'password' => bcrypt('123'),
-            'user_id' => 1
+            'username' => '321',
+            'password' => bcrypt('123'),            
+            'role_id' => 1,
         ]);
     }
 }

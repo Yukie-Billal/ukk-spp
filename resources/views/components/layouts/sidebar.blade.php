@@ -14,7 +14,7 @@
 				<i class="fa-solid fa-chevron-down {{ Request::is('siswa*') || Request::is('petugas*') || Request::is('kelas*') || Request::is('spp*') ? 'fa-rotate-180' : '' }}"></i>
 			</div>
 			<div class="collapse w-100 {{ Request::is('siswa*') || Request::is('petugas*') || Request::is('kelas*') || Request::is('spp*') ? 'show' : '' }}" id="dataMaster">
-				<div class="sub-menu">				
+				<div class="sub-menu">
 					<a class="{{ Request::is('suppliers-users*') ? 'active' : '' }}" href="/spp">
 						<i class="fa fa-arrow-right"></i>
 						Spp

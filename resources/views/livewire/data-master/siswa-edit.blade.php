@@ -63,7 +63,7 @@
                     <label for="kelas">Kelas</label>
                     <select class="select-form" wire:change='$emit("getKelas")' id="kelas">
                         @foreach ($kelases as $kelas)
-                            <option value="{{ $kelas->id }}">{{ $kelas->kompetensi_keahlian . ' ' . $kelas->nama_kelas }}</option>
+                            <option value="{{ $kelas->id }}">{{ $kelas->kompetensi_keahlian . ' ' . $kelas->nama_kelas . ' | ' . $kelas->id }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -75,7 +75,7 @@
                     <label for="spp">spp</label>
                     <select class="select-form" wire:change='$emit("getSpp")' id="spp">
                         @foreach ($spps as $spp)
-                            <option value="{{ $spp->id }}">{{ $spp->tahun }}</option>
+                            <option value="{{ $spp->id }}">{{ $spp->tahun . ' | ' . $spp->id}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -83,7 +83,7 @@
         </div>
         <div class="row py-2 px-2 justify-content-end">
             <div class="col-3 d-flex justify-content-end align-items-center">
-                <button class="button button-success d-flex p-0 px-3 justify-content-center align-items-center text-m-medium mt-1" data-bs-dismiss="modal">Simpan</button>
+                <x-button color="success">Simpan</x-button>
             </div>
         </div>
     </form>
@@ -99,5 +99,6 @@
             const value = document.querySelector('#spp').value;
             Livewire.emit('setSpp', value);
         });
+        Livewire.on('fresh', function () {$('#modalEditSiswa').modal('hide')});
     </script>
 @endpush

@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class Siswa
@@ -15,6 +16,11 @@ class Siswa
      */
     public function handle(Request $request, Closure $next): Response
     {
-        return $next($request);
+        if (Auth::guard('siswa')->check()) {
+            if (Auth::guard('siswa')->user()->role->nama_role == 'siswa') {
+                return $next($request);
+            }
+        }
+        return redirect()->route('home');
     }
 }

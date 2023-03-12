@@ -6,7 +6,7 @@
     </div>
     <div class="card flex-fill border-0">
         <div class="card-header border-0 bg-transparent pb-0 mb-0 pt-3">
-            <button class="button button-success d-flex px-2 justify-content-center align-items-center text-m-medium" data-bs-toggle="modal" data-bs-target="#modalTambahSiswa">Tambah Data Siswa</button>
+            <x-button color="info" class="button-sm" modal="true" target="#modalTambahSiswa">Tambah Siswa</x-button>
         </div>
         <div class="card-body">
             <x-table>
@@ -31,14 +31,16 @@
                         <td>{{ $siswa->kelas->nama_kelas }}</td>
                         <td>{{ $siswa->spp->tahun }}</td>
                         <td>
-                            <button class="btn btn-danger btn-sm me-2" wire:click='siswaDelete({{ $siswa->nisn }})'>
-                                <i class="fas fa-trash-alt me-1"></i>
-                                Hapus
-                            </button>
-                            <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditSiswa" wire:click='$emit("getSiswa", {{ $siswa }})'>
-                                <i class="fas fa-edit me-1"></i>
-                                Edit
-                            </button>
+                            <div class="d-flex" style="gap: 4px;">
+                                <x-button color="success" class="button-sm" modal="true" target="#modalEditSiswa" wire:click='getSiswa({{ $siswa }})'>
+                                    <i class="fas fa-edit me-1"></i>
+                                    Edit
+                                </x-button>
+                                <x-button color="danger" class="button-sm">
+                                    <i class="fas fa-trash me-1"></i>
+                                    Edit
+                                </x-button>
+                            </div>
                         </td>
                     </tr>
                     @endforeach

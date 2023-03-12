@@ -24,7 +24,17 @@ class SiswaEdit extends Component
     protected $listeners = [
         'toastify','fresh','swal',
         'getSiswa',
+        'setKelas','setSpp'
     ];
+    public function setKelas($value)
+    {
+        dd($value);
+        $this->kelas_id = $value;
+    }
+    public function setSpp($value)
+    {
+        $this->spp_id = $value;
+    }
 
     protected $rules = [
         'nisn' => 'required',
@@ -35,6 +45,16 @@ class SiswaEdit extends Component
         'kelas_id' => 'required',
         'spp_id' => 'required',
     ];
+
+    public function clear()
+    {
+        $this->nisnAwal = '';
+        $this->nisn = '';
+        $this->nis = '';
+        $this->nama = '';
+        $this->alamat = '';
+        $this->no_telp = '';
+    }
 
     public function getSiswa($siswa)
     {
@@ -51,7 +71,7 @@ class SiswaEdit extends Component
     public function updateSiswa()
     {
         $this->validate();
-
+        dd($this->kelas_id);
         $siswa = Siswa::find($this->nisnAwal);
         $siswa->update([
             'nisn' => $this->nisn,
@@ -64,7 +84,9 @@ class SiswaEdit extends Component
         ]);
 
         if ($siswa) {
+            $this->nisnAwal = $this->nisn;
             $this->emit('swal', ['success', "Siswa Berhasil Diubah", 3000]);
+            $this->clear();
         } else {
             $this->emit('swal', ['error', "Siswa $this->nama Gagal Diubah", 3000]);
         }

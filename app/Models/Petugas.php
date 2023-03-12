@@ -8,17 +8,22 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class Petugas extends Model
+class Petugas extends Authenticatable
 {
     use HasFactory, HasApiTokens, Notifiable;
 
     protected $guarded = [];
-    protected $hidden = ['password'];
+    protected $table = 'petugas';
     protected $primaryKey = 'petugas_id';
+    protected $hidden = ['password','remember_token',];
 
-    public function user()
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
+    public function role()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Role::class);
     }
     public function pembayaran()
     {

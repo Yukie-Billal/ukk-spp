@@ -20,9 +20,9 @@ class SiswaFactory extends Factory
             'nisn' => fake()->unique()->numerify('##########'),
             'nis' => fake()->unique()->numerify('########'),
             'nama' => fake()->name(),
-            'kelas_id' => mt_rand(1,5),
             'alamat' => fake()->address(),
             'no_telp' => fake()->phoneNumber(),
+            'kelas_id' => mt_rand(1,3),
             'spp_id' => mt_rand(1,3),
         ];
     }

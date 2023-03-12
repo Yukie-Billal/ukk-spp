@@ -12,15 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('siswa', function (Blueprint $table) {
-            // $table->id();
             $table->string('nisn', 10)->primary();
-            $table->string('nis', 8);
+            $table->string('nis', 10)->unique();
             $table->string('nama', 35);
-            $table->foreignId('kelas_id')->constrained();
             $table->text('alamat');
             $table->string('no_telp');
+            $table->string('password');
             $table->foreignId('spp_id')->contrained();
-            $table->foreignId('user_id')->contrained();
+            $table->foreignId('kelas_id')->constrained();
+            $table->foreignId('role_id')->default(3)->constrained();
             $table->timestamps();
         });
     }

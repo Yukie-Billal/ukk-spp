@@ -17,8 +17,8 @@ class SppFactory extends Factory
     public function definition(): array
     {
         return [
-            'tahun' => mt_rand(2020,2024),
-            'nominal' => 2 . mt_rand(1,4) . 0000,
+            'tahun' => fake()->unique()->randomElement([2020,2021,2022]),
+            'nominal' => 2 . mt_rand(1,4) . 0 . 0 . 0 . 0,
         ];
     }
 }

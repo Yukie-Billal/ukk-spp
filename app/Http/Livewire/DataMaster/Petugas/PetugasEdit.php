@@ -20,6 +20,34 @@ class PetugasEdit extends Component
     protected $listeners = [
         'getPetugas',
     ];
+    protected $rules = [
+        // 'username' => 'required|min:3',
+        // 'password' => 'required|min:3',
+        'nama_petugas' => 'required|min:4',
+        'no_telp' => 'required|min:3',
+        'alamat' => 'required|min:3',
+        'role_id' => 'required|numeric',
+    ];
+    protected $messages = [
+        // 'username.required' => ':attribute Harus Di isi', 
+        // 'password.required' => ':attribute Harus Di isi', 
+        'nama_petugas.required' => ':attribute Harus Di isi', 
+        'no_telp.required' => ':attribute Harus Di isi', 
+        'alamat.required' => ':attribute Harus Di isi', 
+        'role_id.required' => ':attribute Harus Di isi', 
+    ];
+    protected $attribute = [
+        // 'username' => 'Username',
+        // 'password' => 'Password',
+        'nama_petugas' => 'Nama Petugas',
+        'no_telp' => 'No Telephone',
+        'alamat' => 'Alamat',
+        'role_id' => 'Role',
+    ];
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
     public function clear()
     {
         $this->petugas_id = '';
@@ -39,13 +67,16 @@ class PetugasEdit extends Component
     }
     public function edit()
     {
+        $this->validate();
         $petugas = Petugas::find($this->petugas_id);
         $petugas->update([
                 'nama_petugas' => $this->nama_petugas,
                 'no_telp' => $this->no_telp,
                 'alamat' => $this->alamat,
         ]);
-        $this->clear();
+        if ($petugas) {
+            $this->clear();
+        }
         $this->emit('toastify', ['success', 'Petugas Berhasil Diubah', 3000]);
     }
     public function render()

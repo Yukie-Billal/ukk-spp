@@ -11,6 +11,12 @@
     <livewire:styles />
 </head>
 <body>
+    <div class="loader" id="loader">
+        <div class="load-state-item">
+            <div class="top"></div>
+            <div class="bottom"></div>
+        </div>
+    </div>
     <div class="container-fluid p-0">
         <div class="row m-0 p-0">
             <div style="background: #4d7ce4; min-height: 100vh; width: 18%;">

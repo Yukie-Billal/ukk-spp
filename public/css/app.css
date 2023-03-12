@@ -1188,7 +1188,7 @@ ol.my-breadcumb .my-breadcrumb-item.parent {
   border-top-right-radius: 30px;
 }
 
-.load-state {
+.loader {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1198,10 +1198,22 @@ ol.my-breadcumb .my-breadcrumb-item.parent {
   z-index: 99999999;
   background-color: #DFE0F3;
 }
-.load-state .load-state-item {
+.loader .load-state-item {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   color: #424242;
   font-size: 40px;
   animation: rotate 2s infinite;
+}
+.loader .top {
+  width: 70px;
+  height: 70px;
+  background: transparent;
+  border-top: 2.2px solid #3131a3;
+  border-bottom: 2.2px solid #3131a3;
+  border-radius: 100%;
+  bottom: -10px;
 }
 
 .indicator-read {

@@ -24,7 +24,7 @@ class PetugasCreate extends Component
     protected $rules = [
         'username' => 'required|min:3',
         'password' => 'required|min:3',
-        'nama_petugas' => 'required|min:10',
+        'nama_petugas' => 'required|min:4',
         'no_telp' => 'required|min:3',
         'alamat' => 'required|min:3',
         'roleId' => 'required|numeric',

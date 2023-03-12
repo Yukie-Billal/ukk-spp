@@ -9,8 +9,12 @@ class Role extends Model
 {
     use HasFactory;
 
-    public function user()
+    public function siswa()
     {
-        return $this->hasMany(Role::class);
+        return $this->hasMany(Siswa::class);
+    }
+    public function petugas()
+    {
+        return $this->hasMany(Petugas::class);
     }
 }

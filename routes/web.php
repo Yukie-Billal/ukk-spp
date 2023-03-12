@@ -14,11 +14,11 @@ use App\Http\Controllers\PageController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::middleware('guest')->group(function () {
+Route::middleware('guest:petugas,siswa')->group(function () {
     Route::get('/', [AuthController::class,'login'])->name('login');
     Route::post('/loginact', [AuthController::class, 'loginact']);
 });
-Route::middleware('auth')->group(function () {
+Route::middleware('auth:petugas,siswa')->group(function () {
     Route::get('/beranda', [PageController::class, 'home'])->name('home');
     Route::get('/logout', [AuthController::class, 'logout']);
     Route::middleware('Admin')->group(function () {

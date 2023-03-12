@@ -16,25 +16,29 @@ class AuthController extends Controller
     public function loginact(Request $request)
     {
         $credentials = $request->validate([
-            'username' => 'required|',
+            'username' => 'required',
             'password' => 'required',
         ]);
-        if (Auth::attempt($credentials)) {
+        if (Auth::guard('petugas')->attempt($credentials)) {
             $request->session()->regenerate();
             return redirect()->intended('/beranda')->with('success','Login Berhasil');
         } else {
-            $siswa = Siswa::find($request->username);
-            if ($siswa) {
-                return redirect('/beranda');
+            if (Auth::guard('siswa')->attempt(['nisn' => $request->username, 'password' => $request->password])) {
+                $request->session()->regenerate();
+                return redirect()->intended('/beranda')->with('success','Login Berhasil');
             } else {
-                return redirect('/')->with('failed','username atau password salah');    
+                return redirect('/')->with('failed','username atau password salah');
             }
         }
     }
 
     public function logout(Request $request)
     {
-        Auth::logout();
+        if (Auth::guard('siswa')->check()) {
+            Auth::guard('siswa')->logout();
+        } else {
+            Auth::guard('petugas')->logout();
+        }        
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect('/');

@@ -49,10 +49,18 @@ class SiswaCreate extends Component
         $this->spp_id = $value;
     }
 
+    public function clear()
+    {
+        $this->nisn = '';
+        $this->nis = '';
+        $this->nama = '';
+        $this->alamat = '';
+        $this->no_telp = '';
+    }
+
     public function store()
     {
         $this->validate();
-
         $user = User::create([
             'username' => $this->nisn,
             'password' => $this->nis,
@@ -71,8 +79,9 @@ class SiswaCreate extends Component
         ]);
         if ($siswa) {
             $this->emit('toastify', ['success', "Siswa $siswa->nama Berhasil Ditambahkan", 3000]);
+            $this->clear();
         } else {
-            $this->emit('toastify', ['danger', 'Gagal Menambah Data', 3000]);
+            $this->emit('toastify', ['danger', 'Gagal Menambah Data Siswa', 3000]);
         }
     }
     public function render()

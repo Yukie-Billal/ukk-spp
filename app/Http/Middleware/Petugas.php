@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class Petugas
@@ -15,6 +16,11 @@ class Petugas
      */
     public function handle(Request $request, Closure $next): Response
     {
-        return $next($request);
+        if (Auth::guard('petugas')->check()) {
+            if (Auth::guard('petugas')->user()->role->nama_role == 'petugas') {
+                return $next($request);
+            }
+        }
+        return redirect()->route('home');
     }
 }

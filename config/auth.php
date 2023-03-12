@@ -40,6 +40,14 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'siswa' => [
+            'driver' => 'session',
+            'provider' => 'siswas',
+        ],
+        'petugas' => [
+            'driver' => 'session',
+            'provider' => 'petugases',
+        ],
     ],
 
     /*
@@ -63,6 +71,14 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+        'siswas' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Siswa::class,
+        ],
+        'petugases' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Petugas::class,
         ],
 
         // 'users' => [
@@ -93,6 +109,18 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'siswas' => [
+            'provider' => 'siswas',
+            'table' => 'password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'petugases' => [
+            'provider' => 'petugases',
             'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,
