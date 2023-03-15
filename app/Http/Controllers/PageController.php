@@ -2,13 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Petugas;
+use App\Models\Siswa;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
     public function home()
     {
-        return view('pages.beranda');
+        return view('pages.beranda', [
+            'banyakSiswa' => Siswa::count(),
+            'banyakPetugas' => Petugas::count(),
+            // 'pembayaran' => 
+        ]);
     }
     public function spp()
     {

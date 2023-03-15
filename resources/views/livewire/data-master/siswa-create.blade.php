@@ -42,7 +42,7 @@
             <div class="col-6">
                 <div class="form-group">
                   <label for="no_telp">No. Telephone</label>
-                  <input type="text" class="input-form" wire:model="no_telp" id="no_telp" placeholder="no_telp">
+                  <input type="text" class="input-form" wire:model="no_telp" id="no_telp" placeholder="+62 236 1234 1234">
                     @error('no_telp')
                         <small class="form-text text-m-regular text-danger">{{ $message }}</small>
                     @enderror
@@ -81,7 +81,7 @@
                     <label for="spp">spp</label>
                     <select class="select-form" wire:change='$emit("getSpp")' id="spp" name="spp_id">
                         @foreach ($spps as $spp)
-                        <option value="{{ $spp->id }}">{{ $spp->tahun }}</option>
+                            <option value="{{ $spp->id }}" {{ $spp->tahun == date('Y') ? 'selected' : '' }}>{{ 'Tahun ' . $spp->tahun . ' | Rp.' . number_format($spp->nominal) }}</option>
                         @endforeach
                     </select>
                     @error('spp_id')

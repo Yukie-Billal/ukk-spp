@@ -36,10 +36,10 @@ class AuthServiceProvider extends ServiceProvider
         {
             return $petugas->role->nama_role == 'petugas';
         });
-        Gate::define('IsOperator', function (Petugas $petugas)
-        {
-            return $petugas->role->nama_role == 'petugas' || $petugas->role->nama_role == 'admin';
-        });
+        // Gate::define('IsOperator', function (Petugas $petugas)
+        // {
+        //     return $petugas->role->nama_role == 'petugas' || $petugas->role->nama_role == 'admin';
+        // });
         Gate::define('IsSiswa', function ()
         {
             // Auth::guard('siswa')->user()->role->nama_role;

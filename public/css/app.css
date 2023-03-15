@@ -1119,11 +1119,11 @@ ol.my-breadcumb .my-breadcrumb-item.parent {
 }
 .sidebar .sidebar-body .sidebar-menu .menu:hover, .sidebar .sidebar-body .sidebar-menu .menu.active {
   background-color: #FFFFFF;
-  color: #0A0A0A;
+  color: #0A0A0A !important;
   position: relative;
   border-radius: 25px 0 0 25px;
 }
-.sidebar .sidebar-body .sidebar-menu .menu:hover img, .sidebar .sidebar-body .sidebar-menu .menu.active img {
+.sidebar .sidebar-body .sidebar-menu .menu:hover img, .sidebar .sidebar-body .sidebar-menu .menu.active img  {
   filter: invert(0%);
 }
 .sidebar .sidebar-body .sidebar-menu .menu:hover span, .sidebar .sidebar-body .sidebar-menu .menu.active span {

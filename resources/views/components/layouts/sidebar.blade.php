@@ -8,6 +8,13 @@
 	</div>
 	<div class="sidebar-body">
 		<div class="sidebar-menu d-flex flex-column align-items-start">
+			<a href="/beranda" class="menu item text-white">
+				<i class="fa fa-graduation-cap fs-5 me-2" aria-hidden="true"></i>
+				<span>Beranda</span>
+			</a>
+		</div>
+		@can('IsAdmin')
+		<div class="sidebar-menu d-flex flex-column align-items-start">
 			<div class="menu" data-bs-toggle="collapse" data-bs-target="#dataMaster">
 				<img src="{{ asset('icon/data.png') }}" alt=".." class="me-2" style="width: 20px; height: 20px;">
 				<span>Data Master</span>
@@ -34,40 +41,45 @@
 				</div>
 			</div>
 		</div>
-		<div class="sidebar-menu d-flex flex-column align-items-start">
-			<div class="menu" data-bs-toggle="collapse" data-bs-target="#transaksi">
-				<img src="{{ asset('icon/data.png') }}" alt=".." class="me-2" style="width: 20px; height: 20px;">
-				<span>Transaksi</span>
-				<i class="fa-solid fa-chevron-down"></i>
-			</div>
-			<div class="collapse w-100 {{ Request::is('barangs') || Request::is('suppliers-users') || Request::is('barang-masuks') || Request::is('pinjams-kembalis*') ? 'show' : '' }}" id="transaksi">
-				<div class="sub-menu">						
-					<a class="{{ Request::is('suppliers-users*') ? 'active' : '' }}" href="/pembayaran">
-						<i class="fa fa-arrow-right"></i>
-						Pembayaran
-					</a>
-					<a class="{{ Request::is('suppliers-users*') ? 'active' : '' }}" href="/history-pembayaran">
-						<i class="fa fa-arrow-right"></i>
-						History Pembayaran
-					</a>
+		@endcan
+		@cannot('IsSiswa')			
+			<div class="sidebar-menu d-flex flex-column align-items-start">
+				<div class="menu" data-bs-toggle="collapse" data-bs-target="#transaksi">
+					<img src="{{ asset('icon/data.png') }}" alt=".." class="me-2" style="width: 20px; height: 20px;">
+					<span>Transaksi</span>
+					<i class="fa-solid fa-chevron-down"></i>
+				</div>
+				<div class="collapse w-100 {{ Request::is('barangs') || Request::is('suppliers-users') || Request::is('barang-masuks') || Request::is('pinjams-kembalis*') ? 'show' : '' }}" id="transaksi">
+					<div class="sub-menu">						
+						<a class="{{ Request::is('suppliers-users*') ? 'active' : '' }}" href="/pembayaran">
+							<i class="fa fa-arrow-right"></i>
+							Pembayaran
+						</a>
+						<a class="{{ Request::is('suppliers-users*') ? 'active' : '' }}" href="/history-pembayaran">
+							<i class="fa fa-arrow-right"></i>
+							History Pembayaran
+						</a>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="sidebar-menu d-flex flex-column align-items-start">
-			<div class="menu" data-bs-toggle="collapse" data-bs-target="#laporan">
-				<img src="{{ asset('icon/data.png') }}" alt=".." class="me-2" style="width: 20px; height: 20px;">
-				<span>Laporan</span>
-				<i class="fa-solid fa-chevron-down"></i>
-			</div>
-			<div class="collapse w-100 {{ Request::is('barangs') || Request::is('suppliers-users') || Request::is('barang-masuks') || Request::is('pinjams-kembalis*') ? 'show' : '' }}" id="laporan">
-				<div class="sub-menu">						
-					<a class="{{ Request::is('suppliers-users*') ? 'active' : '' }}" href="/siswa">
-						<i class="fa fa-arrow-right"></i>
-						Laporan
-					</a>
+		@endcannot
+		@can('IsAdmin')			
+			<div class="sidebar-menu d-flex flex-column align-items-start">
+				<div class="menu" data-bs-toggle="collapse" data-bs-target="#laporan">
+					<img src="{{ asset('icon/data.png') }}" alt=".." class="me-2" style="width: 20px; height: 20px;">
+					<span>Laporan</span>
+					<i class="fa-solid fa-chevron-down"></i>
+				</div>
+				<div class="collapse w-100 {{ Request::is('barangs') || Request::is('suppliers-users') || Request::is('barang-masuks') || Request::is('pinjams-kembalis*') ? 'show' : '' }}" id="laporan">
+					<div class="sub-menu">						
+						<a class="{{ Request::is('suppliers-users*') ? 'active' : '' }}" href="/siswa">
+							<i class="fa fa-arrow-right"></i>
+							Laporan
+						</a>
+					</div>
 				</div>
 			</div>
-		</div>
+		@endcan
 	</div>
 </div>
 

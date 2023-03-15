@@ -3,11 +3,13 @@
 namespace App\Http\Livewire\DataMaster;
 
 use App\Models\Kelas;
+use App\Models\Pembayaran;
 use App\Models\Siswa;
 use App\Models\User;
 use App\Models\Spp;
 use Livewire\Component;
 use App\Traits\ListenerTrait;
+use Illuminate\Support\Facades\Hash;
 
 class SiswaCreate extends Component
 {
@@ -74,7 +76,7 @@ class SiswaCreate extends Component
         $siswa = Siswa::create([
             'nisn' => $this->nisn,
             'nis' => $this->nis,
-            'password' => $this->nis,
+            'password' => Hash::make($this->nis),
             'nama' => $this->nama,
             'alamat' => $this->alamat,
             'no_telp' => $this->no_telp,
@@ -90,11 +92,13 @@ class SiswaCreate extends Component
     }
     public function render()
     {
+        $spp = Spp::orderBy('tahun', 'desc');
+        $kelas = Kelas::orderBy('nama_kelas', 'asc');
         $this->kelas_id = Kelas::orderBy('nama_kelas', 'asc')->first()->id;
-        $this->spp_id = Spp::orderBy('tahun', 'asc')->first()->id;
+        $this->spp_id = Spp::orderBy('tahun', 'desc')->first()->id;
         return view('livewire.data-master.siswa-create', [
-            'kelases' => Kelas::orderBy('nama_kelas','asc')->get(),
-            'spps' => Spp::orderBy('tahun', 'asc')->get(),
+            'kelases' => $kelas->get(),
+            'spps' => $spp->get(),
         ]);
     }
 }

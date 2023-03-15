@@ -1,3 +1,3 @@
-<table class="table table-responsive table-hover table-striped align-middle">
+<table {{ $attributes->merge(['class' => "table table-responsive table-hover align-middle"])}}>
     {{ $slot }}
 </table>

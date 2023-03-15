@@ -14,6 +14,7 @@ class Petugas extends Authenticatable
 
     protected $guarded = [];
     protected $table = 'petugas';
+
     protected $primaryKey = 'petugas_id';
     protected $hidden = ['password','remember_token',];
 

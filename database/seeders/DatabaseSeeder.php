@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Kelas;
+use App\Models\Pembayaran;
 use App\Models\Petugas;
 use App\Models\Siswa;
 use App\Models\Spp;
@@ -33,7 +34,9 @@ class DatabaseSeeder extends Seeder
             'kode_role' => 'Siswa',
             'nama_role' => 'siswa',
         ]);
-
+        $this->call([
+            BulanSeeder::class,
+        ]);
         Spp::factory(3)->create();
         Kelas::factory()->create([
             'nama_kelas' => 'A'
@@ -44,16 +47,12 @@ class DatabaseSeeder extends Seeder
         Kelas::factory()->create([
             'nama_kelas' => 'C'
         ]);
-        Siswa::factory()->create([
-            'nisn' => '111',
-            'nis' => '111',
-            'password' => bcrypt('111'),
-        ]);
         Petugas::factory()->create([
             'username' => '123',
             'password' => bcrypt('123'),           
             'role_id' => 2,
         ]);
+        Siswa::factory(10)->create();
         Petugas::factory()->create([
             'username' => '321',
             'password' => bcrypt('123'),            

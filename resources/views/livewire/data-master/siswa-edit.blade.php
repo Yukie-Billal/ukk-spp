@@ -66,7 +66,7 @@
                     <label for="kelas">Kelas</label>
                     <select class="select-form" wire:change='$emit("getKelas")' id="kelasEdit" name="kelas_id">
                         @foreach ($kelases as $kelas)
-                        <option value="{{ $kelas->id }}">{{ $kelas->kompetensi_keahlian . ' ' . $kelas->nama_kelas }}</option>
+                        <option value="{{ $kelas->id }}" {{ $kelas_id == $kelas->id ? 'selected' : '' }}>{{ $kelas->kompetensi_keahlian . ' ' . $kelas->nama_kelas }}</option>
                         @endforeach
                     </select>
                     @error('kelas_id')
@@ -81,7 +81,7 @@
                     <label for="spp">spp</label>
                     <select class="select-form" wire:change='$emit("getSpp")' id="sppEdit" name="spp_id">
                         @foreach ($spps as $spp)
-                        <option value="{{ $spp->id }}">{{ $spp->tahun}}</option>
+                        <option value="{{ $spp->id }}" {{ $spp->id == $spp_id ? 'selected' : '' }}>{{ 'Tahun ' . $spp->tahun . ' | Rp.' . number_format($spp->nominal) }}</option>
                         @endforeach
                     </select>
                     @error('spp_id')

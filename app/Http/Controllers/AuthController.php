@@ -19,6 +19,7 @@ class AuthController extends Controller
             'username' => 'required',
             'password' => 'required',
         ]);
+
         if (Auth::guard('petugas')->attempt($credentials)) {
             $request->session()->regenerate();
             return redirect()->intended('/beranda')->with('success','Login Berhasil');
@@ -38,7 +39,7 @@ class AuthController extends Controller
             Auth::guard('siswa')->logout();
         } else {
             Auth::guard('petugas')->logout();
-        }        
+        }
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect('/');

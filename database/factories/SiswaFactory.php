@@ -19,6 +19,7 @@ class SiswaFactory extends Factory
         return [
             'nisn' => fake()->unique()->numerify('##########'),
             'nis' => fake()->unique()->numerify('########'),
+            'password' => bcrypt('1'),
             'nama' => fake()->name(),
             'alamat' => fake()->address(),
             'no_telp' => fake()->phoneNumber(),

@@ -9,6 +9,11 @@ use App\Traits\ListenerTrait;
 class KelasIndex extends Component
 {
     use ListenerTrait;
+    public $search;
+    protected $queryString = [
+        'search' => ['except' => '']
+    ];
+
     protected $listeners = [
         'swal','fresh','toastify',
         'deleteKelas',
@@ -37,8 +42,13 @@ class KelasIndex extends Component
 
     public function render()
     {
+        $kelas = Kelas::orderByDesc('kompetensi_keahlian')->orderBy('nama_kelas', 'asc');
+
+        if ($this->search != null) {
+            $kelas->where('nama_kelas', 'like', '%' . $this->search . '%')->orWhere('kompetensi_keahlian', 'like', '%' . $this->search . '%');
+        }
         return view('livewire.data-master.kelas.kelas-index',[
-            'kelases' => Kelas::orderByDesc('kompetensi_keahlian')->orderBy('nama_kelas', 'asc')->get(),
+            'kelases' => $kelas->get(),
         ]);
     }
 }

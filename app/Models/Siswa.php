@@ -37,6 +37,10 @@ class Siswa extends Authenticatable
     {
         return $this->belongsTo(Spp::class);
     }
+    public function pembayaran()
+    {
+        return $this->hasMany(Pembayaran::class, 'nisn');
+    }
 
     public function getRouteKeyName()
     {

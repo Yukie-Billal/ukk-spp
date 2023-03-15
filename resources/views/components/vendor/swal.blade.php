@@ -2,9 +2,9 @@
     <script>
         let availableType = ['success', 'error', 'warning', 'question', null];
         Livewire.on('swal', function (params) {
+            Livewire.emit('fresh');
             if (Array.isArray(params)) {
-                Livewire.emit('fresh');
-                setTimeout(() => {                    
+                setTimeout(() => {
                     var [type, message, timer = 2000] = params;
                     swal.fire({
                         icon: type,

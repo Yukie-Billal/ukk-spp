@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PageController;
+use App\Http\Livewire\PembayaranCetak;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,9 +29,12 @@ Route::middleware('auth:petugas,siswa')->group(function () {
         Route::get('/spp', [PageController::class, 'spp']);
         Route::get('/laporan', [PageController::class, 'laporan']);
     });
-    Route::middleware('Petugas')->group(function () {
+    Route::middleware('Operator')->group(function () {
         
     });
     Route::get('/pembayaran', [PageController::class, 'pembayaran']);
     Route::get('/history-pembayaran', [PageController::class, 'history_pembayaran']);
+});
+Route::get('/cetak', function () {
+    return view('livewire.pembayaran-cetak');
 });
