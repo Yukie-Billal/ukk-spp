@@ -12,6 +12,7 @@ class PembayaranCetak extends Component
     use ListenerTrait;
     public $siswa;
     public $pembayaran;
+
     protected $listeners = [
         'fresh','swal','toastify',
         'cetakPembayaran',
@@ -19,10 +20,17 @@ class PembayaranCetak extends Component
     public function cetakPembayaran($id)
     {
         $this->pembayaran = Pembayaran::find($id);
+        // dd($this->pembayarsan);
         $this->siswa = Siswa::find($this->pembayaran->nisn);        
     }
     public function render()
     {
-        return view('livewire.pembayaran-cetak');
+        $pembayaran = Pembayaran::orderByDesc('bulan_dibayar');
+        if ($this->siswa != null) {
+            $pembayaran->where('nisn', $this->siswa->nisn)->where('bulan_dibayar', $this->pembayaran->bulan_dibayar);
+        }
+        return view('livewire.pembayaran-cetak', [
+            'pembayarans' => $pembayaran->get(),
+        ]);
     }
 }

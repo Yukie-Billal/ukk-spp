@@ -1,14 +1,14 @@
 <x-app-layout>
-    <div class="row mb-3">
+    <div class="row mb-2">
         <div class="col-12">
             <livewire:transaksi.pembayaran.pembayaran-head />
         </div>
     </div>
     <div class="row">
-        <div class="col-5">
+        <div class="col-sm-12 col-lg-12 col-xl-5">
             <livewire:transaksi.pembayaran.data-siswa />
         </div>
-        <div class="col-7">
+        <div class="col-md-12 col-lg-12 col-xl-7 mt-md-3 mt-xl-0">
             <livewire:transaksi.pembayaran.pembayaran-index >
         </div>
     </div>

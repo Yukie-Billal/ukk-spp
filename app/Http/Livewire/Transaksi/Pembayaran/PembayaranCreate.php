@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Transaksi\Pembayaran;
 
+use App\Models\Bulan;
 use App\Models\Pembayaran;
 use App\Models\Siswa;
 use Illuminate\Support\Facades\Auth;
@@ -27,7 +28,12 @@ class PembayaranCreate extends Component
     }
     public function getBulanPembayaran($bulan)
     {
-        $this->bulan = $bulan;
+        $bulan = Bulan::find($bulan);
+        if ($bulan) {
+            $this->bulan = $bulan;
+        } else {
+            $this->emit('closeModal', '#modalTambahPembayaran');
+        }
     }
     public function getTahunPembayaran($tahun)
     {
@@ -47,7 +53,8 @@ class PembayaranCreate extends Component
             'bayar' => 1,
         ]);
         if ($pembayaran) {
-            $this->emit('swal', ['success','Berhasil melakukan Pembayaran', 3000]);
+            // $this->emit('swal', ['success','Berhasil melakukan Pembayaran', 3000]);
+            $this->emit('cetakBonSPP', $pembayaran->pembayaran_id);
         } else {
             $this->emit('swal', ['error','Gagal melakukan Pembayaran', 3000]);
         }

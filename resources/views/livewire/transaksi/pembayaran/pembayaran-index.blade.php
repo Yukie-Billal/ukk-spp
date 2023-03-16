@@ -1,5 +1,5 @@
 <x-card>
-    <div class="card-body">
+    <div class="card-body" wire:poll>
         <x-table class="table-striped">
             <thead>
                 <tr>
@@ -135,22 +135,14 @@
             cetakpembayaran.forEach(item => {
                 item.addEventListener('click', function () {
                     var id = this.getAttribute('data-id');
-                    if (id) {                        
-                        Livewire.emit('cetakPembayaran', id);
-                        setTimeout(() => {                        
-                            var isi = document.querySelector('#cetakView').innerHTML;
-                            window.frames["printf"].document.title = document.title;
-                            window.frames["printf"].document.body.innerHTML = isi;
-                            window.frames["printf"].focus();
-                            window.frames["printf"].print();
-                        }, 500);
+                    if (id) {
+                        cetakBonSPP(id);
                     } else {
                         Livewire.emit('toastify', ['danger', 'Pembayaran Tidak Tersedia', 2500]);
                     }
                 })
             })
         }
-        freshBtn();
         function freshPilihButton() {
             let batalkanSemua = document.querySelector('#batalkanSemua');
             let simpanSemua = document.querySelector('#simpanSemua');
@@ -162,6 +154,20 @@
                 
             })
         }
+        function cetakBonSPP(id) {
+            Livewire.emit('cetakPembayaran', id);
+            setTimeout(() => {
+                var isi = document.querySelector('#cetakView').innerHTML;
+                window.frames["printf"].document.title = document.title;
+                window.frames["printf"].document.body.innerHTML = isi;
+                window.frames["printf"].focus();
+                window.frames["printf"].print();
+            }, 1500);
+        }
+        Livewire.on('cetakBonSPP', function (id) {
+            cetakBonSPP(id)
+        });
+        freshBtn();
         Livewire.on('refreshButton', freshBtn);
         Livewire.on('freshPilihButton', freshPilihButton);
     </script>

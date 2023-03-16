@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kelas;
 use App\Models\Petugas;
 use App\Models\Siswa;
+use App\Models\Spp;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -13,7 +15,8 @@ class PageController extends Controller
         return view('pages.beranda', [
             'banyakSiswa' => Siswa::count(),
             'banyakPetugas' => Petugas::count(),
-            // 'pembayaran' => 
+            'banyakKelas' => Kelas::count(), 
+            'banyakSpp' => Spp::count(), 
         ]);
     }
     public function spp()
@@ -39,5 +42,9 @@ class PageController extends Controller
     public function history_pembayaran()
     {
         return view('pages.transaksi.history.history-pembayaran');
+    }
+    public function laporan_pembayaran()
+    {
+        return view('pages.laporan.laporan');
     }
 }

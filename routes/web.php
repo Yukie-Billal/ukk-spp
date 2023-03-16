@@ -28,13 +28,13 @@ Route::middleware('auth:petugas,siswa')->group(function () {
         Route::get('/kelas', [PageController::class, 'kelas']);
         Route::get('/spp', [PageController::class, 'spp']);
         Route::get('/laporan', [PageController::class, 'laporan']);
+        Route::get('/laporan-pembayaran', [PageController::class, 'laporan_pembayaran']);
     });
-    Route::middleware('Operator')->group(function () {
-        
+    Route::middleware('Operator')->group(function () {        
+        Route::get('/pembayaran', [PageController::class, 'pembayaran']);
     });
-    Route::get('/pembayaran', [PageController::class, 'pembayaran']);
-    Route::get('/history-pembayaran', [PageController::class, 'history_pembayaran']);
+    Route::get('/histori-pembayaran', [PageController::class, 'history_pembayaran']);
 });
 Route::get('/cetak', function () {
-    return view('livewire.pembayaran-cetak');
+    return view('livewire.test');
 });

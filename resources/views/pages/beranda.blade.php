@@ -6,15 +6,16 @@
                     <div class="card flex-fill border-0 my-shadow-2 dashboard-card">
                         <div class="card-body" style="overflow: hidden">
                             <div class="d-flex justify-content-between">
-                                <span class="header-m ms-2">Total Siswa</span>
-                                <div class="icon-dashboard text-neutral-10 d-flex justify-content-center align-items-center bg-info-border me-2 px-3 py-2 rounded-3" style="z-index: 1289">
+                                <span class="header-m ms-2">Siswa</span>
+                                <div class="icon-dashboard text-neutral-10 d-flex justify-content-center align-items-end bg-info-border me-2 px-3 py-2 pb-1 rounded-3" style="z-index: 1289">
                                     <i class="fa fa-user fs-2"></i>
                                 </div>
                             </div>
-                            <div class="d-flex flex-column mt-2">
+                            <div class="d-flex flex-column mt-1">
+                                <span class="header-s my-1 ms-3">{{ $banyakSiswa }}</span>
                                 <div class="count" style="z-index: 1289">
                                     <i class="fa fa-arrow-right me-2"></i>
-                                    <span class="text-l-medium">{{ $banyakSiswa }} <a href="">Siswa</a> </span>
+                                    <span class="text-l-medium">Total <a href="/siswa">{{ $banyakSiswa }} Siswa</a> </span>
                                 </div>
                             </div>
                         </div>
@@ -25,15 +26,16 @@
                     <div class="card flex-fill border-0 my-shadow-2 dashboard-card">
                         <div class="card-body" style="overflow: hidden">
                             <div class="d-flex justify-content-between">
-                                <span class="header-m ms-2">Total Petugas</span>
-                                <div class="icon-dashboard text-neutral-10 d-flex justify-content-center align-items-center bg-danger-border me-2 px-3 py-2 rounded-3" style="z-index: 1289">
+                                <span class="header-m ms-2">Petugas</span>
+                                <div class="icon-dashboard text-neutral-10 d-flex justify-content-center align-items-center bg-danger-border me-2 px-3 py-2 pb-1 rounded-3" style="z-index: 1289">
                                     <i class="fa fa-user fs-2"></i>
                                 </div>
                             </div>
-                            <div class="d-flex flex-column mt-2">
+                            <div class="d-flex flex-column mt-1">
+                                <span class="header-s my-1 ms-3">{{ $banyakPetugas }}</span>
                                 <div class="count" style="z-index: 1289">
                                     <i class="fa fa-arrow-right me-2"></i>
-                                    <span class="text-l-medium">{{ $banyakPetugas }} <a href="">Petugas</a> </span>
+                                    <span class="text-l-medium">Total <a href="">{{ $banyakPetugas }} Petugas</a> </span>
                                 </div>
                             </div>
                         </div>
@@ -47,14 +49,15 @@
                         <div class="card-body" style="overflow: hidden">
                             <div class="d-flex justify-content-between">
                                 <span class="header-m ms-2">Spp</span>
-                                <div class="icon-dashboard text-neutral-10 d-flex justify-content-center align-items-center bg-info-border me-2 px-3 py-2 rounded-3" style="z-index: 1289">
+                                <div class="icon-dashboard text-neutral-10 d-flex justify-content-center align-items-center bg-info-border me-2 px-3 py-2 pb-1 rounded-3" style="z-index: 1289">
                                     <i class="fa fa-user fs-2"></i>
                                 </div>
                             </div>
-                            <div class="d-flex flex-column mt-2">
+                            <div class="d-flex flex-column mt-1">
+                                <span class="header-s my-1 ms-3">{{ $banyakSpp }}</span>
                                 <div class="count" style="z-index: 1289">
                                     <i class="fa fa-arrow-right me-2"></i>
-                                    <span class="text-l-medium">Jumlah <a href="">Spp</a> </span>
+                                    <span class="text-l-medium">Total <a href="/spp">{{ $banyakSpp }} Spp</a></span>
                                 </div>
                             </div>
                         </div>
@@ -66,14 +69,15 @@
                         <div class="card-body" style="overflow: hidden">
                             <div class="d-flex justify-content-between">
                                 <span class="header-m ms-2">Kelas</span>
-                                <div class="icon-dashboard text-neutral-10 d-flex justify-content-center align-items-center bg-danger-border me-2 px-3 py-2 rounded-3" style="z-index: 1289">
+                                <div class="icon-dashboard text-neutral-10 d-flex justify-content-center align-items-center bg-danger-border me-2 px-3 py-2 pb-1 rounded-3" style="z-index: 1289">
                                     <i class="fa fa-user fs-2"></i>
                                 </div>
                             </div>
-                            <div class="d-flex flex-column mt-2">
+                            <div class="d-flex flex-column mt-1">
+                                <span class="header-s my-1 ms-3">{{ $banyakKelas }}</span>
                                 <div class="count" style="z-index: 1289">
                                     <i class="fa fa-arrow-right me-2"></i>
-                                    <span class="text-l-medium">Jumlah <a href="">Kelas</a> </span>
+                                    <span class="text-l-medium">Total <a href="">{{ $banyakKelas }} Kelas</a> </span>
                                 </div>
                             </div>
                         </div>

@@ -12,7 +12,7 @@
                 <div class="form-group">
                   <label for="nisn">NISN</label>
                   <input type="text"
-                    class="input-form" wire:model="nisn" id="nisn" placeholder="NISN">
+                    class="input-form" wire:model.debounce.700ms="nisn" id="nisn" placeholder="NISN">
                     @error('nisn')
                         <small class="form-text text-m-regular text-danger">{{ $message }}</small>
                     @enderror
@@ -21,7 +21,7 @@
             <div class="col-6">
                 <div class="form-group">
                   <label for="nis">NIS</label>
-                  <input type="text" class="input-form" wire:model="nis" id="nis" placeholder="NIS">
+                  <input type="text" class="input-form" wire:model.debounce.700ms="nis" id="nis" placeholder="NIS">
                     @error('nis')
                         <small class="form-text text-m-regular text-danger">{{ $message }}</small>
                     @enderror
@@ -33,7 +33,7 @@
                 <div class="form-group">
                   <label for="nama">Nama</label>
                   <input type="text"
-                    class="input-form" wire:model="nama" id="nama" placeholder="nama">
+                    class="input-form" wire:model.debounce.700ms="nama" id="nama" placeholder="nama">
                     @error('nama')
                         <small class="form-text text-m-regular text-danger">{{ $message }}</small>
                     @enderror
@@ -42,7 +42,7 @@
             <div class="col-6">
                 <div class="form-group">
                   <label for="no_telp">No. Telephone</label>
-                  <input type="text" class="input-form" wire:model="no_telp" id="no_telp" placeholder="+62 236 1234 1234">
+                  <input type="text" class="input-form" wire:model.debounce.700ms="no_telp" id="no_telp" placeholder="+62 236 1234 1234">
                     @error('no_telp')
                         <small class="form-text text-m-regular text-danger">{{ $message }}</small>
                     @enderror
@@ -53,7 +53,7 @@
             <div class="col-12">
                 <div class="form-group">
                     <label for="alamat">Alamat</label>
-                    <textarea class="text-area-form" wire:model="alamat" id="alamat" rows="3" placeholder="Alamat"></textarea>
+                    <textarea class="text-area-form" wire:model.debounce.700ms="alamat" id="alamat" rows="3" placeholder="Alamat"></textarea>
                     @error('alamat')
                         <small class="form-text text-m-regular text-danger">{{ $message }}</small>
                     @enderror

@@ -28,21 +28,29 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
         
-        Gate::define('IsAdmin', function (Petugas $petugas)
+        Gate::define('IsAdmin', function ()
         {
-            return $petugas->role->nama_role == 'admin';
+            if (Auth::guard('petugas')->check()) {
+                return Auth::guard('petugas')->user()->role->nama_role == 'admin';
+            }
         });
-        Gate::define('IsPetugas', function (Petugas $petugas)
+        Gate::define('IsPetugas', function ()
         {
-            return $petugas->role->nama_role == 'petugas';
+            if (Auth::guard('petugas')->check()) {
+                return Auth::guard('petugas')->user()->role->nama_role == 'petugas';
+            }
         });
-        // Gate::define('IsOperator', function (Petugas $petugas)
-        // {
-        //     return $petugas->role->nama_role == 'petugas' || $petugas->role->nama_role == 'admin';
-        // });
+        Gate::define('IsOperator', function ()
+        {
+            if (Auth::guard('petugas')->check()) {
+                return Auth::guard('petugas')->user()->role->nama_role == 'petugas' || Auth::guard('petugas')->user()->role->nama_role == 'admin';
+            }
+        });
         Gate::define('IsSiswa', function ()
         {
-            // Auth::guard('siswa')->user()->role->nama_role;
+            if (Auth::guard('siswa')->check()) {
+                Auth::guard('siswa')->user()->role->nama_role == 'siswa';
+            }
         });
     }
 }

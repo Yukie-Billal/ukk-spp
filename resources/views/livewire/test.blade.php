@@ -1,8 +1,9 @@
 <div>
-    <input type="text" wire:model='nama'>
-    {{$nama}}
+    {{-- <input type="text" wire:model='nama'> --}}
+    {{-- {{$nama}} --}}
 
-    <div wire:loading>
+    {{-- <div wire:loading>
         <span>Loading</span>
-    </div>
+    </div> --}}
+    <livewire:pembayaran-cetak>
 </div>

@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class Operator
@@ -15,9 +16,12 @@ class Operator
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->user()->role->nama_role == 'admin' || auth()->user()->role->nama_role) {
-            return $next($request);
+        if (Auth::guard('petugas')->check()) {
+            if (Auth::guard('petugas')->user()->role->nama_role == 'admin' || Auth::guard('petugas')->user()->role->nama_role == 'petugas') {
+                return $next($request);
+            }
         }
-        return redirect('/beranda')->with('cannot','Terjadi Kesalahan');
+        return abort(404);
+        return redirect('/beranda');
     }
 }

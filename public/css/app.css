@@ -1068,6 +1068,12 @@ ol.my-breadcumb .my-breadcrumb-item.parent {
   border: 1px solid #B8DBCA;
 }
 
+.sidebar-main {
+  background: #4d7ce4;
+  min-height: 100vh;
+  width: 18%;
+}
+
 .sidebar {
   background: #4d7ce4;
   height: 100%;
@@ -1104,6 +1110,7 @@ ol.my-breadcumb .my-breadcrumb-item.parent {
   padding: 0 20px;
   cursor: pointer;
   border-radius: 10px 0 0 10px;
+  color: #fff;
 }
 .sidebar .sidebar-body .sidebar-menu .menu img {
   filter: invert(100%);
@@ -1117,13 +1124,17 @@ ol.my-breadcumb .my-breadcrumb-item.parent {
   height: 100%;
   color: #F5F5F5;
 }
+.sidebar .sidebar-body .sidebar-menu .menu a {
+  color: white;
+}
 .sidebar .sidebar-body .sidebar-menu .menu:hover, .sidebar .sidebar-body .sidebar-menu .menu.active {
   background-color: #FFFFFF;
-  color: #0A0A0A !important;
+  color: #0A0A0A;
   position: relative;
   border-radius: 25px 0 0 25px;
+  color: #000;
 }
-.sidebar .sidebar-body .sidebar-menu .menu:hover img, .sidebar .sidebar-body .sidebar-menu .menu.active img  {
+.sidebar .sidebar-body .sidebar-menu .menu:hover img, .sidebar .sidebar-body .sidebar-menu .menu.active img {
   filter: invert(0%);
 }
 .sidebar .sidebar-body .sidebar-menu .menu:hover span, .sidebar .sidebar-body .sidebar-menu .menu.active span {
@@ -1239,7 +1250,7 @@ input[readonly], textarea[readonly], select[readonly] {
 }
 
 .dashboard-card {
-  min-height: 120px;
+  min-height: 140px;
   border: 0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1019607843);
 }
