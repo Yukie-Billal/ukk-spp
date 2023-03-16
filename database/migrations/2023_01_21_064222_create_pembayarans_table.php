@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('tahun_dibayar');
             $table->foreignId('spp_id')->references('id')->on('spp');
             $table->integer('jumlah_bayar')->nullable();
-            $table->boolean('bayar')->default(false);
             $table->timestamps();
         });
     }

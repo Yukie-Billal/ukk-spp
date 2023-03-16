@@ -14,6 +14,16 @@ class LaporanIndex extends Component
     {
         $this->emit('setTanggal', [$this->tglAwal, $this->tglAkhir]);
     }
+    public function excel()
+    {
+        $this->emit('toastify',['danger', 'Fitur belum Tersedia', 3000]);
+        // $this->emit('setTanggal', [$this->tglAwal, $this->tglAkhir]);
+    }
+    public function pdf()
+    {
+        $this->emit('toastify',['danger', 'Fitur belum Tersedia', 3000]);
+        // $this->emit('setTanggal', [$this->tglAwal, $this->tglAkhir]);
+    }
 
     public function render()
     {

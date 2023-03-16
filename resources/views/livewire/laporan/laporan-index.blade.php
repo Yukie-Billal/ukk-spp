@@ -11,8 +11,8 @@
                 <div class="row">
                     <div class="col-12 d-flex justify-content-end" style="gap: 4px">
                         <button class="button button-info" wire:click='print'>PRINT</button>
-                        <button class="button button-success">EXCEL</button>
-                        <button class="button button-danger">PDF</button>
+                        <button class="button button-success" wire:click='excel'>EXCEL</button>
+                        <button class="button button-danger" wire:click='pdf'>PDF</button>
                     </div>
                 </div>
             </div>

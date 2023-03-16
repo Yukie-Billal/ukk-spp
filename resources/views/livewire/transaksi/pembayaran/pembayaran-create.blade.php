@@ -29,10 +29,12 @@
         Livewire.on('cetakBonSPP', function () {
             modalClose('#modalTambahPembayaran')
         })
-        Livewire.on('modalClose', modalClose(target));
+        Livewire.on('modalClose',function (target) {
+            modalClose(target);
+        });
         function modalClose(target) {
             if (target == '' || target == false || target == null) {
-                $this->emit('toastify', ['danger','Modal Tidak Ditemukan',3000]);
+                Livewire.emit('toastify', ['danger','Modal Tidak Ditemukan',3000]);
             } else {
                 $(target).modal('hide');
             }

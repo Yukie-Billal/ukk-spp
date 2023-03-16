@@ -94,8 +94,10 @@ class SiswaCreate extends Component
     {
         $spp = Spp::orderBy('tahun', 'desc');
         $kelas = Kelas::orderBy('nama_kelas', 'asc');
-        $this->kelas_id = Kelas::orderBy('nama_kelas', 'asc')->first()->id;
-        $this->spp_id = Spp::orderBy('tahun', 'desc')->first()->id;
+        if ($this->kelas_id == null && $this->spp_id == null) {
+            $this->kelas_id = Kelas::orderBy('nama_kelas', 'asc')->first()->id;
+            $this->spp_id = Spp::orderBy('tahun', 'desc')->first()->id;
+        }
         return view('livewire.data-master.siswa-create', [
             'kelases' => $kelas->get(),
             'spps' => $spp->get(),

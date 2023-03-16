@@ -45,7 +45,7 @@
         .transaksi {
             width: 90%;
             /* background: #000; */
-            margin: 15px;
+            margin: 10px;
             padding: 0 10px;
             display: flex;
             justify-content: end;
@@ -84,7 +84,7 @@
                     </tr>
                     <tr>
                         <td style="min-width: 25%;">Nama </td>
-                        <td style="min-width: 25%;">: {{ $p->siswa->nama }}</td>
+                        <td style="min-width: 25%;" colspan="3">: {{ $p->siswa->nama }}</td>
                     </tr>
                 </table>
                 <div class="transaksi">

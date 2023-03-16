@@ -50,7 +50,6 @@ class PembayaranCreate extends Component
             'tahun_dibayar' => $this->tahun,
             'spp_id' => $this->siswa->spp->id,
             'jumlah_bayar' => $this->siswa->spp->nominal,
-            'bayar' => 1,
         ]);
         if ($pembayaran) {
             // $this->emit('swal', ['success','Berhasil melakukan Pembayaran', 3000]);

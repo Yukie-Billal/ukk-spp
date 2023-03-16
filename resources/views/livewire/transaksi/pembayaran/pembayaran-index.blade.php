@@ -37,7 +37,7 @@
                         <td style="max-width: 100px">
                             @if ($pilih)
                             <div class="d-flex" style="gap: 4px">
-                                <input type="checkbox" value="januari" id="{{ $bulan->nama_bulan }}">
+                                <input type="checkbox" value="{{ $bulan->id }}" id="{{ $bulan->nama_bulan }}" class="checkBulan">
                                 <label for="{{ $bulan->nama_bulan }}">{{ $bulan->nama_bulan }}</label>
                             @else                                    
                             <div class="d-flex justify-content-lg-center" style="gap: 4px">
@@ -65,7 +65,7 @@
                         <td style="max-width: 100px">
                             @if ($pilih)
                             <div class="d-flex" style="gap: 4px">
-                                <input type="checkbox" value="januari" id="{{ $bulan->nama_bulan }}" class="checkBulan">
+                                <input type="checkbox" value="{{ $bulan->id }}" id="{{ $bulan->nama_bulan }}" class="checkBulan">
                                 <label for="{{ $bulan->nama_bulan }}">{{ $bulan->nama_bulan }}</label>
                             @else                                    
                             <div class="d-flex justify-content-center" style="gap: 4px">
@@ -86,11 +86,11 @@
             @endif
             @if ($pilih)
                 <tr>
-                    <td></td>
-                    <td colspan="2">
+                    <td colspan="3">
                         <div class="d-flex justify-content-end" style="gap: 4px">
                             <x-button color="danger" id="batalkanSemua">Batalkan Semua</x-button>
                             <x-button color="success" id="simpanSemua">Simpan Pembayaran</x-button>
+                            <x-button color="info" id="cetakSemua">Cetak Bukti</x-button>
                         </div>
                     </td>
                 </tr>
@@ -143,15 +143,36 @@
                 })
             })
         }
+        var daftarBulan = [];
         function freshPilihButton() {
             let batalkanSemua = document.querySelector('#batalkanSemua');
             let simpanSemua = document.querySelector('#simpanSemua');
+            let cetakSemua = document.querySelector('#cetakSemua');
             let dataBulan = document.querySelectorAll('.checkBulan');
             dataBulan.forEach(item => {
-                console.log(item);
+                item.addEventListener('change', function () {
+                    var value = this.value;
+                    var cek = daftarBulan.includes(value);
+                    if (cek) {
+                        var index = daftarBulan.indexOf(value);;
+                        if (daftarBulan.length == 1) {
+                            daftarBulan.pop();
+                        } else {
+                            daftarBulan.splice(index,index);
+                        }
+                    } else {
+                        daftarBulan.push(value);
+                    }
+                });
             })
             batalkanSemua.addEventListener('click', function () {
-                
+                Livewire.emit('batalkanSemua', daftarBulan);
+            })
+            simpanSemua.addEventListener('click', function () {
+                Livewire.emit('simpanSemua', daftarBulan);
+            })
+            cetakSemua.addEventListener('click', function () {
+                Livewire.emit('cetakSemua', daftarBulan);
             })
         }
         function cetakBonSPP(id) {
@@ -170,5 +191,15 @@
         freshBtn();
         Livewire.on('refreshButton', freshBtn);
         Livewire.on('freshPilihButton', freshPilihButton);
+        Livewire.on('cetakPilihan', function (params) {
+            Livewire.emit('cetakBanyak', params);
+            setTimeout(() => {
+                var isi = document.querySelector('#cetakView').innerHTML;
+                window.frames["printf"].document.title = document.title;
+                window.frames["printf"].document.body.innerHTML = isi;
+                window.frames["printf"].focus();
+                window.frames["printf"].print();
+            }, 1500);
+        })
     </script>
 @endpush

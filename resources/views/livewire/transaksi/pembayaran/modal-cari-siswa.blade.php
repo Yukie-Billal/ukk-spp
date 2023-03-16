@@ -3,7 +3,7 @@
         <x-form.input type="search" placeholder="Search ..." wire:model.debounce.500ms='search' />
         <x-button color="info" class="ms-2">Cari</x-button>
     </div>
-    <x-table class="table-striped">
+    <x-table class="table-striped table-responsive">
         <thead class="bg-white">
             <tr>
                 <th>NISN</th>
