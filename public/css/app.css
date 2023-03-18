@@ -1249,6 +1249,48 @@ input[readonly], textarea[readonly], select[readonly] {
   background-color: #FFFFFF;
 }
 
+.menu-list {
+  position: absolute;
+  top: 50px;
+  width: 150px;
+  right: 0;
+  z-index: 999;
+  background: #fff;
+  list-style: none;
+  gap: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1019607843);
+  padding: 2px 3px;
+  border-radius: 5px;
+}
+.menu-list .menu-dash {
+  height: 1px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  width: 100%;
+}
+.menu-list li.menu-item {
+  cursor: pointer;
+  padding: 10px 10px;
+}
+.menu-list li.menu-item a {
+  padding: 2px 6px;
+  transition: 0.1s;
+}
+.menu-list li.menu-item:hover {
+  background: #e0e0e0;
+}
+
+.showing {
+  animation: showing 0.1s ease-in;
+}
+
+@keyframes showing {
+  from {
+    transform: translate(4px);
+  }
+  to {
+    transform: translate(0);
+  }
+}
 .dashboard-card {
   min-height: 140px;
   border: 0;

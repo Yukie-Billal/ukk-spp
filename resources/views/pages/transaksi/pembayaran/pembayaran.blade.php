@@ -12,7 +12,7 @@
             <livewire:transaksi.pembayaran.pembayaran-index >
         </div>
     </div>
-    <x-modal id="modalCariSiswa" w="90">
+    <x-modal id="modalCariSiswa" w="700px">
         <livewire:transaksi.pembayaran.modal-cari-siswa>
     </x-modal>
     <x-modal id="modalTambahPembayaran">

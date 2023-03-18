@@ -46,7 +46,7 @@ class PembayaranCreate extends Component
             'petugas_id' => Auth::guard('petugas')->user()->petugas_id,
             'nisn' => $this->siswa->nisn,
             'tgl_bayar' => $this->tanggalBayar,
-            'bulan_dibayar' => $this->bulan,
+            'bulan_dibayar' => $this->bulan->id,
             'tahun_dibayar' => $this->tahun,
             'spp_id' => $this->siswa->spp->id,
             'jumlah_bayar' => $this->siswa->spp->nominal,

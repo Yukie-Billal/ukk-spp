@@ -24,4 +24,8 @@ class Pembayaran extends Model
     {
         return $this->belongsTo(Bulan::class, 'bulan_dibayar');
     }
+
+    protected $casts = [
+        'tgl_bayar' => 'datetime',
+    ];
 }

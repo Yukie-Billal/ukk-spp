@@ -11,6 +11,8 @@ class HistoriIndex extends Component
 {
     public $siswa;
     public $tahun;
+    public $admin = false;
+    public $petugas;
 
     protected $listeners = [
         'setTahun',
@@ -25,9 +27,16 @@ class HistoriIndex extends Component
         $pembayaran = Pembayaran::orderByDesc('created_at');
         if (Auth::guard('siswa')->check()) {
             $this->siswa = Auth::guard('siswa')->user();        
-        } elseif (Auth::guard()) {
-            // $this->siswa = 1;
         }
+
+        if ($this->admin) {
+            $pembayaran;
+        }
+
+        if ($this->petugas != null) {
+            $pembayaran->where('petugas_id', $this->petugas);
+        }
+
         if ($this->siswa != null) {
             $pembayaran->where('nisn', $this->siswa->nisn);
         }

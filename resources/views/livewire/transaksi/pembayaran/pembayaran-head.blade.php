@@ -5,7 +5,11 @@
         @else
         <div class="row justify-content-between">
             <div class="col-xl-3 col-lg-4 col-md-5 col-sm-6">
-                <x-button color="info" modal="true" target="#modalCariSiswa">Cari Siswa</x-button>
+                @if (Request::is('histori-pembayaran*'))
+                    <input type="text" id="autoComplete" value="">
+                @else 
+                    <x-button color="info" modal="true" target="#modalCariSiswa">Cari Siswa</x-button>
+                @endif
             </div>
         @endif        
             <div class="col-xl-2 col-lg-3 col-md-4 col-sm-5 d-flex align-items-center">

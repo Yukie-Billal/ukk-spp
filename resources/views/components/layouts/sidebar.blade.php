@@ -65,7 +65,7 @@
 							<i class="fa fa-arrow-right"></i>
 							Pembayaran
 						</a>
-						<a class="{{ Request::is('suppliers-users*') ? 'active' : '' }}" href="/history-pembayaran">
+						<a class="{{ Request::is('histori-pembayaran*') ? 'active' : '' }}" href="/histori-pembayaran">
 							<i class="fa fa-arrow-right"></i>
 							History Pembayaran
 						</a>

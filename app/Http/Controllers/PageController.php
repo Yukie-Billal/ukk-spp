@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kelas;
+use App\Models\Pertahun;
 use App\Models\Petugas;
 use App\Models\Siswa;
 use App\Models\Spp;
@@ -17,6 +18,7 @@ class PageController extends Controller
             'banyakPetugas' => Petugas::count(),
             'banyakKelas' => Kelas::count(), 
             'banyakSpp' => Spp::count(), 
+            'dataPertahun' => Pertahun::all(),
         ]);
     }
     public function spp()

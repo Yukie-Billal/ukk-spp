@@ -782,3 +782,41 @@ background-color: #3131a3;
 input[readonly],textarea[readonly],select[readonly] {
     background-color: $my-neutral-10;
 }
+
+.menu-list {
+    position: absolute;
+    top: 50px;
+    width: 150px;
+    right: 0;
+    z-index: 999;
+    background: #fff;
+    list-style: none;
+    gap: 16px;
+    box-shadow: $my-shadow-2;
+    padding: 2px 3px;
+    border-radius: 5px;
+    & .menu-dash {
+        height: 1px;
+        border: 1px solid rgba(0, 0, 0, .3);
+        width: 100%;
+    }
+    & li.menu-item{
+        cursor: pointer;
+        padding: 10px 10px;
+        & a{
+            padding: 2px 6px;
+            transition: .1s;
+        }
+        &:hover{
+            background: #e0e0e0;
+        }
+    }
+}
+.showing {
+    animation: showing .1s ease-in;
+}
+
+@keyframes showing {
+    from{transform: translate(4px)}
+    to{transform: translate(0);}
+}

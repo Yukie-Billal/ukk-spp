@@ -130,6 +130,8 @@ class PembayaranIndex extends Component
 
     public function render()
     {
+        $p = Pembayaran::first()->get();
+        dd($p[0]->tgl_bayar->format('Y-m-d'));
         if ($this->tahun == null) {
             $this->tahun = date('Y');
         }

@@ -5,11 +5,18 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-12 col-lg-12 col-xl-5">
-            <livewire:transaksi.pembayaran.data-siswa />
-        </div>
-        <div class="col-sm-12 col-lg-12 col-xl-7">
-            <livewire:transaksi.pembayaran.histori-index />
-        </div>
+        @can('IsSiswa')
+            <div class="col-sm-12 col-lg-12 col-xl-5">
+                <livewire:transaksi.pembayaran.data-siswa />
+            </div>
+            <div class="col-sm-12 col-lg-12 col-xl-7">
+                <livewire:transaksi.pembayaran.histori-index />
+            </div>
+        @endcan
+        @can('IsAdmin')
+            <div class="col-12">
+                <livewire:transaksi.pembayaran.histori-index admin="true" />
+            </div>
+        @endcan
     </div>
 </x-app-layout>

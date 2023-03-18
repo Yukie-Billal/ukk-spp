@@ -23,14 +23,9 @@ class SppCreate extends Component
         'tahun' => 'required|numeric|min:4',
         'nominal' => 'required|numeric|min:5',
     ];
-    protected $messages = [
-        'tahun.required' => 'Tahun Spp Wajib Di isi',
-        'tahun.numeric' => 'Tahun Spp Harus berisi angka',
-        'tahun.min' => 'Tahun Spp Memiliki minimal :min huruf',
-        // 'tahun.max' => 'Tahun Spp Memiliki maximal :max huruf',
-        'nominal.required' => 'Nominal Pembayaran Spp Wajib Di isi',
-        'nominal.numeric' => 'Nominal Pembayaran Spp Harus berisi angka',
-        'nominal.min' => 'Nominal Pembayaran Spp Memiliki minimal :min huruf',
+    protected $validationAttributes  = [
+        'tahun' => 'Tahun',
+        'nominal' => 'Nominal',
     ];
 
     public function updated($propertyName)
