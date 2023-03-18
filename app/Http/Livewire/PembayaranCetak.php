@@ -16,14 +16,15 @@ class PembayaranCetak extends Component
     public $daftarBulan;
 
     protected $listeners = [
-        'fresh','swal','toastify',
+        // 'fresh','swal','toastify',
         'cetakPembayaran',
         'cetakBanyak',
     ];
     public function cetakBanyak($params)
     {
-        $this->daftarBulan = $params[1];
+        // dd($params);
         $this->siswa = Siswa::find($params[0]); 
+        $this->daftarBulan = $params[1];
     }
     public function cetakPembayaran($id)
     {
@@ -46,9 +47,10 @@ class PembayaranCetak extends Component
                 //     $query->orWhere('bulan_dibayar', $value);
                 // }
             // });
-            foreach ($this->daftarBulan as $key => $value) {
-                $pembayaran->orWhere('bulan_dibayar', $value);
-            }
+            // dd($this->pembayaran);
+            // foreach ($this->daftarBulan as $key => $value) {
+            //     $pembayaran->orWhere('bulan_dibayar', $value);
+            // }
         }
         return view('livewire.pembayaran-cetak', [
             'pembayarans' => $pembayaran->get(),

@@ -7,7 +7,7 @@
                     <th class="header-s">Status Pembayaran</th>
                     <th class="text-m-regular">
                         <input type="checkbox" wire:model='pilih' value="1" >
-                        <label for="">Pilih</label>
+                        <label>Pilih</label>
                     </th>
                 </tr>
             </thead>
@@ -47,7 +47,7 @@
                                 <x-button color="danger" class="button-sm swalCancel" data-id="{{ $id }}">
                                     <i class="fa fa-x" aria-hidden="true"></i>
                                 </x-button>
-                                <x-button color="info" class="button-sm cetak" data-id="{{ $id }}">
+                                <x-button color="info" class="button-sm cetak cetakPembayaran" data-id="{{ $id }}">
                                     Cetak
                                 </x-button>
                             @endif
@@ -66,7 +66,7 @@
                             @if ($pilih)
                             <div class="d-flex" style="gap: 4px">
                                 <input type="checkbox" value="{{ $bulan->id }}" id="{{ $bulan->nama_bulan }}" class="checkBulan">
-                                <label for="{{ $bulan->nama_bulan }}">{{ $bulan->nama_bulan }}</label>
+                                <label>{{ $bulan->nama_bulan }}</label>
                             @else                                    
                             <div class="d-flex justify-content-center" style="gap: 4px">
                                 <x-button color="success" class="button-sm modalPembayaran" data-siswa="{{ $siswa ? $siswa->nisn : '' }}" data-bulan="{{ $bulan->id }}" data-tahun="{{ $tahun }}">
@@ -98,53 +98,65 @@
         </x-table>
     </div>
     <iframe id="printf" name="printf" style="display: none;"></iframe>
-    <livewire:pembayaran-cetak>
+    <div wire:ignore>
+        {{-- <livewire:pembayaran-cetak /> --}}
+    </div>
 </x-card>
 @push('scripts')
     <script defer>
         function freshBtn() {
             let tambahPembayaran = document.querySelectorAll('.modalPembayaran');
-            let batalkanPembayaran = document.querySelectorAll('.swalCancel');
-            let cetakpembayaran = document.querySelectorAll('.cetakPembayaran');
-            tambahPembayaran.forEach(item => {
-                item.addEventListener('click', function () {
-                    var siswa = this.getAttribute('data-siswa');
-                    var bulan = this.getAttribute('data-bulan');
-                    var tahun = this.getAttribute('data-tahun');
-                    var lunas = this.getAttribute('data-lunas');
-                    if (!lunas && siswa) {
-                        $('#modalTambahPembayaran').modal('show');
-                        Livewire.emit('getSiswaPembayaran', siswa);
-                        Livewire.emit('getBulanPembayaran', bulan);
-                        Livewire.emit('getTahunPembayaran', tahun);
-                    } else {
-                        Livewire.emit('toastify', ['danger', 'Pembayaran Tidak Tersedia', 3000]);
-                    }
+            // let batalkanPembayaran = document.querySelectorAll('.swalCancel');
+            // let cetakpembayaran = document.querySelectorAll('.cetakPembayaran');s
+            if ($(document).find($('.cetakPembayaran')).length > 0) {
+                $('.cetakPembayaran').each(function (i,element) {
+                    $(element).click(function (e) {
+                        if ($(this).attr('data-id')) {
+                            cetakBonSPP($(this).attr('data-id'));
+                        } else {
+                            Livewire.emit('toastify', ['danger', 'Pembayaran Tidak Tersedia', 2500]);
+                        }
+                    });
+                });
+            } else {
+                if ($('#simpanSemua').length == 0 || $('#batalkanSemua').length == 0 || $('#cetakSemua').length == 0) {
+                    freshBtn();
+                    return;
+                }                
+            }
+            if ($('.swalCancel').length > 0) {
+                $('.swalCancel').each(function (i,e) {
+                    $(e).click(function (e) {
+                        e.preventDefault();
+                        var id = $(this).attr('data-id');
+                        if (id) {                        
+                            Livewire.emit('swalConfirm', ['question', 'Yakin Batalkan Pembayaran ?', true, 'deletePembayaran', id]);
+                        } else {
+                            Livewire.emit('toastify', ['danger', 'Pembayaran Tidak Tersedia', 3000]);
+                        }
+                    })
                 })
-            });
-            batalkanPembayaran.forEach(item => {
-                item.addEventListener('click', function () {
-                    var id = this.getAttribute('data-id');
-                    if (id) {
-                        Livewire.emit('swalConfirm', ['question', 'Yakin Batalkan Pembayaran ?', true, 'deletePembayaran', id]);
-                    } else {
-                        Livewire.emit('toastify', ['danger', 'Pembayaran Tidak Tersedia', 3000]);
-                    }
+            }
+            if ($('.modalPembayaran').length > 0) {
+                $('.modalPembayaran').each(function (i,e) {
+                    $(e).click(function (e) {
+                        e.preventDefault();
+                    var siswa = $(this).attr('data-siswa');
+                    var bulan = $(this).attr('data-bulan');
+                    var tahun = $(this).attr('data-tahun');
+                    var lunas = $(this).attr('data-lunas');
+                        if (siswa && !lunas) {
+                            Livewire.emit('getDataPembayaran', [siswa, bulan, tahun]);
+                            $('#modalTambahPembayaran').modal('show');
+                        } else {                            
+                            Livewire.emit('toastify', ['danger', 'Pembayaran Tidak Tersedia', 3000]);
+                        }
+                    })
                 })
-            });
-            cetakpembayaran.forEach(item => {
-                item.addEventListener('click', function () {
-                    var id = this.getAttribute('data-id');
-                    if (id) {
-                        cetakBonSPP(id);
-                    } else {
-                        Livewire.emit('toastify', ['danger', 'Pembayaran Tidak Tersedia', 2500]);
-                    }
-                })
-            })
+            }
         }
-        var daftarBulan = [];
         function freshPilihButton() {
+            var daftarBulan = [];
             let batalkanSemua = document.querySelector('#batalkanSemua');
             let simpanSemua = document.querySelector('#simpanSemua');
             let cetakSemua = document.querySelector('#cetakSemua');

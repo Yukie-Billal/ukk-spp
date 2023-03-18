@@ -13,14 +13,20 @@ class HistoriIndex extends Component
     public $tahun;
     public $admin = false;
     public $petugas;
+    public $petugas_id;
 
     protected $listeners = [
         'setTahun',
+        'setPetugas',
     ];
 
     public function setTahun($value)
     {
         $this->tahun = $value;
+    }
+    public function setPetugas($value)
+    {
+        $this->petugas_id = $value;
     }
     public function render()
     {
@@ -29,12 +35,8 @@ class HistoriIndex extends Component
             $this->siswa = Auth::guard('siswa')->user();        
         }
 
-        if ($this->admin) {
-            $pembayaran;
-        }
-
-        if ($this->petugas != null) {
-            $pembayaran->where('petugas_id', $this->petugas);
+        if ($this->petugas_id != null) {
+            $pembayaran->where('petugas_id', $this->petugas_id);
         }
 
         if ($this->siswa != null) {

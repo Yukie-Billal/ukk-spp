@@ -1,26 +1,35 @@
 <div class="modal-body">    
     <form wire:submit.prevent='store'>
         <div class="form-group">
-            @php
-                $tahunTerpakai = [];
-                foreach ($spps as $key => $spp) {
-                    $tahunTerpakai[] = $spp->tahun;
-                }
-            @endphp
             <label for="tahunSpp">Tahun Spp</label>
-            <select class="select-form" wire:change='$emit("getTahun")' id="tahunSpp" name="tahun">
-                @for ($i = -2; $i < 5; $i++)
-                @php $tahun = date('Y') - $i @endphp
-                    <option value="{{ $tahun }}" {{ $tahun  == date('Y') ? 'selected' : '0' }}>{{ $tahun == $tahunTerpakai ? $tahun . ' Tidak Tersedia' : date('Y') - $i }}</option>
-                @endfor
-            </select>
+            @if ($tahunType)
+                <input type="number" wire:model.debounce.500ms='tahun' class="input-form">
+            @else
+                <select class="select-form" wire:change='$emit("getTahun")' id="tahunSpp" name="tahun">
+                    <option value="type" class="text-l-medium text-info-main bg-primary-focus">Ketik Manual</option>
+                    @for ($i = -4; $i < 8; $i++)
+                    @php 
+                        $tahun = date('Y') - $i;
+                        $terpakai = false;
+                    @endphp
+                        @foreach ($spps as $key => $spp)
+                            @if ($tahun == $spp->tahun)
+                                @php
+                                    $terpakai = true;
+                                @endphp
+                            @endif
+                        @endforeach
+                        <option value="{{ $tahun }}" {{ $tahun  == date('Y') ? 'selected' : '' }} {{ $terpakai ? 'disabled' : '' }}>{{ $tahun . ' ' . ($terpakai ? ' Terpakai' : '') }}</option>
+                    @endfor
+                </select>
+            @endif
             @error('tahun')
                 <small class="text-m-medium text-danger-main">{{ $message }}</small>
             @enderror
         </div>
         <div class="form-group my-3">
             <label for="nominal">Nominal Spp</label>
-            <x-form.input placeholder="Masukkan Nominal" wire:model.lazy='nominal' id="nominal" />
+            <x-form.input placeholder="Masukkan Nominal" wire:model.debounce.500ms='nominal' id="nominal" />
             @error('nominal')
                 <small class="text-m-medium text-danger-main">{{ $message }}</small>
             @enderror

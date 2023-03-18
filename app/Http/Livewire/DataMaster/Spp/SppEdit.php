@@ -18,14 +18,6 @@ class SppEdit extends Component
         'tahun' => 'required|numeric|min:4',
         'nominal' => 'required|numeric|min:5',
     ];
-    protected $messages = [
-        'tahun.required' => 'Tahun Spp Wajib Di isi',
-        'tahun.numeric' => 'Tahun Spp Harus berisi angka',
-        'tahun.min' => 'Tahun Spp Memiliki minimal :min huruf',
-        'nominal.required' => 'Nominal Pembayaran Spp Wajib Di isi',
-        'nominal.numeric' => 'Nominal Pembayaran Spp Harus berisi angka',
-        'nominal.min' => 'Nominal Pembayaran Spp Memiliki minimal :min huruf',
-    ];
 
     public function updated($propertyName)
     {

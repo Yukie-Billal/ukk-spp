@@ -19,25 +19,19 @@ class PembayaranCreate extends Component
         'getSiswaPembayaran',
         'getBulanPembayaran',
         'getTahunPembayaran',
+        'getDataPembayaran',
     ];
-
-    public function getSiswaPembayaran($nisn)
+    // array type [siswa nisn, bulan id, tahun 'YYYY']
+    public function getDataPembayaran($params)
     {
-        $siswa = Siswa::find($nisn);
-        $this->siswa = $siswa;
-    }
-    public function getBulanPembayaran($bulan)
-    {
-        $bulan = Bulan::find($bulan);
+        $this->siswa = Siswa::find($params[0]);
+        $bulan = Bulan::find($params[1]);
         if ($bulan) {
             $this->bulan = $bulan;
         } else {
             $this->emit('closeModal', '#modalTambahPembayaran');
         }
-    }
-    public function getTahunPembayaran($tahun)
-    {
-        $this->tahun = $tahun;
+        $this->tahun = $params[2];
     }
 
     public function store()
@@ -52,7 +46,6 @@ class PembayaranCreate extends Component
             'jumlah_bayar' => $this->siswa->spp->nominal,
         ]);
         if ($pembayaran) {
-            // $this->emit('swal', ['success','Berhasil melakukan Pembayaran', 3000]);
             $this->emit('cetakBonSPP', $pembayaran->pembayaran_id);
         } else {
             $this->emit('swal', ['error','Gagal melakukan Pembayaran', 3000]);

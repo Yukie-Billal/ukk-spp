@@ -6,7 +6,14 @@
         <div class="row justify-content-between">
             <div class="col-xl-3 col-lg-4 col-md-5 col-sm-6">
                 @if (Request::is('histori-pembayaran*'))
-                    <input type="text" id="autoComplete" value="">
+                @can('IsAdmin')                    
+                    {{-- <input type="text" id="autoComplete" value="ok" class="input-form"> --}}
+                    <select wire:change='$emit("getPetugas")' id="petugasHistory" class="select-form">
+                        @foreach ($petugases as $petugas)
+                            <option value="{{ $petugas->petugas_id }}">{{ $petugas->nama_petugas }}</option>
+                        @endforeach
+                    </select>
+                @endcan
                 @else 
                     <x-button color="info" modal="true" target="#modalCariSiswa">Cari Siswa</x-button>
                 @endif
@@ -39,5 +46,8 @@
                 Livewire.emit('setTahun', $('#tahunPembayaran').val());
             }
         }
+        Livewire.on('getPetugas', function () {
+            Livewire.emit('setPetugas', $('#petugasHistory').val());
+        })
     </script>
 @endpush

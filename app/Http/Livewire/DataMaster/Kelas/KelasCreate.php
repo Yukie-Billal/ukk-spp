@@ -22,10 +22,9 @@ class KelasCreate extends Component
         'nama_kelas' => 'required',
         'kompetensi_keahlian' => 'required|min:5',
     ];
-    protected $messages = [
-        'nama_kelas.required' => 'Nama Kelas Wajib Di isi',
-        'kompetensi_keahlian.required' => 'Kompetensi Keahlian Wajib Di isi',
-        'kompetensi_keahlian.min' => 'Kompetensi Keahlian Memiliki Minimal :min huruf',
+    protected $validationAttributes = [
+        'nama_kelas' => 'Nama Kelas',
+        'kompetensi_keahlian' => 'Kompetensi Keahlian',
     ];
     public function updated($propertyName)
     {

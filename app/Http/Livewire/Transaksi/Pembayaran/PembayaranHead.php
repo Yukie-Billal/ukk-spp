@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Transaksi\Pembayaran;
 
+use App\Models\Petugas;
 use App\Models\Siswa;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -12,6 +13,7 @@ class PembayaranHead extends Component
     public $tahunMasuk;
     public $siswa;
     public $punyaSiswa = 0;
+    public $petugas_id;
 
     protected $listeners = [
         'getSiswa',
@@ -36,6 +38,8 @@ class PembayaranHead extends Component
             $this->getSiswa(Auth::guard('siswa')->user()->nisn);
             $this->punyaSiswa = true;
         }
-        return view('livewire.transaksi.pembayaran.pembayaran-head');
+        return view('livewire.transaksi.pembayaran.pembayaran-head', [
+            'petugases' => Petugas::orderByDesc('nama_petugas')->Get(),
+        ]);
     }
 }

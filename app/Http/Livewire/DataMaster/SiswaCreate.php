@@ -36,15 +36,10 @@ class SiswaCreate extends Component
         'kelas_id' => 'required',
         'spp_id' => 'required',
     ];
-
-    protected $messages = [
-        'nisn.required' => 'NISN wajib di isi',
-        'nis.required' => 'NIS wajib di isi',
-        'nama.required' => 'Nama wajib di isi',
-        'no_telp.required' => 'No Telephone wajib di isi',
-        'alamat.required' => 'Alamat wajib di isi',
-        'kelas_id.required' => 'Kelas wajib di isi',
-        'spp_id.required' => 'Tahun Spp wajib di isi',
+    protected $validationAttributes = [
+        'no_telp' => 'No Telephone',
+        'kelas_id' => 'kelas',
+        'spp_id' => 'spp'
     ];
 
     public function updated($propertyName)

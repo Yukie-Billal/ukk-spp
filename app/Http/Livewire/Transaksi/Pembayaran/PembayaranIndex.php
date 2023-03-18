@@ -29,7 +29,6 @@ class PembayaranIndex extends Component
     public function updatedPilih($value)
     {
         if ($value) {
-            // dd($value);
             $this->emit('freshPilihButton');
         } else {
             $this->emit('refreshButton');
@@ -45,7 +44,6 @@ class PembayaranIndex extends Component
     {
         $this->tahun = $value;
     }
-
     public function deletePembayaran($id)
     {
         $pembayaran = Pembayaran::find($id);
@@ -56,12 +54,11 @@ class PembayaranIndex extends Component
             $this->emit('toastify', ['danger','Terjadi kesalahan', 3000]);
         }
     }
-
     public function batalkanSemua($params)
     {
         if ($this->siswa && $this->tahun && $this->pilih) {
+            $delete = false;
             foreach ($params as $key => $value) {
-                $delete = false;
                 $pembayaran = Pembayaran::where('nisn', $this->siswa->nisn)->where('tahun_dibayar', $this->tahun)->where('bulan_dibayar', $value)->first();
                 if ($pembayaran) {
                     $delete  = $pembayaran->delete();
@@ -79,6 +76,7 @@ class PembayaranIndex extends Component
     public function simpanSemua($params)
     {
         if ($this->siswa && $this->tahun && $this->pilih) {
+            $simpan = false;
             foreach ($params as $key => $value) {
                 $pembayaran = Pembayaran::where('nisn', $this->siswa->nisn)->where('tahun_dibayar', $this->tahun)->where('bulan_dibayar', $value)->first();
                 if (!$pembayaran) {
@@ -91,14 +89,12 @@ class PembayaranIndex extends Component
                         'spp_id' => $this->siswa->spp->id,
                         'jumlah_bayar' => $this->siswa->spp->nominal,
                     ]);
-                } else {
-                    $simpan = false;
                 }
             }
             if ($simpan) {
                 $this->emit('toastify',['success','Pembayaran Berhasil Disimpan', 2500]);
             } else {
-                $this->emit('toastify',['danger','Pembayaran Sudah Tersedia', 2500]);
+                $this->emit('toastify',['danger','Pembayaran Tidak Tersedia', 2500]);
             }
         } else {
             $this->emit('toastify', ['danger','Pembayaran Tidak Tersedia', 2500]);
@@ -108,8 +104,8 @@ class PembayaranIndex extends Component
     {
         if ($this->siswa && $this->tahun && $this->pilih) {
             $cetak = false;
+            $bulanCetak = [];
             foreach ($params as $key => $value) {
-                $bulanCetak = [];
                 $pembayaran = Pembayaran::where('nisn', $this->siswa->nisn)->where('tahun_dibayar', $this->tahun)->where('bulan_dibayar', $value)->first();
                 if ($pembayaran) {
                     $bulanCetak[] = $value;
@@ -118,8 +114,9 @@ class PembayaranIndex extends Component
                     $cetak = false;
                 }
             }
+            // dd($bulanCetak);
             if ($cetak) {
-                $this->emit('cetakPilihan',[$this->siswa->nisn,$bulanCetak]);
+                $this->emit('cetakPilihan',[$this->siswa->nisn, $bulanCetak]);
             } else {
                 $this->emit('toastify',['danger','Pembayaran Sudah Tersedia', 2500]);
             }
@@ -130,8 +127,9 @@ class PembayaranIndex extends Component
 
     public function render()
     {
-        $p = Pembayaran::first()->get();
-        dd($p[0]->tgl_bayar->format('Y-m-d'));
+        // $p = Pembayaran::first()->get();
+        // $y = $p[0]->tgl_bayar->format('D');
+        // dd(__('kalendar.'.$y));
         if ($this->tahun == null) {
             $this->tahun = date('Y');
         }

@@ -1,4 +1,5 @@
 <x-app-layout>
+    <livewire:pembayaran-cetak />
     <div class="row mb-2">
         <div class="col-12">
             <livewire:transaksi.pembayaran.pembayaran-head />

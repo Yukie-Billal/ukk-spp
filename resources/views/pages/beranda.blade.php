@@ -96,13 +96,12 @@
     @foreach ($dataPertahun as $item)
         <input type="hidden" id="datapertahun" value="{{ $item }}">        
     @endforeach
-
     @push('scripts')
         <script>
             var ctx = document.getElementById('myChart');
             const DATA_COUNT = 12;
             var dataset = JSON.parse($('#datapertahun').val());        
-            var labels = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
+            var labels = ["{{ __('kalendar.January') }}", "{{ __('kalendar.Febuary') }}", "{{ __('kalendar.March') }}", "{{ __('kalendar.April') }}", "{{ __('kalendar.May') }}", "{{ __('kalendar.June') }}", "{{ __('kalendar.July') }}", "{{ __('kalendar.August') }}", "{{ __('kalendar.September') }}", "{{ __('kalendar.October') }}", "{{ __('kalendar.November') }}", "{{ __('kalendar.December') }}"]
             const datapoints = [dataset.Januari, dataset.Februari, dataset.Maret, dataset.April, dataset.Mei,dataset.Juni,dataset.Juli,dataset.Agustus,dataset.September,dataset.Oktober,dataset.November,dataset.Desember];
             const data = {
                 labels: labels,

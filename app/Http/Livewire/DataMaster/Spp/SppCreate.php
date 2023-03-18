@@ -6,26 +6,20 @@ use App\Models\Spp;
 use Livewire\Component;
 use App\Traits\ListenerTrait;
 
-use function PHPUnit\Framework\arrayHasKey;
-
 class SppCreate extends Component
 {
     use ListenerTrait;
 
     public $tahun;
     public $nominal;
-
+    public $tahunType = false;
     protected $listeners = [
         'fresh','toastify','swal',
-        'setTahun'
+        'setTahun',
     ];
     protected $rules = [
-        'tahun' => 'required|numeric|min:4',
+        'tahun' => 'required|unique:spp,tahun|numeric|min:5',
         'nominal' => 'required|numeric|min:5',
-    ];
-    protected $validationAttributes  = [
-        'tahun' => 'Tahun',
-        'nominal' => 'Nominal',
     ];
 
     public function updated($propertyName)
@@ -35,12 +29,17 @@ class SppCreate extends Component
 
     public function setTahun($value)
     {
-        $this->tahun = $value;
+        if ($value == 'type') {
+            $this->tahunType = true;   
+        } else {
+            $this->tahun = $value;
+        }
     }
 
     public function store()
     {
         $this->validate();
+
         $spp = Spp::create([
             'tahun' => $this->tahun,
             'nominal' => $this->nominal,
@@ -56,8 +55,14 @@ class SppCreate extends Component
 
     public function render()
     {
-        if ($this->tahun == null) {
+        if ($this->tahun == null && $this->tahunType == false) {
             $this->tahun = date('Y');
+        }
+        if ($this->tahun <= 0) {
+            $this->tahun = 1;
+        }
+        if ($this->nominal <= 0) {
+            $this->nominal = 1;
         }
         return view('livewire.data-master.spp.spp-create', [
             'spps' => Spp::orderByDesc('tahun')->get(),
