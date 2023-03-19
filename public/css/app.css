@@ -562,7 +562,8 @@
   font: 500 14px/20px "Inter", sans-serif;
 }
 .table tbody tr td {
-  font: 500 12px/16px "Inter", sans-serif;
+  font: 500 14px/20px "Inter", sans-serif;
+  /* font: 500 12px/16px "Inter", sans-serif; */
 }
 
 ol.my-breadcumb {

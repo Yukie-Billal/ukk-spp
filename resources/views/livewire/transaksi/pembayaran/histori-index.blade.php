@@ -1,5 +1,5 @@
 <x-card>
-    <div class="card-body" wire:poll>
+    <div class="card-body" wire:poll.5000ms>
         <x-table class="table-striped">
             @if (Auth::guard('siswa')->check())                
                 <thead>
@@ -41,18 +41,36 @@
                 @endif
             @endif
 
-            @if ($petugas_id)
-                @foreach ($pembayarans as $pembayaran)                
+            @can('IsOperator')
+            <thead>
+                <tr>
+                    @can('IsAdmin')
+                        <th>Nama Petugas</th>
+                    @endcan
+                    <th>Nisn</th>
+                    <th>Nama Siswa</th>
+                    <th>Tanggal Pembayaran</th>
+                    <th>Spp</th>
+                    <th>Bulan & Tahun Dibayar</th>
+                    <th>Jumlah Bayar</th>
+                </tr>
+            </thead>
+                @foreach ($pembayarans as $pembayaran)
                     <tr>
+                        @can('IsAdmin')
+                            <td>{{ $pembayaran->petugas->nama_petugas }}</td>
+                        @endcan
                         <td>{{ $pembayaran->siswa->nisn }}</td>
                         <td>{{ $pembayaran->siswa->nama }}</td>
-                        <td>{{ $pembayaran->bulan->nama_bulan }}</td>
-                        <td>{{ $pembayaran->tahun_dibayar }}</td>
-                        <td>{{ $pembayaran->jumlah_bayar }}</td>
-                        <td>{{ $pembayaran->tgl_bayar }}</td>
+                        <td>{{ $pembayaran->tgl_bayar->format('Y-m-d') }}</td>
+                        {{-- <td>{{ 'Tahun ' .$pembayaran->siswa->spp->tahun . ' ' . ('Rp.'.number_format($pembayaran->siswa->spp->nominal)) }}</td> --}}
+                        <td>{{ 'Tahun ' .$pembayaran->siswa->spp->tahun }}</td>
+                        <td>{{ $pembayaran->bulan->nama_bulan . ' ' .$pembayaran->tahun_dibayar }}</td>
+                        {{-- <td>{{ $pembayaran->tahun_dibayar }}</td> --}}
+                        <td>{{ 'Rp.'.number_format($pembayaran->jumlah_bayar) }}</td>
                     </tr>
                 @endforeach
-            @endif
+            @endcan
         </x-table>
         <iframe id="printf" name="printf" style="display: none;"></iframe>
         <livewire:pembayaran-cetak>

@@ -44,4 +44,9 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
         return redirect('/');
     }
+
+    public function profile()
+    {
+        return view('pages.auth.profile');
+    }
 }

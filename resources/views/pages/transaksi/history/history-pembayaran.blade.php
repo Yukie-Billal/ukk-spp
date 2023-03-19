@@ -1,4 +1,5 @@
 <x-app-layout>
+    <x-breadcrumb parent="Transaksi" where="Histori Pembayaran" />
     <div class="row mb-3">
         <div class="col-12">
             <livewire:transaksi.pembayaran.pembayaran-head />
@@ -13,9 +14,9 @@
                 <livewire:transaksi.pembayaran.histori-index />
             </div>
         @endcan
-        @can('IsAdmin')
+        @can('IsOperator')
             <div class="col-12">
-                <livewire:transaksi.pembayaran.histori-index admin="true" />
+                <livewire:transaksi.pembayaran.histori-index />
             </div>
         @endcan
     </div>

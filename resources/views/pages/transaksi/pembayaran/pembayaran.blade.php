@@ -1,4 +1,5 @@
 <x-app-layout>
+    <x-breadcrumb parent="Transaksi" where="Pembayaran" />
     <livewire:pembayaran-cetak />
     <div class="row mb-2">
         <div class="col-12">
