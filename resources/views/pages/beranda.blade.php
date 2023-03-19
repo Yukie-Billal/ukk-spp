@@ -94,11 +94,11 @@
                     <canvas id="spp" class="h-100"></canvas>
                 </x-card>
             </div>
-            <div class="col-4 mt-3 bg-danger">
+            {{-- <div class="col-4 mt-3 bg-danger">
                 <x-card>
                     <canvas id="siswa" class="h-100"></canvas>
                 </x-card>
-            </div>
+            </div> --}}
         </div>
 
         @foreach ($dataPertahun as $item)

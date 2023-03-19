@@ -2,8 +2,11 @@
 
 namespace App\Http\Livewire\Laporan;
 
+use App\Exports\PembayaransExport;
 use App\Models\Pembayaran;
 use Livewire\Component;
+use App\Exports\UsersExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class LaporanIndex extends Component
 {
@@ -16,13 +19,12 @@ class LaporanIndex extends Component
     }
     public function excel()
     {
-        $this->emit('toastify',['danger', 'Fitur belum Tersedia', 3000]);
-        // $this->emit('setTanggal', [$this->tglAwal, $this->tglAkhir]);
+        return (new PembayaransExport($this->tglAwal, $this->tglAkhir))->download('pembayarans.xlsx');
+        // $this->emit('toastify',['danger', 'Fitur belum Tersedia', 3000]);
     }
     public function pdf()
     {
-        $this->emit('toastify',['danger', 'Fitur belum Tersedia', 3000]);
-        // $this->emit('setTanggal', [$this->tglAwal, $this->tglAkhir]);
+        return (new PembayaransExport($this->tglAwal, $this->tglAkhir))->download('invoices.pdf', \Maatwebsite\Excel\Excel::DOMPDF);
     }
 
     public function render()
