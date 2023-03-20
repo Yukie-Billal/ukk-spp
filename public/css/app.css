@@ -1097,8 +1097,8 @@ ol.my-breadcumb .my-breadcrumb-item.parent {
   flex-direction: column;
   align-items: center;
   font: 500 14px/20px "Inter", sans-serif;
-  padding: 5px 0;
-  margin: 10px 0;
+  padding: 6px 0;
+  margin: 8px 0;
 }
 .sidebar .sidebar-body .sidebar-menu .menu {
   position: relative;
@@ -1147,7 +1147,7 @@ ol.my-breadcumb .my-breadcrumb-item.parent {
   flex-direction: column;
   width: 100%;
   padding: 14px 0 14px 12px;
-  gap: 2px;
+  gap: 6px;
 }
 .sidebar .sidebar-body .sidebar-menu .sub-menu a {
   width: 100%;

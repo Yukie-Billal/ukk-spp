@@ -630,7 +630,7 @@ background-color: #3131a3;
          align-items: center;
          font: $my-text-m-medium;
          padding: 6px 0;
-         margin: 10px 0;         
+         margin: 8px 0;         
 
          .menu {
             position: relative;
@@ -679,7 +679,7 @@ background-color: #3131a3;
             @include flex-box(start, start, column);
             width: 100%;
             padding: 14px 0 14px 12px;
-            gap: 2px;            
+            gap: 6px;            
 
             a {
                width: 100%;

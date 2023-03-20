@@ -24,6 +24,7 @@ class SiswaIndex extends Component
     protected $listeners = [
         'fresh','swal','toastify',
         'siswaDelete',
+        'deleteSiswaPembayaran',
     ];
 
     public function getSiswa($siswa)
@@ -45,6 +46,19 @@ class SiswaIndex extends Component
             } else {
                 $this->emit('toastify', ['danger', 'Siswa Tidak Ditemukan',3000]);
             }
+        } else {
+            $this->emit('swalConfirm', ['warning', 'Hapus Siswa beserta data pembayarannya ?', true, 'deleteSiswaPembayaran', $nisn]);
+        }
+    }
+    public function deleteSiswaPembayaran($nisn)
+    {
+        $siswa = Siswa::find($nisn);
+        if ($siswa) {            
+            $pembayaran = Pembayaran::where('nisn', $nisn)->get();
+            foreach ($pembayaran as $key => $item) {
+                $item->delete();
+            }
+            $siswa->delete();
         }
     }
 

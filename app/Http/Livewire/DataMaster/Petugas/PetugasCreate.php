@@ -14,7 +14,7 @@ class PetugasCreate extends Component
     public $nama_petugas;
     public $no_telp;
     public $alamat;
-    public $roleId;
+    public $roleId = 1;
 
     protected $listeners = [
         'setRole',
@@ -83,8 +83,12 @@ class PetugasCreate extends Component
     }
     public function render()
     {
+        $role = Role::orderByDesc('created_at');
+        if ($this->roleId == null) {
+            $role->get()->first()->id;
+        }
         return view('livewire.data-master.petugas.petugas-create', [
-            'roles' => Role::orderByDesc('nama_role')->get(),
+            'roles' => $role->get(),
         ]);
     }
 }
