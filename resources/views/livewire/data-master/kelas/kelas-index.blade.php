@@ -21,7 +21,7 @@
                 <tbody>
                     @foreach ($kelases as $kelas)
                     <tr>
-                        <td>{{ $kelas->tingkat . ' ' . $kelas->nama_kelas }}</td>
+                        <td>{{ $kelas->nama_kelas }}</td>
                         <td>{{ $kelas->kompetensi_keahlian }}</td>
                         <td style="max-width: 60px;">
                             <div class="d-flex" style="gap: 4px">

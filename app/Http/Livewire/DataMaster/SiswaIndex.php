@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\DataMaster;
 
+use App\Models\Pembayaran;
 use App\Models\Siswa;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -18,7 +19,7 @@ class SiswaIndex extends Component
     public $kelas_id;
     public $search;
     protected $queryString = [
-        'search' => ['except' => '']
+        'search' => ['except' => ''],
     ];
     protected $listeners = [
         'fresh','swal','toastify',
@@ -35,18 +36,22 @@ class SiswaIndex extends Component
     }
     public function siswaDelete($nisn)
     {
-        $siswa = Siswa::where('nisn', $nisn)->first();
-        if ($siswa) {
-            $siswa->delete();
-            $this->emit('toastify', ['success', 'berhasil menghapus', 3000]);
-        } else {
-            $this->emit('toastify', ['danger', 'Siswa Tidak Ditemukan',3000]);
+        $cek = Pembayaran::where('nisn', $nisn);
+        if ($cek->count() <= 0) {
+            $siswa = Siswa::where('nisn', $nisn)->first();
+            if ($siswa) {
+                $siswa->delete();
+                $this->emit('toastify', ['success', 'berhasil menghapus', 3000]);
+            } else {
+                $this->emit('toastify', ['danger', 'Siswa Tidak Ditemukan',3000]);
+            }
         }
     }
 
     public function render()
     {
         $siswa = Siswa::orderByDesc('nisn')->orderByDesc('nis');
+        // dd($siswa->get()[0]->spp->tahun);
         if ($this->search != null) {
             $siswa->where('nisn', 'like', '%' . $this->search . '%')->orWhere('nis', 'like', '%' . $this->search . '%')->orWhere('nama', 'like', '%' . $this->search . '%'); //->orWhere('', 'like', '%' . $this->search . '%');
         }

@@ -6,12 +6,21 @@ use App\Exports\PembayaransExport;
 use App\Models\Pembayaran;
 use Livewire\Component;
 use App\Exports\UsersExport;
+use App\Models\Petugas;
 use Maatwebsite\Excel\Facades\Excel;
 
 class LaporanIndex extends Component
 {
     public $tglAwal;
     public $tglAkhir;
+    public $petugasId;
+    protected $listeners = [
+        'setPetugas',
+    ];
+    public function setPetugas($value)
+    {
+        $this->petugasId = $value;
+    }
     
     public function print()
     {
@@ -41,8 +50,12 @@ class LaporanIndex extends Component
         if ($this->tglAkhir) {
             $pembayaran->whereDate('tgl_bayar', '<=', $this->tglAkhir);
         }
+        if ($this->petugasId != null && $this->petugasId != 'all') {
+            $pembayaran->where('petugas_id', $this->petugasId);
+        }
         return view('livewire.laporan.laporan-index', [
             'pembayarans' => $pembayaran->get(),
+            'petugases' => Petugas::orderByDesc('nama_petugas')->get(),
         ]);
     }
 }

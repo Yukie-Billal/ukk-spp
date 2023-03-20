@@ -8,18 +8,18 @@ class Login extends Component
 {
     public $username;
     public $password;
-
+    public $role = 'siswa';
+    
     protected $rules = [
         'username' => 'required|min:3',
         'password' => 'required|min:3',
     ];
 
-    protected $messages = [
-        'username.required' => 'Username Wajib Di isi',
-        'password.required' => 'Password Wajib Di isi',
-        'username.min' => 'Username Minimal memiliki :min huruf',
-        'password.min' => 'Password Minimal memiliki :min huruf',
-    ];
+    public function setRole($value)
+    {
+        $this->role = $value;
+        $this->render();
+    }
 
     public function updated($propertyName)
     {

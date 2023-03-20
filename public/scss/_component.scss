@@ -629,8 +629,8 @@ background-color: #3131a3;
          flex-direction: column;
          align-items: center;
          font: $my-text-m-medium;
-         padding: 2px 0;
-         margin: 3px 0;         
+         padding: 6px 0;
+         margin: 10px 0;         
 
          .menu {
             position: relative;
@@ -642,7 +642,7 @@ background-color: #3131a3;
             padding: 0 20px;
             cursor: pointer;
             border-radius: 10px 0 0 10px;
-            color: #fff;
+            color: #f5f5f5;
 
             img {
                 filter: invert(100%);
@@ -655,7 +655,7 @@ background-color: #3131a3;
                min-width: 80%;
                max-width: 85%;
                height: 100%;
-               color: $my-neutral-20;                
+               color: $my-neutral-20;
             }
 
             a{
@@ -707,8 +707,8 @@ background-color: #3131a3;
                     top: -30px;
                     display: block;
                     position: absolute;
-                    border-right: 9px solid #fff;
-                    border-bottom: 9px solid #fff;
+                    border-right: 9px solid #f5f5f5;
+                    border-bottom: 9px solid #f5f5f5;
                     width: 39px;
                     height: 39px;
                     border-bottom-right-radius: 30px;
@@ -721,8 +721,8 @@ background-color: #3131a3;
                     display: block;
                     position: absolute;
                     background: ta;
-                    border-right: 9px solid #fff;
-                    border-top: 9px solid #fff;
+                    border-right: 9px solid #f5f5f5;
+                    border-top: 9px solid #f5f5f5;
                     width: 39px;
                     height: 39px;
                     border-top-right-radius: 30px;

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\DataMaster\Petugas;
 
+use App\Models\Pembayaran;
 use Livewire\Component;
 use App\Models\Petugas;
 use App\Traits\ListenerTrait;
@@ -19,12 +20,15 @@ class PetugasIndex extends Component
     ];
     public function deletePetugas($id)
     {
-        $petugas = Petugas::find($id);
-        if ($petugas) {
-            $petugas->delete();
-            $this->emit('toastify',['success','Berhasil Menghapus Petugas', 3000]);
-        } else {
-            $this->emit('toastify',['success','Berhasil Menghapus Petugas', 3000]);            
+        $cek = Pembayaran::where('petugas_id', $id);
+        if ($cek->count() <= 0) {            
+            $petugas = Petugas::find($id);
+            if ($petugas) {
+                $petugas->delete();
+                $this->emit('toastify',['success','Berhasil Menghapus Petugas', 3000]);
+            } else {
+                $this->emit('toastify',['success','Berhasil Menghapus Petugas', 3000]);            
+            }
         }
     }
     public function deleteConfirm($id)

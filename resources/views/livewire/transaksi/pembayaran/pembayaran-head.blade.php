@@ -25,7 +25,7 @@
                 @endif
             </div>
         @endif
-            @if (!Request::is('histori-pembayaran*'))
+            @if (!Request::is('histori-pembayaran*') || Auth::guard('siswa')->check())
                 <div class="col-xl-2 col-lg-3 col-md-4 col-sm-5 d-flex align-items-center">
                     <label class="text-m-regular me-2">Tahun</label>
                     <input type="number" id="tahunPembayaran" value="{{ $tahun }}" class="input-form" onchange='getTahun()' min="2000" max="2100">

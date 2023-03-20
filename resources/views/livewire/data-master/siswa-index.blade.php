@@ -24,6 +24,7 @@
                 <tbody>
                     @foreach ($siswas as $siswa)
                     <tr>
+                        {{-- {{ $siswa->spp }} --}}
                         <td>{{ $siswa->nisn }}</td>
                         <td>{{ $siswa->nis }}</td>
                         <td>{{ $siswa->nama }}</td>

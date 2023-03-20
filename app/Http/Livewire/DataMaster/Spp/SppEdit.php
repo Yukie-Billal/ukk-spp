@@ -15,7 +15,7 @@ class SppEdit extends Component
         'getSpp',
     ];
     protected $rules = [
-        'tahun' => 'required|numeric|min:4',
+        'tahun' => 'required|unique:spp,tahun|numeric|min:4',
         'nominal' => 'required|numeric|min:5',
     ];
 
@@ -34,15 +34,20 @@ class SppEdit extends Component
     public function edit()
     {
         $this->validate();
-        $spp = Spp::find($this->sppId);
-        if ($spp) {
-            $spp->update([
-                'tahun' => $this->tahun,
-                'nominal' => $this->nominal
-            ]);
-            $this->emit('toastify',['success','Berhasil Mengubah Spp', 3000]);
+        $cek = Spp::where('tahun', $this->tahun)->count();
+        if ($cek <= 0) {
+            $spp = Spp::find($this->sppId);
+            if ($spp) {
+                $spp->update([
+                    'tahun' => $this->tahun,
+                    'nominal' => $this->nominal
+                ]);
+                $this->emit('toastify',['success','Berhasil Mengubah Spp', 3000]);
+            } else {
+                $this->emit('toastify',['danger','Gagal Mengubah Spp', 3000]);
+            }
         } else {
-            $this->emit('toastify',['danger','Gagal Mengubah Spp', 3000]);
+            $this->emit('toastify',['danger','Tahun Sudah Digunakan', 3000]);
         }
     }
     

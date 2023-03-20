@@ -32,19 +32,19 @@
 				</div>
 				<div class="collapse w-100 {{ Request::is('siswa*') || Request::is('petugas*') || Request::is('kelas*') || Request::is('spp*') ? 'show' : '' }}" id="dataMaster">
 					<div class="sub-menu">
-						<a class="{{ Request::is('suppliers-users*') ? 'active' : '' }}" href="/spp">
+						<a class="{{ Request::is('spp*') ? 'active' : '' }}" href="/spp">
 							<i class="fa fa-arrow-right"></i>
 							Spp
 						</a>
-						<a class="{{ Request::is('suppliers-users*') ? 'active' : '' }}" href="/kelas">
+						<a class="{{ Request::is('kelas*') ? 'active' : '' }}" href="/kelas">
 							<i class="fa fa-arrow-right"></i>
 							Kelas
 						</a>
-						<a class="{{ Request::is('suppliers-users*') ? 'active' : '' }}" href="/petugas">
+						<a class="{{ Request::is('petugas*') ? 'active' : '' }}" href="/petugas">
 							<i class="fa fa-arrow-right"></i>
 							Petugas
 						</a>
-						<a class="{{ Request::is('suppliers-users*') ? 'active' : '' }}" href="/siswa">
+						<a class="{{ Request::is('siswa*') ? 'active' : '' }}" href="/siswa">
 							<i class="fa fa-arrow-right"></i>
 							Siswa
 						</a>
@@ -57,11 +57,11 @@
 				<div class="menu" data-bs-toggle="collapse" data-bs-target="#transaksi">
 					<img src="{{ asset('icon/data.png') }}" alt=".." class="me-2" style="width: 20px; height: 20px;">
 					<span>Transaksi</span>
-					<i class="fa-solid fa-chevron-down"></i>
+					<i class="fa-solid fa-chevron-down {{ Request::is('pembayaran*') || Request::is('histori-pembayaran*') ? 'fa-rotate-180' : '' }}"></i>
 				</div>
-				<div class="collapse w-100 {{ Request::is('barangs') || Request::is('suppliers-users') || Request::is('barang-masuks') || Request::is('pinjams-kembalis*') ? 'show' : '' }}" id="transaksi">
+				<div class="collapse w-100 {{ Request::is('pembayaran') || Request::is('histori-pembayaran') ? 'show' : '' }}" id="transaksi">
 					<div class="sub-menu">						
-						<a class="{{ Request::is('suppliers-users*') ? 'active' : '' }}" href="/pembayaran">
+						<a class="{{ Request::is('pembayaran*') ? 'active' : '' }}" href="/pembayaran">
 							<i class="fa fa-arrow-right"></i>
 							Pembayaran
 						</a>
@@ -78,7 +78,7 @@
 				<div class="menu" data-bs-toggle="collapse" data-bs-target="#laporan">
 					<img src="{{ asset('icon/data.png') }}" alt=".." class="me-2" style="width: 20px; height: 20px;">
 					<span>Laporan</span>
-					<i class="fa-solid fa-chevron-down"></i>
+					<i class="fa-solid fa-chevron-down {{ Request::is('laporan-pembayaran*') ? 'fa-rotate-180' : '' }}"></i>
 				</div>
 				<div class="collapse w-100 {{ Request::is('laporan-pembayaran*') ? 'show' : '' }}" id="laporan">
 					<div class="sub-menu">						

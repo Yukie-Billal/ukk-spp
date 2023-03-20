@@ -13,25 +13,25 @@
                 <img src="{{ asset('img/a.jpg') }}" alt=".." class="rounded-4 cursor-pointer" width="35px" height="35px">
             </span>
             <ul class="menu-list" x-show="open" x-transition @click.outside="open  = false" style="z-index: 9999999">
-                <li class="menu-item">
-                    <a href="/beranda" class="text-l-medium text-neutral-90">
+                <a href="/beranda" class="text-l-medium text-neutral-90">
+                    <li class="menu-item">
                         <i class="fa fa-list-alt me-1" aria-hidden="true"></i>
                         Dashboard
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/profile" class="text-l-medium text-neutral-90">
+                    </li>
+                </a>
+                <a href="/profile" class="text-l-medium text-neutral-90">
+                    <li class="menu-item">
                         <i class="fa fa-user me-2" aria-hidden="true"></i>
                         Profile
-                    </a>
-                </li>
+                    </li>
+                </a>
                 <li class="menu-dash"></li>
-                <li class="menu-item">
-                    <a href="/logout" class="text-l-medium text-neutral-90">
+                <a href="/logout" class="text-l-medium text-neutral-90">
+                    <li class="menu-item">
                         <i class="fa fa-sign-out me-1" aria-hidden="true"></i>
                         Logout
-                    </a>
-                </li>
+                    </li>
+                </a>
             </ul>
         </div>
     </div>

@@ -563,7 +563,6 @@
 }
 .table tbody tr td {
   font: 500 14px/20px "Inter", sans-serif;
-  /* font: 500 12px/16px "Inter", sans-serif; */
 }
 
 ol.my-breadcumb {
@@ -1098,8 +1097,8 @@ ol.my-breadcumb .my-breadcrumb-item.parent {
   flex-direction: column;
   align-items: center;
   font: 500 14px/20px "Inter", sans-serif;
-  padding: 2px 0;
-  margin: 3px 0;
+  padding: 5px 0;
+  margin: 10px 0;
 }
 .sidebar .sidebar-body .sidebar-menu .menu {
   position: relative;
@@ -1111,7 +1110,7 @@ ol.my-breadcumb .my-breadcrumb-item.parent {
   padding: 0 20px;
   cursor: pointer;
   border-radius: 10px 0 0 10px;
-  color: #fff;
+  color: #f5f5f5;
 }
 .sidebar .sidebar-body .sidebar-menu .menu img {
   filter: invert(100%);
@@ -1129,7 +1128,7 @@ ol.my-breadcumb .my-breadcrumb-item.parent {
   color: white;
 }
 .sidebar .sidebar-body .sidebar-menu .menu:hover, .sidebar .sidebar-body .sidebar-menu .menu.active {
-  background-color: #FFFFFF;
+  background-color: #F5F5F5;
   color: #0A0A0A;
   position: relative;
   border-radius: 25px 0 0 25px;
@@ -1163,13 +1162,13 @@ ol.my-breadcumb .my-breadcrumb-item.parent {
   margin-right: 10px;
 }
 .sidebar .sidebar-body .sidebar-menu .sub-menu a:hover {
-  background-color: #FFFFFF;
+  background-color: #F5F5F5;
   color: #0A0A0A;
   position: relative;
   border-radius: 25px 0 0 25px;
 }
 .sidebar .sidebar-body .sidebar-menu .sub-menu a.active {
-  background-color: #FFFFFF;
+  background-color: #F5F5F5;
   color: #0A0A0A;
   position: relative;
   border-radius: 25px 0 0 25px;
@@ -1180,8 +1179,8 @@ ol.my-breadcumb .my-breadcrumb-item.parent {
   top: -30px;
   display: block;
   position: absolute;
-  border-right: 9px solid #fff;
-  border-bottom: 9px solid #fff;
+  border-right: 9px solid #f5f5f5;
+  border-bottom: 9px solid #f5f5f5;
   width: 39px;
   height: 39px;
   border-bottom-right-radius: 30px;
@@ -1193,8 +1192,8 @@ ol.my-breadcumb .my-breadcrumb-item.parent {
   display: block;
   position: absolute;
   background: ta;
-  border-right: 9px solid #fff;
-  border-top: 9px solid #fff;
+  border-right: 9px solid #f5f5f5;
+  border-top: 9px solid #f5f5f5;
   width: 39px;
   height: 39px;
   border-top-right-radius: 30px;
@@ -1299,7 +1298,7 @@ input[readonly], textarea[readonly], select[readonly] {
 }
 
 body {
-  background: #f1f1f3;
+  background: #f5f5f5;
 }
 
 .my-img {

@@ -16,8 +16,8 @@ class PageController extends Controller
         return view('pages.beranda', [
             'banyakSiswa' => Siswa::count(),
             'banyakPetugas' => Petugas::count(),
-            'banyakKelas' => Kelas::count(), 
-            'banyakSpp' => Spp::count(), 
+            'banyakKelas' => Kelas::count(),
+            'banyakSpp' => Spp::count(),
             'dataPertahun' => Pertahun::all(),
         ]);
     }

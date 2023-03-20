@@ -31,6 +31,7 @@
             </div>
         </div>
     </div>
+
     <x-vendor.toast />
     <x-vendor.swal />
     <livewire:scripts />

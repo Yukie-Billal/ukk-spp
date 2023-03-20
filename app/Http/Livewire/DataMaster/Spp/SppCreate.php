@@ -40,16 +40,22 @@ class SppCreate extends Component
     {
         $this->validate();
 
-        $spp = Spp::create([
-            'tahun' => $this->tahun,
-            'nominal' => $this->nominal,
-        ]);        
-        if ($spp) {
-            $this->emit('toastify',['success','Berhasil Menambah Spp', 3000]);
-            $this->tahun = '';
-            $this->nominal = '';
+        $cek = Spp::where('tahun',$this->tahun)->count();
+        if ($cek <= 0) {            
+            $spp = Spp::create([
+                'tahun' => $this->tahun,
+                'nominal' => $this->nominal,
+            ]);        
+            if ($spp) {
+                $this->emit('toastify',['success','Berhasil Menambah Spp', 3000]);
+                $this->tahun = '';
+                $this->nominal = '';
+                $this->tahunType = false;
+            } else {
+                $this->emit('toastify',['danger','Gagal Menambah Spp', 3000]);
+            }
         } else {
-            $this->emit('toastify',['danger','Gagal Menambah Spp', 3000]);
+            $this->emit('toastify', ['danger', 'Tahun Spp Tersedia', 3000]);
         }
     }
 

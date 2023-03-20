@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id('id');
             $table->string('nama_kelas');
             $table->string('kompetensi_keahlian');
-            $table->string('tingkat')->default('10');
             $table->timestamps();
         });
     }

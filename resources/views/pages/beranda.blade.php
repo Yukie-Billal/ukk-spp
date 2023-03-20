@@ -1,4 +1,15 @@
 <x-app-layout>
+    <div class="row">
+        <div class="col-12 px-4 py-2">
+            <div class="col-12 px-2 d-flex justify-content-between">
+                <x-breadcrumb />
+                <div class="d-flex text-l-regular align-items-center justify-content-end">
+                    <i class="fa fa-calendar-alt fs-4" aria-hidden="true"></i>
+                    <span class="ms-2">{{ date('Y-m-d') }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
     @can('IsOperator')        
         <div class="row pb-3">
             <div class="col-12">
@@ -23,6 +34,7 @@
                             <x-indicator-dashboard-card color="success-main" />
                         </div>
                     </div>
+                    @can('IsAdmin')                        
                     <div class="col-6">
                         <div class="card flex-fill border-0 my-shadow-2 dashboard-card">
                             <div class="card-body" style="overflow: hidden">
@@ -67,6 +79,7 @@
                             <x-indicator-dashboard-card color="success-main" />
                         </div>
                     </div>
+                    @endcan
                     <div class="col-6">
                         <div class="card flex-fill border-0 my-shadow-2 dashboard-card">
                             <div class="card-body" style="overflow: hidden">
@@ -89,7 +102,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-8 mt-3">
+            <div class="col-12 mt-3">
                 <x-card>
                     <canvas id="spp" class="h-100"></canvas>
                 </x-card>
@@ -109,6 +122,74 @@
         @endforeach
         @push('scripts')
             <script>
+                var ctx = document.getElementById('spp');
+                var DATA_COUNT = 6;
+                var dataset = JSON.parse($('#datapertahun').val());        
+                var labels = ["{{ __('kalendar.January') }}", "{{ __('kalendar.Febuary') }}", "{{ __('kalendar.March') }}", "{{ __('kalendar.April') }}", "{{ __('kalendar.May') }}", "{{ __('kalendar.June') }}", "{{ __('kalendar.July') }}", "{{ __('kalendar.August') }}", "{{ __('kalendar.September') }}", "{{ __('kalendar.October') }}", "{{ __('kalendar.November') }}", "{{ __('kalendar.December') }}"]
+                var datapoints = [dataset.Januari, dataset.Februari, dataset.Maret, dataset.April, dataset.Mei,dataset.Juni,dataset.Juli,dataset.Agustus,dataset.September,dataset.Oktober,dataset.November,dataset.Desember];
+                var data = {
+                    labels: labels,
+                    datasets: [
+                        // {
+                        //     label: 'Cubic interpolation (monotone)',
+                        //     data: datapoints,
+                        //     // borderColor: Utils.CHART_COLORS.red,
+                        //     fill: false,
+                        //     cubicInterpolationMode: 'monotone',
+                        //     tension: 0.4
+                        // },
+                        {
+                            label: 'Pembayaran Rp',
+                            data: datapoints,
+                            // borderColor: '#000',
+                            fill: false,
+                            tension: 0.4,
+                        }
+                        // {
+                        //     label: 'Linear interpolation (default)',
+                        //     data: datapoints,
+                        //     // borderColor: Utils.CHART_COLORS.green,
+                        //     fill: true,
+                        //     tension: .3
+                        // }
+                    ]
+                };
+                var config = {
+                    type: 'line',
+                    data: data,
+                    options: {
+                        responsive: true,
+                        plugins: {
+                        title: {
+                            display: true,
+                            text: 'Grafik Total Pembayaran Tahun Ini'
+                        },
+                        },
+                        interaction: {
+                            intersect: false,
+                        },
+                        scales: {
+                            x: {
+                                display: true,
+                                title: {
+                                display: true
+                                }
+                            },
+                            y: {
+                                display: true,
+                                title: {
+                                display: true,
+                                // text: 'Value'
+                                },
+                                suggestedMin: -10,
+                                suggestedMax: 200
+                            }
+                        }
+                    },
+                    };
+                new Chart(ctx, config, data);
+            </script>
+            {{-- <script>
                 var ctx = document.getElementById('siswa');
                 // var DATA_COUNT = 12;
                 var dataset = JSON.parse($('#siswapertahun').val());
@@ -138,7 +219,7 @@
                         plugins: {
                         title: {
                             display: true,
-                            text: 'Chart.js Line Chart - Cubic interpolation mode'
+                            text: 'Grafik Total Pembayaran Tahun Ini'
                         },
                         },
                         interaction: {
@@ -164,76 +245,10 @@
                     },
                     };
                 new Chart(ctx, config, data);            
-            </script>
-            <script>
-                var ctx = document.getElementById('spp');
-                var DATA_COUNT = 6;
-                var dataset = JSON.parse($('#datapertahun').val());        
-                var labels = ["{{ __('kalendar.January') }}", "{{ __('kalendar.Febuary') }}", "{{ __('kalendar.March') }}", "{{ __('kalendar.April') }}", "{{ __('kalendar.May') }}", "{{ __('kalendar.June') }}", "{{ __('kalendar.July') }}", "{{ __('kalendar.August') }}", "{{ __('kalendar.September') }}", "{{ __('kalendar.October') }}", "{{ __('kalendar.November') }}", "{{ __('kalendar.December') }}"]
-                var datapoints = [dataset.Januari, dataset.Februari, dataset.Maret, dataset.April, dataset.Mei,dataset.Juni,dataset.Juli,dataset.Agustus,dataset.September,dataset.Oktober,dataset.November,dataset.Desember];
-                var data = {
-                    labels: labels,
-                    datasets: [
-                        // {
-                        //     label: 'Cubic interpolation (monotone)',
-                        //     data: datapoints,
-                        //     // borderColor: Utils.CHART_COLORS.red,
-                        //     fill: false,
-                        //     cubicInterpolationMode: 'monotone',
-                        //     tension: 0.4
-                        // },
-                        {
-                            label: 'Cubic interpolation',
-                            data: datapoints,
-                            // borderColor: '#000',
-                            fill: false,
-                            tension: 0.4
-                        }
-                        // {
-                        //     label: 'Linear interpolation (default)',
-                        //     data: datapoints,
-                        //     // borderColor: Utils.CHART_COLORS.green,
-                        //     fill: false
-                        // }
-                    ]
-                };
-                var config = {
-                    type: 'line',
-                    data: data,
-                    options: {
-                        // legend: false,
-                        responsive: true,
-                        plugins: {
-                        title: {
-                            display: true,
-                            text: 'Chart.js Line Chart - Cubic interpolation mode'
-                        },
-                        },
-                        interaction: {
-                            intersect: false,
-                        },
-                        scales: {
-                            x: {
-                                display: true,
-                                title: {
-                                display: true
-                                }
-                            },
-                            y: {
-                                display: true,
-                                title: {
-                                display: true,
-                                // text: 'Value'
-                                },
-                                suggestedMin: -10,
-                                suggestedMax: 200
-                            }
-                        }
-                    },
-                    };
-                new Chart(ctx, config, data);
-            </script>
+            </script>             --}}
         @endpush
     @endcan
-
+    @cannot('IsOperator')
+        
+    @endcannot
 </x-app-layout>

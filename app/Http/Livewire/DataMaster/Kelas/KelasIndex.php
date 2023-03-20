@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\DataMaster\Kelas;
 
 use App\Models\Kelas;
+use App\Models\Siswa as ModelsSiswa;
 use Livewire\Component;
 use App\Traits\ListenerTrait;
 
@@ -21,12 +22,18 @@ class KelasIndex extends Component
 
     public function deleteKelas($id)
     {
-        $kelas = Kelas::find($id);
-        if ($kelas) {
-            $kelas->delete();
-            $this->emit('toastify',['success','Berhasil Menghapus Kelas', 3000]);
+        $siswa = ModelsSiswa::where('kelas_id', $id);
+        if ($siswa->count() <= 0) {
+            $kelas = Kelas::find($id);
+            if ($kelas) {
+                $kelas->delete();
+                $this->emit('toastify',['success','Berhasil Menghapus Kelas', 3000]);
+            } else {
+                $this->emit('swal',['error','Kelas Tidak Ditemukan', 3000]);
+            }
         } else {
-            $this->emit('swal',['error','Kelas Tidak Ditemukan', 3000]);
+            $this->emit('toastify', ['danger', 'Tidak Bisa Menghapus Kelas', 3000]);
+            $this->emit('toastify', ['danger', 'Terdapat Siswa yang terhubung pada kelas', 3000]);
         }
     }
 

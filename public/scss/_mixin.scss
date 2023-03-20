@@ -13,13 +13,13 @@
 @mixin side-menu($active : true) {
     // if($condition, $if-true, $if-false)
     @if $active == true {
-        background-color: $my-neutral-10;
+        background-color: $my-neutral-20;
         color: $my-neutral-100;        
     } @else if $active == false {
-        background-color: $my-neutral-10;
+        background-color: $my-neutral-20;
         color: $my-neutral-100;        
     } @else {
-        background-color: $my-neutral-10;
+        background-color: $my-neutral-20;
         color: $my-neutral-100;        
     }
     position: relative;
