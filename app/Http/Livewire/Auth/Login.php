@@ -11,8 +11,8 @@ class Login extends Component
     public $role = 'siswa';
     
     protected $rules = [
-        'username' => 'required|min:3',
-        'password' => 'required|min:3',
+        'username' => 'required',
+        'password' => 'required',
     ];
 
     public function setRole($value)

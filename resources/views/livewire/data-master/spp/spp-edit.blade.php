@@ -1,6 +1,11 @@
 <div class="modal-body">
+    <div class="form-group text-center">
+        <h2>
+            Edit Data Spp
+        </h2>
+    </div>
+    <hr>
     <form wire:submit.prevent='edit'>
-        <h2 class="header-m text-center mb-4">Ubah SPP</h2>
         <div class="form-group">
             <label for="">Tahun Spp</label>
             <x-form.input placeholder="Pilih Tahun" wire:model.lazy='tahun' />

@@ -2,6 +2,8 @@
     <div class="card-body" id="printLaporan">
         <link rel="stylesheet" href="{{ asset('bootstrap/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <h1>Laporan Pembayaran Spp</h1>
+        <span class="">Dari tanggal {{ $tglAwal }} Sampai Tanggal {{ $tglAkhir }} Oleh {{ $petugas == 'all' ? 'Semua Petugas' : $petugas }}</span>
         <x-table class="table-striped">
             <thead>
                 <tr>
@@ -36,7 +38,7 @@
                 window.frames["printPembayaran"].document.body.innerHTML = isi;
                 window.frames["printPembayaran"].focus();
                 window.frames["printPembayaran"].print();
-            }, 500);
+            }, 900);
         })
     </script>
 @endpush

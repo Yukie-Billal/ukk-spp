@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md bg-white m-0 px-3 justify-content-between align-items-center mb-4">
-    <span class="header-m ms-3">T.I.P </span>
+    <span class="header-m ms-3">T.I. Pembangunan </span>
     <div class="d-flex justify-content-center align-items-center me-3">
         <span class="text-l-medium me-2">
             @if (Auth::guard('siswa')->check())
@@ -19,12 +19,12 @@
                         Dashboard
                     </li>
                 </a>
-                <a href="/profile" class="text-l-medium text-neutral-90">
+                {{-- <a href="/profile" class="text-l-medium text-neutral-90">
                     <li class="menu-item">
                         <i class="fa fa-user me-2" aria-hidden="true"></i>
                         Profile
                     </li>
-                </a>
+                </a> --}}
                 <li class="menu-dash"></li>
                 <a href="/logout" class="text-l-medium text-neutral-90">
                     <li class="menu-item">

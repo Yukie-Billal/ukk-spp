@@ -14,6 +14,7 @@ class ModalCariSiswa extends Component
     public function pilihSiswa($nisn)
     {
         $this->emit('getSiswa',$nisn);
+        $this->search = '';
     }
     public function render()
     {

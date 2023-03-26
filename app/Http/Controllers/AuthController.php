@@ -17,10 +17,12 @@ class AuthController extends Controller
     {
         if ($request->has('role')) {
             if ($request->role == 'siswa') {
-                $credentials = $request->validate([
+                $get = $request->validate([
                     'nisn' => 'required|min:3',
-                    'password' => 'required',
+                    'nis' => 'required',
                 ]);
+                $credentials['nisn'] = $get['nisn'];
+                $credentials['password'] = $get['nis'];
                 if (Auth::guard('siswa')->attempt($credentials)) {
                     $request->session()->regenerate();
                     return redirect()->intended('/beranda')->with('success','Login Berhasil');

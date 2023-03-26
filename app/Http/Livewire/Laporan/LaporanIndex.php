@@ -24,7 +24,7 @@ class LaporanIndex extends Component
     
     public function print()
     {
-        $this->emit('setTanggal', [$this->tglAwal, $this->tglAkhir]);
+        $this->emit('setTanggal', [$this->tglAwal, $this->tglAkhir, $this->petugasId]);
     }
     public function excel()
     {

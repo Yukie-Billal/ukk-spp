@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\DataMaster\Spp;
 
+use App\Models\Pembayaran;
 use App\Models\Spp;
 use Livewire\Component;
 
@@ -15,7 +16,7 @@ class SppEdit extends Component
         'getSpp',
     ];
     protected $rules = [
-        'tahun' => 'required|unique:spp,tahun|numeric|min:4',
+        'tahun' => 'required|numeric|min:4',
         'nominal' => 'required|numeric|min:5',
     ];
 
@@ -34,20 +35,20 @@ class SppEdit extends Component
     public function edit()
     {
         $this->validate();
-        $cek = Spp::where('tahun', $this->tahun)->count();
-        if ($cek <= 0) {
-            $spp = Spp::find($this->sppId);
-            if ($spp) {
+        $spp = Spp::find($this->sppId);
+        if ($spp) {
+            $cek = Spp::where('tahun', $this->tahun)->get()->first();
+            if ($cek->id == $this->sppId) {
                 $spp->update([
                     'tahun' => $this->tahun,
                     'nominal' => $this->nominal
                 ]);
                 $this->emit('toastify',['success','Berhasil Mengubah Spp', 3000]);
             } else {
-                $this->emit('toastify',['danger','Gagal Mengubah Spp', 3000]);
+                $this->emit('toastify',['danger','Gagal Mengubah, Tahun Sudah Digunakan', 3000]);
             }
         } else {
-            $this->emit('toastify',['danger','Tahun Sudah Digunakan', 3000]);
+            $this->emit('toastify',['danger','Terjadi kesalahan, Gagal Mengubah Spp', 3000]);
         }
     }
     

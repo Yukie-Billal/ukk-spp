@@ -14,6 +14,7 @@
                 text: text,
                 duration: timer,
                 newWindow: true,
+                close: true,    
                 stopOnFocus: true,
                 grafity: vertikal,
                 position: horizontal,

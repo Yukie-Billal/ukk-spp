@@ -87,7 +87,7 @@ return [
     'min' => [
         'array' => ':Attribute harus berisi minimal :min items.',
         'file' => ':Attribute harus berisi minimal :min bit.',
-        'numeric' => ':Attribute harus berisi minimal :min digit.',
+        'numeric' => ':Attribute harus berisi minimal :min.',
         'string' => ':Attribute harus berisi minimal :min karakter.',
     ],
     'min_digits' => 'The :Attribute field must have at least :min digits.',

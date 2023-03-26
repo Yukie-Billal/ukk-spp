@@ -9,12 +9,13 @@
 		</div>
 	</div>
 	<div class="sidebar-body">
-		<div class="sidebar-menu d-flex flex-column align-items-start">
-			<a href="/beranda" class="menu item">
+		<div class="sidebar-menu d-flex flex-column align-items-start mb-0 pb-0">
+			<a href="/beranda" class="menu item py-2 {{ Request::is('beranda') ? 'active' : '' }} ">
 				<i class="fa fa-graduation-cap fs-5 me-2" aria-hidden="true"></i>
-				<span>Beranda</span>
+				<span class="">Beranda</span>
 			</a>
 		</div>
+		<hr>
 		@cannot('IsOperator')		
 		<div class="sidebar-menu d-flex flex-column align-items-start">
 			<a href="/histori-pembayaran" class="menu item">
@@ -55,7 +56,8 @@
 		@can('IsOperator')
 			<div class="sidebar-menu d-flex flex-column align-items-start">
 				<div class="menu" data-bs-toggle="collapse" data-bs-target="#transaksi">
-					<img src="{{ asset('icon/data.png') }}" alt=".." class="me-2" style="width: 20px; height: 20px;">
+					{{-- <img src="{{ asset('icon/data.png') }}" alt=".." class="me-2" style="width: 20px; height: 20px;"> --}}
+					<i class="fa fa-book me-2" style="font-size: 20px" aria-hidden="true"></i>
 					<span>Transaksi</span>
 					<i class="fa-solid fa-chevron-down {{ Request::is('pembayaran*') || Request::is('histori-pembayaran*') ? 'fa-rotate-180' : '' }}"></i>
 				</div>
@@ -76,7 +78,8 @@
 		@can('IsAdmin')
 			<div class="sidebar-menu d-flex flex-column align-items-start">
 				<div class="menu" data-bs-toggle="collapse" data-bs-target="#laporan">
-					<img src="{{ asset('icon/data.png') }}" alt=".." class="me-2" style="width: 20px; height: 20px;">
+					{{-- <img src="{{ asset('icon/data.png') }}" alt=".." class="me-2" style="width: 20px; height: 20px;"> --}}
+					<i class="fa fa-archive me-2" style="font-size: 20px" aria-hidden="true"></i>
 					<span>Laporan</span>
 					<i class="fa-solid fa-chevron-down {{ Request::is('laporan-pembayaran*') ? 'fa-rotate-180' : '' }}"></i>
 				</div>
@@ -98,7 +101,7 @@
 		const collapseButton = document.querySelectorAll('[data-bs-toggle="collapse"]');
 		collapseButton.forEach(item => {
 			item.addEventListener('click', function () {
-				const arrow = item.querySelector('i');
+				const arrow = item.querySelector('i.fa-solid');
 				if (arrow.classList.contains('fa-rotate-180')) {
 					arrow.classList.toggle('fa-rotate-180');
 					arrow.classList.add('rotating-reverse');

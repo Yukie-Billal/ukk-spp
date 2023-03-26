@@ -249,6 +249,20 @@
         @endpush
     @endcan
     @cannot('IsOperator')
-        
+        <p class="header-l">SELAMAT DATANG {{ Auth::guard('siswa')->user()->nama }}</p>
+        <p>
+            <a href="/histori-pembayaran">
+                <button class="button button-info">Lihat Histori Pembayaran</button>
+            </a>
+        </p>
     @endcannot
+    @push('scripts')
+    @if (session()->has('success'))
+        <script>
+            setTimeout(() => {
+                Livewire.emit('swal', ['success', "{{ session('success') }}", 2500]);
+            }, 1500);
+        </script>
+    @endif
+    @endpush
 </x-app-layout>

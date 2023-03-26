@@ -10,8 +10,8 @@
             <telah class="header-s">Konfirmasi Siswa dengan nama <span class="text-primary">{{ $siswa->nama }}</span> telah melakukan pembayaran Spp untuk Bulan <span class="text-primary">{{ $bulan->nama_bulan }}</span> Tahun <span class="text-primary">{{ $tahun }}</span> ??</label>
         </div>
         <div class="form-group">
-            <label class="text-m-medium">Tentukan Tanggal Bayar</label>
-            <x-form.input type="date" wire:model='tanggalBayar' />
+            <label class="text-m-medium">Tanggal</label>
+            <x-form.input type="hidden" wire:model='tanggalBayar' readonly />
             @error('tanggalBayar')
                 <small class="text-m-medium text-danger">{{ $message }}</small>
             @enderror

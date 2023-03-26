@@ -90,7 +90,7 @@
                         <div class="d-flex justify-content-end" style="gap: 4px">
                             <x-button color="danger" id="batalkanSemua">Batalkan Semua</x-button>
                             <x-button color="success" id="simpanSemua">Simpan Pembayaran</x-button>
-                            <x-button color="info" id="cetakSemua">Cetak Bukti</x-button>
+                            {{-- <x-button color="info" id="cetakSemua">Cetak Bukti</x-button>s --}}
                         </div>
                     </td>
                 </tr>

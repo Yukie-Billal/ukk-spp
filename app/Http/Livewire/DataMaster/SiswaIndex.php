@@ -2,11 +2,14 @@
 
 namespace App\Http\Livewire\DataMaster;
 
+use App\Models\Kelas;
 use App\Models\Pembayaran;
 use App\Models\Siswa;
+use App\Models\Spp;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use App\Traits\ListenerTrait;
+use Illuminate\Http\Request;
 
 class SiswaIndex extends Component
 {
@@ -18,6 +21,7 @@ class SiswaIndex extends Component
     public $no_telp;
     public $kelas_id;
     public $search;
+    public $spp_id;
     protected $queryString = [
         'search' => ['except' => ''],
     ];
@@ -65,9 +69,27 @@ class SiswaIndex extends Component
     public function render()
     {
         $siswa = Siswa::orderByDesc('nisn')->orderByDesc('nis');
-        // dd($siswa->get()[0]->spp->tahun);
+        
+        if (isset($_GET['spp'])) {
+            $idspp = $_GET['spp'];
+            $this->spp_id = $idspp;
+            $spp = Spp::find($idspp);
+            $this->search = $spp->tahun;
+        }
+        if (isset($_GET['kelas'])) {
+            $idkelas = $_GET['kelas'];
+            $this->kelas_id = $idkelas;
+            $kelas = Kelas::find($idkelas);
+            $this->search = $kelas->nama_kelas;
+        }
         if ($this->search != null) {
             $siswa->where('nisn', 'like', '%' . $this->search . '%')->orWhere('nis', 'like', '%' . $this->search . '%')->orWhere('nama', 'like', '%' . $this->search . '%'); //->orWhere('', 'like', '%' . $this->search . '%');
+        }
+        if ($this->spp_id != null) {
+            $siswa->orWhere('spp_id', $this->spp_id);
+        }
+        if ($this->kelas_id != null) {
+            $siswa->orWhere('kelas_id', $this->kelas_id);
         }
         return view('livewire.data-master.siswa-index', [
             'siswas' => $siswa->get(),

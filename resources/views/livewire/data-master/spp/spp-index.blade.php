@@ -27,8 +27,8 @@
                         <td>{{ $spp->tahun }}</td>
                         <td>Rp. {{ number_format($spp->nominal) }}</td>
                         {{-- <td></td> --}}
-                        <td style="max-width: 60px;">
-                            <div class="d-flex" style="gap: 4px">
+                        <td style="max-width: 70px;">
+                            <div class="d-flex" style="gap: 4px" x-data="{open:false}">
                                 <x-button color="success" class="button-sm" modal="true" target="#modalEditSpp" wire:click="getSpp({{ $spp }})">
                                     <i class="fas fa-edit"></i>
                                     Edit
@@ -37,6 +37,16 @@
                                     <i class="fa fa-trash"></i>
                                     Hapus
                                 </x-button>
+                                <div class="position-relative">
+                                    <x-button color="info" class="button-sm" modal="true" @click="open = true">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    </x-button>
+                                    <div x-show="open" x-transition @click.outside="open=false" class="bg-white my-shadow-2" style="position: absolute; bottom: -55px; width: 120px; padding: 6px; border-radius: 6px; z-index: 999">
+                                        <a href="/siswa?spp={{ $spp->id }}" class="button button-info">
+                                            Lihat Siswa
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </td>
                     </tr>

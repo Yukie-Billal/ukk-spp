@@ -1,4 +1,10 @@
-<div class="modal-body">    
+<div class="modal-body">
+    <div class="form-group text-center">
+        <h2>
+            Edit Data Kelas
+        </h2>
+    </div>
+    <hr>
     <form wire:submit.prevent='edit'>
         <div class="form-group">
             <label for="tahunSpp">Nama Kelas</label>

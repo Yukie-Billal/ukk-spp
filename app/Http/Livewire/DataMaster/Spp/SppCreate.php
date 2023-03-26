@@ -5,6 +5,7 @@ namespace App\Http\Livewire\DataMaster\Spp;
 use App\Models\Spp;
 use Livewire\Component;
 use App\Traits\ListenerTrait;
+use Illuminate\Support\Str;
 
 class SppCreate extends Component
 {
@@ -19,18 +20,31 @@ class SppCreate extends Component
     ];
     protected $rules = [
         'tahun' => 'required|unique:spp,tahun|numeric|min:5',
-        'nominal' => 'required|numeric|min:5',
+        'nominal' => 'required|min:3',
     ];
 
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName);
+        if ($propertyName == 'nominal') {
+            $cek = is_numeric($this->nominal);
+            if ($cek) {
+                $this->nominal = number_format($this->nominal);
+            } else {
+                $count = 3;
+                while ($ <= 10) {
+                    # code...
+                }
+                $limit = Str::length($this->nominal);
+                
+            }
+        }
     }
 
     public function setTahun($value)
     {
         if ($value == 'type') {
-            $this->tahunType = true;   
+            $this->tahunType = true;
         } else {
             $this->tahun = $value;
         }
@@ -39,9 +53,8 @@ class SppCreate extends Component
     public function store()
     {
         $this->validate();
-
         $cek = Spp::where('tahun',$this->tahun)->count();
-        if ($cek <= 0) {            
+        if ($cek <= 0) {
             $spp = Spp::create([
                 'tahun' => $this->tahun,
                 'nominal' => $this->nominal,

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('alamat');
             $table->string('no_telp');
             $table->string('password');
+            $table->string('foto')->nullable();
             $table->foreignId('spp_id')->contrained();
             $table->foreignId('kelas_id')->constrained();
             $table->foreignId('role_id')->default(3)->constrained();

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nama_petugas', 35);
             $table->text('alamat', 35);
             $table->text('no_telp', 13);
+            $table->string('foto')->nullable();
             $table->foreignId('role_id')->constrained();
             $table->timestamps();
         });

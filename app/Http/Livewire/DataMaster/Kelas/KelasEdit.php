@@ -37,7 +37,7 @@ class KelasEdit extends Component
     public function getKelas($id)
     {
         $kelas = Kelas::find($id)->first();
-        if ($kelas) {            
+        if ($kelas) {                          
             $this->idKelas = $kelas->id;
             $this->nama_kelas = $kelas->nama_kelas;
             $this->kompetensi_keahlian = $kelas->kompetensi_keahlian;
@@ -50,14 +50,19 @@ class KelasEdit extends Component
     {
         $this->validate();
         $kelas = Kelas::find($this->idKelas);
-        $kelas->update([
-            'nama_kelas' => $this->nama_kelas,
-            'kompetensi_keahlian' => $this->kompetensi_keahlian,
-        ]);
-        if ($kelas) {
-            $this->emit('toastify', ['success','Berhasil Mengubah Kelas', 3000]);
+        $cek = Kelas::where('nama_kelas', 'like', '%'. $this->nama_kelas .'%')->get()->first();
+        if ($cek->id == $kelas->id ) {
+            $kelas->update([
+                'nama_kelas' => $this->nama_kelas,
+                'kompetensi_keahlian' => $this->kompetensi_keahlian,
+            ]);
+            if ($kelas) {
+                $this->emit('toastify', ['success','Berhasil Mengubah Kelas', 3000]);
+            } else {
+                $this->emit('toastify', ['danger','Kelas Tidak Ditemukan', 3000]);            
+            }
         } else {
-            $this->emit('toastify', ['danger','Kelas Tidak Ditemukan', 3000]);            
+            $this->emit('toastify', ['danger','Kelas Telah Tersedia', 3000]);
         }
     }
 

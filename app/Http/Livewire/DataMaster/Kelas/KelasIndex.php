@@ -6,6 +6,7 @@ use App\Models\Kelas;
 use App\Models\Siswa as ModelsSiswa;
 use Livewire\Component;
 use App\Traits\ListenerTrait;
+use Illuminate\Http\Request;
 
 class KelasIndex extends Component
 {

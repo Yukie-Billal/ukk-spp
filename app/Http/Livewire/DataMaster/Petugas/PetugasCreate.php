@@ -65,20 +65,24 @@ class PetugasCreate extends Component
     {
         $this->validate();
         $password = Hash::make($this->password);
-
-        $petugas = Petugas::create([
-            'nama_petugas' => $this->nama_petugas,
-            'username' => $this->username,
-            'password' => $password,
-            'no_telp' => $this->no_telp,
-            'alamat' => $this->alamat,
-            'role_id' => $this->roleId,
-        ]);
-        if ($petugas) {
-            $this->emit('swal',['success','Data Petugas Berhasil Dibuat', 3000]);
-            $this->clear();
+        $cek = Petugas::where('username', $this->username)->get()->count();
+        if ($cek <= 0) {            
+            $petugas = Petugas::create([
+                'nama_petugas' => $this->nama_petugas,
+                'username' => $this->username,
+                'password' => $password,
+                'no_telp' => $this->no_telp,
+                'alamat' => $this->alamat,
+                'role_id' => $this->roleId,
+            ]);
+            if ($petugas) {
+                $this->emit('swal',['success','Data Petugas Berhasil Dibuat', 3000]);
+                $this->clear();
+            } else {
+                $this->emit('swal',['error','Terjadi Kesalahan', 3000]);
+            }
         } else {
-            $this->emit('swal',['error','Terjadi Kesalahan', 3000]);
+            $this->emit('swal',['error','Username Terpakai', 3000]);
         }
     }
     public function render()

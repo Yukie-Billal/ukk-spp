@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Laporan;
 
 use App\Models\Pembayaran;
+use App\Models\Petugas;
 use Livewire\Component;
 use Livewire\Livewire;
 
@@ -10,6 +11,7 @@ class LaporanPrint extends Component
 {
     public $tglAwal;
     public $tglAkhir;
+    public $petugas;
 
     protected $listeners = [
         'setTanggal',
@@ -18,6 +20,12 @@ class LaporanPrint extends Component
     {
         $this->tglAwal = $params[0];
         $this->tglAkhir = $params[1];
+        if ($params[2] == 'all' || $params[2] == null) {
+            $this->petugas = 'all';
+        } else {
+            $this->petugas = Petugas::find($params[2]);
+        }
+        $this->render();
         $this->emit('printThis');
     }
 

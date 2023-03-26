@@ -39,24 +39,31 @@ class DatabaseSeeder extends Seeder
         ]);
         Spp::factory(3)->create();
         Kelas::factory()->create([
-            'nama_kelas' => 'A'
+            'nama_kelas' => '10 RPL A'
         ]);
         Kelas::factory()->create([
-            'nama_kelas' => 'B'
+            'nama_kelas' => '10 RPL B'
         ]);
         Kelas::factory()->create([
-            'nama_kelas' => 'C'
+            'nama_kelas' => '10 RPL C'
         ]);
         Petugas::factory()->create([
-            'username' => '123',
-            'password' => bcrypt('123'),           
+            'username' => 'Petugas',
+            'password' => bcrypt('123'),
             'role_id' => 2,
         ]);
-        Siswa::factory(10)->create();
         Petugas::factory()->create([
-            'username' => '321',
+            'username' => 'Admin',
             'password' => bcrypt('123'),            
             'role_id' => 1,
         ]);
+        Siswa::factory(10)->create();
+        Siswa::factory()->create([
+            'nisn' => '1234567',
+            'nis' => '1',
+            'nama' => 'Yukie M Billal',
+            'spp_id' => 1,
+        ]);
+        // Pembayaran::factory(12)->create();
     }
 }

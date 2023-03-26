@@ -1,9 +1,15 @@
-<div class="modal-body">    
+<div class="modal-body">
+    <div class="form-group text-center">
+        <h2>
+            Tambah Data Spp
+        </h2>
+    </div>
+    <hr>
     <form wire:submit.prevent='store'>
         <div class="form-group">
             <label for="tahunSpp">Tahun Spp</label>
             @if ($tahunType)
-                <input type="number" wire:model.debounce.500ms='tahun' class="input-form">
+                <input type="number" wire:model.lazy='tahun' class="input-form">
             @else
                 <select class="select-form" wire:change='$emit("getTahun")' id="tahunSpp" name="tahun">
                     <option value="type" class="text-l-medium text-info-main bg-primary-focus">Ketik Manual</option>

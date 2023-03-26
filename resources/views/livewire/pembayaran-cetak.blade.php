@@ -66,7 +66,7 @@
         <div class="dash"></div>
         <div class="contentCetak">
             <div style="text-align: center; font-size: 20px; margin-bottom: 20px">Bukti Pembayaran</div>
-            @if ($pembayaran)                
+            @if ($pembayaran)
                 @foreach ($pembayarans as $p)
                 <div class="dash"></div>
                 <table>
@@ -80,7 +80,7 @@
                         <td style="min-width: 25%;">No Induk  </td>
                         <td style="min-width: 25%;">: {{ $p->siswa->nis }}</td>
                         <td style="min-width: 18%;">Kelas</td>
-                        <td style="min-width: 32%;">: {{ $p->siswa->kelas->tingkat }}</td>
+                        <td style="min-width: 32%;">: {{ $p->siswa->kelas->nama_kelas . ' ' . $p->siswa->kelas->kompetensi_keahlian }}</td>
                     </tr>
                     <tr>
                         <td style="min-width: 25%;">Nama </td>

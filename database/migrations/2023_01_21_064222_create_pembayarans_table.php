@@ -16,7 +16,6 @@ return new class extends Migration
             $table->foreignId('petugas_id')->nullable()->constrained()->references('petugas_id');
             $table->foreignId('nisn')->constrained()->references('nisn')->on('siswa')->cascadeOnDelete()->cascadeOnUpdate();
             $table->date('tgl_bayar')->nullable();
-            // $table->string('bulan_dibayar');
             $table->foreignId('bulan_dibayar')->constrained()->references('id')->on('bulans');
             $table->string('tahun_dibayar');
             $table->foreignId('spp_id')->references('id')->on('spp');

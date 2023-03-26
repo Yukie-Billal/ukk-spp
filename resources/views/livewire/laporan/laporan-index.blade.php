@@ -2,14 +2,15 @@
     <div class="card-body">
         <div class="row">
             <div class="col-3">
-                <small>Tanggal Awal</small>
+                <small class="text-l-regular">Tanggal Awal</small>
                 <x-form.input type="date" wire:model='tglAwal' />
             </div>
             <div class="col-3">
-                <small>Tanggal Akhir</small>
+                <small class="text-l-regular">Tanggal Akhir</small>
                 <x-form.input type="date" wire:model='tglAkhir' />
             </div>
-            <div class="col-3 d-flex align-items-end">
+            <div class="col-3">
+                <small class="text-l-regular">Petugas</small>
                 <select wire:change='$emit("getPetugas")' class="select-form" id="id_petugas">
                     <option value="all">Tampilkan Semua</option>
                     @foreach ($petugases as $petugas)

@@ -18,9 +18,6 @@
         </div>
     </div>
     <x-modal id="modalTambahSpp">
-        <div class="modal-header d-flex justify-content-center mb-3 border-0 bg-transparent">
-            <div class="header-m">Tambah SPP</div>
-        </div>
         <livewire:data-master.spp.spp-create />
     </x-modal>
     <x-modal id="modalEditSpp">

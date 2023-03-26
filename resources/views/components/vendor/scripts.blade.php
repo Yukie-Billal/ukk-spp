@@ -14,8 +14,5 @@
                 loader.style.display = 'none';
             }, 1500);
         }
-        // const locale = "{{ config('app.locale') }}";
-        // moment.locale(locale);
-        // console.log(moment().format('MMMM dddd'));
     </script>
 </div>
