@@ -116,7 +116,7 @@ class PembayaranIndex extends Component
             }
             // dd($bulanCetak);
             if ($cetak) {
-                $this->emit('cetakPilihan',[$this->siswa->nisn, $bulanCetak]);
+                $this->emit('cetakBanyak',[$this->siswa->nisn, $bulanCetak]);
             } else {
                 $this->emit('toastify',['danger','Pembayaran Sudah Tersedia', 2500]);
             }

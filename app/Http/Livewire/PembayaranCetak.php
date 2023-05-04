@@ -52,6 +52,7 @@ class PembayaranCetak extends Component
             //     $pembayaran->orWhere('bulan_dibayar', $value);
             // }
         }
+        // dd("asdasd");
         return view('livewire.pembayaran-cetak', [
             'pembayarans' => $pembayaran->get(),
         ]);

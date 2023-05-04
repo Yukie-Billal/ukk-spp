@@ -1,6 +1,6 @@
 @push('scripts')
     <script>
-        let availableType = ['success', 'error', 'warning', 'question', null];
+        // let availableType = ['success', 'error', 'warning', 'question', null];
         Livewire.on('swal', function (params) {
             Livewire.emit('fresh');
             if (Array.isArray(params)) {

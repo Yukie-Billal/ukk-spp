@@ -26,19 +26,19 @@ class SppCreate extends Component
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName);
-        if ($propertyName == 'nominal') {
-            $cek = is_numeric($this->nominal);
-            if ($cek) {
-                $this->nominal = number_format($this->nominal);
-            } else {
-                $count = 3;
-                while ($ <= 10) {
-                    # code...
-                }
-                $limit = Str::length($this->nominal);
+        // if ($propertyName == 'nominal') {
+        //     $cek = is_numeric($this->nominal);
+        //     if ($cek) {
+        //         $this->nominal = number_format($this->nominal);
+        //     } else {
+        //         $count = 3;
+        //         // while ($ <= 10) {
+        //         //     # code...
+        //         // }
+        //         $limit = Str::length($this->nominal);
                 
-            }
-        }
+        //     }
+        // }
     }
 
     public function setTahun($value)

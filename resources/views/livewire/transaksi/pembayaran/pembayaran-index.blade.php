@@ -105,9 +105,6 @@
 @push('scripts')
     <script defer>
         function freshBtn() {
-            let tambahPembayaran = document.querySelectorAll('.modalPembayaran');
-            // let batalkanPembayaran = document.querySelectorAll('.swalCancel');
-            // let cetakpembayaran = document.querySelectorAll('.cetakPembayaran');s
             if ($(document).find($('.cetakPembayaran')).length > 0) {
                 $('.cetakPembayaran').each(function (i,element) {
                     $(element).click(function (e) {
@@ -188,6 +185,7 @@
             })
         }
         function cetakBonSPP(id) {
+            console.log(12314123);
             Livewire.emit('cetakPembayaran', id);
             setTimeout(() => {
                 var isi = document.querySelector('#cetakView').innerHTML;
@@ -195,7 +193,7 @@
                 window.frames["printf"].document.body.innerHTML = isi;
                 window.frames["printf"].focus();
                 window.frames["printf"].print();
-            }, 1500);
+            }, 500);
         }
         Livewire.on('cetakBonSPP', function (id) {
             cetakBonSPP(id)
@@ -203,15 +201,14 @@
         freshBtn();
         Livewire.on('refreshButton', freshBtn);
         Livewire.on('freshPilihButton', freshPilihButton);
-        Livewire.on('cetakPilihan', function (params) {
-            Livewire.emit('cetakBanyak', params);
+        Livewire.on('cetakBanyak', function (params) {
             setTimeout(() => {
                 var isi = document.querySelector('#cetakView').innerHTML;
                 window.frames["printf"].document.title = document.title;
                 window.frames["printf"].document.body.innerHTML = isi;
                 window.frames["printf"].focus();
                 window.frames["printf"].print();
-            }, 1500);
+            }, 500);
         })
     </script>
 @endpush

@@ -9,11 +9,11 @@ use App\Models\Spp;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use App\Traits\ListenerTrait;
-use Illuminate\Http\Request;
 
 class SiswaIndex extends Component
 {
     use ListenerTrait;
+    
     public $nisn;
     public $nis;
     public $nama;
@@ -69,7 +69,6 @@ class SiswaIndex extends Component
     public function render()
     {
         $siswa = Siswa::orderByDesc('nisn')->orderByDesc('nis');
-        
         if (isset($_GET['spp'])) {
             $idspp = $_GET['spp'];
             $this->spp_id = $idspp;
