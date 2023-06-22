@@ -1,0 +1,28 @@
+# Aplikasi Spp Sekolah
+
+## persyaratan 
+- Aplikasi ini dibangun menggunakan laravel versi 10. 
+- sehingga versi php diharuskan berada di versi 8.1 ke atas sesuai dengan dokumentasi resmi milik laravel   (disarankan versi 8.2)
+- Aplikasi ini dibangun menggunakan laragon sebagai dbms dan mysql sebagai database nya
+
+## menjalankan aplikasi
+Buka terminal cmd atau sebagainya dan jalankan perintah berikut 
+
+```
+    php artisan optimize:clear
+
+    php artisan optimize
+```
+
+pastikan seluruh package atau liblary pihak ketiga sudah terpasang. Jika belum maka jalankan perintah berikut (disarankan untuk dijalankan)
+
+```
+    composer install
+```
+
+lalu jalankan perintah
+```
+    php artisan serve
+```
+
+pada terminal anda untuk menjalankan server dari apache sehingga aplikasi bisa diakses di local yang sudah tertera di terminal
